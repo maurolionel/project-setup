@@ -28,9 +28,7 @@
     ],
     "space-before-function-paren": [
       "error",
-      {
-        "anonymous": "always"
-      }
+      "never"
     ],
     "comma-dangle": [
       1,
