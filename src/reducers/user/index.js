@@ -1,4 +1,4 @@
-import { SET_USER } from '../services/actionTypes';
+import { SET_USER } from '../../services/actionTypes';
 
 const initialState = {
   username: null
@@ -10,7 +10,7 @@ export default function user(state = initialState, action) {
       return {
         ...state,
         username: action.payload.username
-      }
+      };
     }
     default: {
       return state;
