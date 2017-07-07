@@ -81,7 +81,7 @@ export default new WebpackConfig()
         inject: true
       }),
       new SWPrecacheWebpackPlugin({
-        cacheId: 'triviacrack',
+        cacheId: 'reactjs',
         dontCacheBustUrlsMatching: /\.\w{8}\./,
         filename: 'service-worker.js',
         minify: true,

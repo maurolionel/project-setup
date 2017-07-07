@@ -1,0 +1,18 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+temp/
+test.html
+node_modules/
+.nyc_output/
+coverage/
+.vscode/
+.nyc_output/
+
+dist.zip
+dist/
+coverage/
+.vscode/
+yarn-error.log
+.storybook/
+stories/
+yarn.lock

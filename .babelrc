@@ -1,0 +1,18 @@
+{
+  "presets": [
+    "es2015",
+    "react",
+    "stage-3",
+    "stage-2"
+  ],
+  "plugins": [
+    "transform-object-assign",
+    "transform-flow-strip-types",
+    "syntax-dynamic-import"
+  ],
+  "env": {
+    "test": {
+      "plugins": [ "istanbul" ]
+    }
+  }
+}

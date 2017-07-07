@@ -1,0 +1,31 @@
+{
+  "lines": 99,
+  "statements": 99,
+  "functions": 99,
+  "branches": 99,
+  "include": [
+    "src/**/*.js"
+  ],
+  "exclude": [
+    "src/**/*.test.js",
+    "node_modules/"
+  ],
+  "reporter": [
+    "lcov",
+    "text",
+    "html"
+  ],
+  "require": [
+    "babel-register"
+  ],
+  "extension": [
+    ".jsx",
+    ".js"
+  ],
+  "cache": true,
+  "all": true,
+  "check-coverage": true,
+  "report-dir": "./coverage",
+  "sourceMap": false,
+  "instrument": false
+}
