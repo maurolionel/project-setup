@@ -6,8 +6,8 @@ import { ConnectedRouter } from 'react-router-redux';
 import { ThemeProvider } from 'styled-components';
 import registerServiceWorker from './registerServiceWorker';
 import colors from './styles/Colors';
-import configureStore, { history } from './store/store';
-import App from './containers/App/App';
+import configureStore, { history } from './services/store';
+import App from './components/App';
 
 const store = configureStore;
 

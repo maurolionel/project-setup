@@ -1,4 +1,4 @@
-import configureStore from './store';
+import configureStore from './';
 
 describe('Store Valid Test', () => {
   const store = configureStore;
