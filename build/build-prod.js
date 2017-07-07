@@ -1,6 +1,6 @@
 import colors from 'colors';
 import webpack from 'webpack';
-import webpackConfig from './webpack.config';
+import webpackConfig from '../webpack.config';
 
 console.log('Generating minified bundle for production via Webpack. This will take a moment...'.blue);
 webpack(webpackConfig).run((err, stats) => {

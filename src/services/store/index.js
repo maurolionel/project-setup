@@ -4,7 +4,7 @@ import { apiMiddleware } from 'redux-api-middleware';
 import { routerMiddleware } from 'react-router-redux';
 import logger from 'redux-logger';
 import createHistory from 'history/createBrowserHistory';
-import rootReducer from '../reducers/RootReducer';
+import rootReducer from '../../rootReducer';
 
 export const history = createHistory();
 

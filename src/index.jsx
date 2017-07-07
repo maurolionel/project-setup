@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import { ThemeProvider } from 'styled-components';
-import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from './services/registerServiceWorker';
 import colors from './styles/Colors';
 import configureStore, { history } from './services/store';
 import App from './components/App';
@@ -22,6 +22,6 @@ ReactDOM.render(
       </ConnectedRouter>
     </Provider>
   </ThemeProvider>,
-  document.getElementById('preguntados')
+  document.getElementById('root')
 );
 registerServiceWorker();
