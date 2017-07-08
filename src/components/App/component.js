@@ -1,17 +1,14 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import styled, { injectGlobal } from 'styled-components';
+import { normalize } from 'polished';
 import Header from './components/Header';
 import Home from '../../scenes/Home';
 import Products from '../../scenes/Products';
 // import restrict from '../../components/Security/Auth';
 
 /* eslint-disable no-unused-expressions */
-injectGlobal`
-  body {
-    margin: 0;
-  }
-`;
+injectGlobal`${normalize()}`;
 /* eslint-enable no-unused-expressions */
 
 const StyledApp = styled.main`
