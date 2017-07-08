@@ -61,7 +61,6 @@ export default new WebpackConfig()
         {
           test: /\.(jpe?g|png|gif|svg)$/i,
           exclude: /node_modules/,
-          include: resolve('src/assets/images'),
           loader: 'file-loader?name=[path][name].[ext]'
         }
       ]
