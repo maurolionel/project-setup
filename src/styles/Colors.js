@@ -1,7 +1,7 @@
 const colors = {
   aqua: '#1fbba6',
   aquaDark: '#189786',
-  blue: '#1055b1',
+  blue: '#0072bf',
   blueDark: '#0b3670',
   green: '#17a84b',
   greenDark: '#0f692f',
@@ -37,29 +37,6 @@ const colors = {
 };
 
 const colorsBase = Object.assign({}, colors, {
-  // categories
-  geography: colors.blue,
-  science: colors.green,
-  history: colors.yellow,
-  sports: colors.orange,
-  arts: colors.red,
-  entertainment: colors.pink,
-
-  // categoriesTime
-  geographyTime: colors.blueDark,
-  scienceTime: colors.greenDark,
-  artTime: colors.redDarker,
-  historyTime: colors.yellowDark,
-  sportsTime: colors.orangeDarker,
-  entertainmentTime: colors.pinkDarkest,
-
-  geografia: colors.blue,
-  ciencia: colors.green,
-  historia: colors.yellow,
-  deportes: colors.orange,
-  arte: colors.red,
-  entretenimiento: colors.pink,
-
   // fonts
   fontBrandom: '"Brandon", Helvetica, Arial, sans-serif',
   fontMikado: '"Mikado Black", Arial, sans-serif;',
@@ -69,7 +46,7 @@ const colorsBase = Object.assign({}, colors, {
   fontSizeL: '3.1rem',
 
   // brand
-  primary: colors.aqua,
+  primary: colors.blue,
   success: colors.greenLight,
   warning: colors.orangeLight,
   danger: colors.redLight,
