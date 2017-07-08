@@ -1,5 +1,3 @@
-import React from 'react';
-
-const Products = () => <h1>Productos</h1>;
+import Products from './component';
 
 export default Products;
