@@ -8,7 +8,7 @@ const TopBarLink = styled.a.attrs({
   color: ${({ theme }) => theme.base};
   text-decoration: none;
   text-transform: uppercase;
-  transition: 0.1s background-color linear;
+  transition: 0.05s background-color linear;
 
   &:hover {
     background-color: ${({ theme }) => darken(0.05, theme.primary)};
