@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Home = ({ username }) => <h1>Hi, {username}</h1>;
-
-Home.propTypes = {
-  username: PropTypes.string.isRequired
-};
+const Home = () => (
+  <div>
+    <h1>Home</h1>
+    <img src="http://www.imprek.com.ar/imagenes/carrusel/home_banner_papel_nuevo.jpg" alt="Promoción Imprek" />
+  </div>
+);
 
 export default Home;
