@@ -10,6 +10,7 @@ import Products from '../../scenes/Products';
 import HotSales from '../../scenes/HotSales';
 import Support from '../../scenes/Support';
 import Contact from '../../scenes/Contact';
+import NotFound from '../../scenes/NotFound';
 // import restrict from '../../components/Security/Auth';
 
 /* eslint-disable no-unused-expressions */
@@ -31,6 +32,7 @@ const App = () => (
       <Route exact path="/contacto" component={Contact} />
       {/* <Route exact path="/dashboard" component={restrict(Dashboard)} /> */}
       <Route exact path="/" component={Home} />
+      <Route component={NotFound} />
     </Switch>
   </StyledApp>
 );
