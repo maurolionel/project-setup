@@ -22,9 +22,10 @@
   },
   "rules": {
     "strict": 2,
+    "linebreak-style": ["error", "windows"],
     "max-len": [
       "error",
-      250
+      150
     ],
     "space-before-function-paren": [
       "error",
