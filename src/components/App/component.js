@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 import Nav from './components/Nav';
-import Home from './scenes/Home';
-import Products from './scenes/Products';
+import Home from '../../scenes/Home';
+import Products from '../../scenes/Products';
 // import restrict from '../../components/Security/Auth';
 
 // import FullScreenLayout from '../../components/commons/FullScreen';

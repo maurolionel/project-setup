@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import registerServiceWorker from './services/registerServiceWorker';
 import colors from './styles/Colors';
 import configureStore, { history } from './services/store';
-import App from './scenes/App';
+import App from './components/App';
 
 const store = configureStore;
 

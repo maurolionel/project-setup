@@ -8,7 +8,7 @@ export default new WebpackConfig()
   .merge({
 
     entry: [
-      './src/index.jsx',
+      './src/index.js',
       `webpack-dev-server/client/index.js?${appConfig.clientProtocol}://${appConfig.clientDomain}:${appConfig.clientPort}`,
       'webpack/hot/dev-server'
     ],
