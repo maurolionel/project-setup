@@ -1,7 +1,14 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const StyledTopBar = styled.div`
+  display: flex;
+  background-color: blue;
+  color: #fff;
+`;
 
 const TopBar = () => (
-  <p>TOPBAR</p>
+  <StyledTopBar>TOPBAR</StyledTopBar>
 );
 
 export default TopBar;
