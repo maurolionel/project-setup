@@ -16,13 +16,13 @@ const TopBarSection = styled.div`
 const TopBar = () => (
   <StyledTopBar>
     <TopBarSection>
-      <TopBarLink>Horarios</TopBarLink>
-      <TopBarLink>Métodos de envío</TopBarLink>
-      <TopBarLink>Teléfono: (011) 3220.0500</TopBarLink>
+      <TopBarLink to="/horarios">Horarios</TopBarLink>
+      <TopBarLink to="/envios">Métodos de envío</TopBarLink>
+      <TopBarLink to="/contacto">Teléfono: (011) 3220.0500</TopBarLink>
     </TopBarSection>
     <TopBarSection>
-      <TopBarLink>Entrar</TopBarLink>
-      <TopBarLink>Carrito</TopBarLink>
+      <TopBarLink to="/ingreso">Entrar</TopBarLink>
+      <TopBarLink to="/carrito">Carrito</TopBarLink>
     </TopBarSection>
   </StyledTopBar>
 );

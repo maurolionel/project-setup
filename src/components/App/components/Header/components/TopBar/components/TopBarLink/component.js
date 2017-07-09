@@ -1,9 +1,8 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { darken } from 'polished';
 
-const TopBarLink = styled.a.attrs({
-  href: '#'
-})`
+const TopBarLink = styled(NavLink)`
   padding: 0.7rem 1rem;
   color: ${({ theme }) => theme.base};
   text-decoration: none;
@@ -11,10 +10,10 @@ const TopBarLink = styled.a.attrs({
   transition: 0.05s background-color linear;
 
   &:hover {
-    background-color: ${({ theme }) => darken(0.05, theme.primary)};
+    background-color: ${({ theme }) => darken(0.03, theme.primary)};
   }
-  &:active {
-    background-color: ${({ theme }) => darken(0.1, theme.primary)};
+  &:active, &.active {
+    background-color: ${({ theme }) => darken(0.06, theme.primary)};
   }
 `;
 
