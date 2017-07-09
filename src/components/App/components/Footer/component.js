@@ -1,27 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
-import { darken } from 'polished';
 
 const StyledFooter = styled.footer`
   display: flex;
   flex-direction: column;
-  color: ${({ theme }) => theme.base};
 `;
 
-const Information = styled.footer`
+const Information = styled.div`
   display: flex;
-  background-color: ${({ theme }) => theme.grayDarker};
+  color: #969696;
+  background-color: #f5f5f5;
   section {
     flex: 1;
+    padding: 0 1rem 1rem;
+  }
+  ul {
+    padding: 0;
+    list-style: none;
   }
 `;
 
 const Title = styled.p`
+  font-weight: 700;
   text-transform: uppercase;
 `;
 
 const Copyrights = styled.div`
-  background-color: ${({ theme }) => darken(0.03, theme.grayDarker)};
+  color: #757575;
+  background-color: #e0e0e0;
   text-align: center;
   p {
     padding: 0.7rem 0;
