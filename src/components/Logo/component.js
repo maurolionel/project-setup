@@ -1,15 +1,15 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const StyledNavLink = styled(NavLink)`
+const StyledLink = styled(Link)`
   margin-right: 2rem;
 `;
 
 const Logo = () => (
-  <StyledNavLink to="/">
+  <StyledLink to="/">
     <img src="" alt="Logo Imprek" />
-  </StyledNavLink>
+  </StyledLink>
 );
 
 export default Logo;
