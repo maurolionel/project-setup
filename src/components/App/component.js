@@ -8,13 +8,20 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 // scenes
-import Home from '../../scenes/Home';
-import Products from '../../scenes/Products';
-import HotSales from '../../scenes/HotSales';
-import Support from '../../scenes/Support';
 import Contact from '../../scenes/Contact';
+import Home from '../../scenes/Home';
+import HotSales from '../../scenes/HotSales';
+import Login from '../../scenes/Login';
 import NotFound from '../../scenes/NotFound';
+import Products from '../../scenes/Products';
+import Schedules from '../../scenes/Schedules';
+import Shippings from '../../scenes/Shippings';
+import ShoppingCart from '../../scenes/ShoppingCart';
+import SignUp from '../../scenes/SignUp';
+import Support from '../../scenes/Support';
+
 // import restrict from '../../components/Security/Auth';
+// <Route exact path="/dashboard" component={restrict(Dashboard)} />
 
 /* eslint-disable no-unused-expressions */
 injectGlobal`
@@ -50,11 +57,20 @@ const App = () => (
     <Main>
       <Switch>
         <Route exact path="/" component={Home} />
+
+        {/* TopBar */}
+        <Route exact path="/ingreso" component={Login} />
+        <Route exact path="/horarios" component={Schedules} />
+        <Route exact path="/envios" component={Shippings} />
+        <Route exact path="/carrito" component={ShoppingCart} />
+        <Route exact path="/registro" component={SignUp} />
+
+        {/* NavBar */}
         <Route exact path="/productos" component={Products} />
         <Route exact path="/ofertas" component={HotSales} />
         <Route exact path="/soporte" component={Support} />
         <Route exact path="/contacto" component={Contact} />
-        {/* <Route exact path="/dashboard" component={restrict(Dashboard)} /> */}
+
         <Route exact path="/" component={Home} />
         <Route component={NotFound} />
       </Switch>
