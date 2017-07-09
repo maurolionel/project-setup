@@ -2,7 +2,10 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import styled, { injectGlobal } from 'styled-components';
 import { normalize } from 'polished';
+
+// layout
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 // scenes
 import Home from '../../scenes/Home';
@@ -14,26 +17,49 @@ import NotFound from '../../scenes/NotFound';
 // import restrict from '../../components/Security/Auth';
 
 /* eslint-disable no-unused-expressions */
-injectGlobal`${normalize()}`;
+injectGlobal`
+  ${normalize()}
+  html { height: 100%; }
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+  #root {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+`;
 /* eslint-enable no-unused-expressions */
 
-const StyledApp = styled.main`
+const StyledApp = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   font-family: Arial, sans-serif;
+`;
+
+const Main = styled.main`
+  flex: 1;
 `;
 
 const App = () => (
   <StyledApp>
     <Header />
-    <Switch>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/productos" component={Products} />
-      <Route exact path="/ofertas" component={HotSales} />
-      <Route exact path="/soporte" component={Support} />
-      <Route exact path="/contacto" component={Contact} />
-      {/* <Route exact path="/dashboard" component={restrict(Dashboard)} /> */}
-      <Route exact path="/" component={Home} />
-      <Route component={NotFound} />
-    </Switch>
+    <Main>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/productos" component={Products} />
+        <Route exact path="/ofertas" component={HotSales} />
+        <Route exact path="/soporte" component={Support} />
+        <Route exact path="/contacto" component={Contact} />
+        {/* <Route exact path="/dashboard" component={restrict(Dashboard)} /> */}
+        <Route exact path="/" component={Home} />
+        <Route component={NotFound} />
+      </Switch>
+    </Main>
+    <Footer />
   </StyledApp>
 );
 
