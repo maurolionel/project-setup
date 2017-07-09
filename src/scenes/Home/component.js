@@ -1,10 +1,13 @@
 import React from 'react';
+import Shortcuts from '../../components/Shortcuts';
 
 const Home = () => (
-  <div>
-    <h1>Home</h1>
-    <img src="" alt="Promoción Imprek" />
-  </div>
+  <section>
+    <div>--Banner--</div>
+    <div>--Slider--</div>
+    <Shortcuts />
+    <div>--Features--</div>
+  </section>
 );
 
 export default Home;
