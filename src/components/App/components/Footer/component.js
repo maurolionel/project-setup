@@ -21,8 +21,12 @@ const Title = styled.p`
 `;
 
 const Copyrights = styled.div`
-  background-color: ${({ theme }) => darken(0.05, theme.grayDarker)};
+  background-color: ${({ theme }) => darken(0.03, theme.grayDarker)};
   text-align: center;
+  p {
+    padding: 0.7rem 0;
+    margin: 0;
+  }
 `;
 
 const Footer = () => (
@@ -65,7 +69,7 @@ const Footer = () => (
       </section>
     </Information>
     <Copyrights>
-      <p>Imprek&#174; es  marca registrada - Copyright 2007 - {(new Date()).getFullYear()}</p>
+      <p>Sistemas Imprek &#174; es  marca registrada. Copyright 2007 - {(new Date()).getFullYear()}.</p>
     </Copyrights>
   </StyledFooter>
 );

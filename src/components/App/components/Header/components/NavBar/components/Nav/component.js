@@ -21,7 +21,7 @@ const StyledNavLink = styled(NavLink)`
   &:hover {
     background-color: ${({ theme }) => darken(0.02, theme.base)}
   }
-  &:active {
+  &:active, &.active {
     background-color: ${({ theme }) => darken(0.04, theme.base)}
   }
 `;
