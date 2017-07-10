@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { darken, lighten } from 'polished';
 
 const StyledShortcuts = styled.article`
   display: flex;
@@ -11,12 +12,21 @@ const StyledLink = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 150px;
+  height: 230px;
   color: ${({ theme }) => theme.base};
-  background-color: ${({ theme }) => theme.primary};
   font-weight: 700;
   text-decoration: none;
   text-transform: uppercase;
+
+  &:nth-child(1) {
+    background-color: ${({ theme }) => lighten(0.03, theme.primary)};
+  }
+  &:nth-child(2) {
+    background-color: ${({ theme }) => theme.primary};
+  }
+  &:nth-child(3) {
+    background-color: ${({ theme }) => darken(0.03, theme.primary)};
+  }
 `;
 
 const Shortcuts = () => (
