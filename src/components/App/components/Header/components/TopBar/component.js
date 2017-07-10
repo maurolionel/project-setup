@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import TopBarLink from './components/TopBarLink';
+import TopBarNavLink from './components/TopBarNavLink';
 
 const StyledTopBar = styled.div`
   display: flex;
@@ -13,16 +14,18 @@ const TopBarSection = styled.div`
   display: flex;
 `;
 
+const TopBarLink = TopBarNavLink.withComponent(Link);
+
 const TopBar = () => (
   <StyledTopBar>
     <TopBarSection>
-      <TopBarLink to="/horarios">Horarios</TopBarLink>
-      <TopBarLink to="/envios">Métodos de envío</TopBarLink>
+      <TopBarNavLink to="/horarios">Horarios</TopBarNavLink>
+      <TopBarNavLink to="/envios">Métodos de envío</TopBarNavLink>
       <TopBarLink to="/contacto">Teléfono: (011) 3220.0500</TopBarLink>
     </TopBarSection>
     <TopBarSection>
-      <TopBarLink to="/ingresar">Ingresar</TopBarLink>
-      <TopBarLink to="/carrito">Carrito</TopBarLink>
+      <TopBarNavLink to="/ingresar">Ingresar</TopBarNavLink>
+      <TopBarNavLink to="/carrito">Carrito</TopBarNavLink>
     </TopBarSection>
   </StyledTopBar>
 );

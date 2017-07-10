@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { darken } from 'polished';
 
-const TopBarLink = styled(NavLink)`
+const TopBarNavLink = styled(NavLink)`
   padding: 0.7rem 1rem;
   color: ${({ theme }) => theme.base};
   text-decoration: none;
@@ -17,4 +17,4 @@ const TopBarLink = styled(NavLink)`
   }
 `;
 
-export default TopBarLink;
+export default TopBarNavLink;
