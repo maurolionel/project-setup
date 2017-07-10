@@ -11,12 +11,12 @@ import Footer from './components/Footer';
 import Contact from '../../scenes/Contact';
 import Home from '../../scenes/Home';
 import HotSales from '../../scenes/HotSales';
-import Login from '../../scenes/Login';
 import NotFound from '../../scenes/NotFound';
 import Products from '../../scenes/Products';
 import Schedules from '../../scenes/Schedules';
 import Shippings from '../../scenes/Shippings';
 import ShoppingCart from '../../scenes/ShoppingCart';
+import SignIn from '../../scenes/SignIn';
 import SignUp from '../../scenes/SignUp';
 import Support from '../../scenes/Support';
 
@@ -59,11 +59,11 @@ const App = () => (
         <Route exact path="/" component={Home} />
 
         {/* TopBar */}
-        <Route exact path="/ingreso" component={Login} />
         <Route exact path="/horarios" component={Schedules} />
         <Route exact path="/envios" component={Shippings} />
         <Route exact path="/carrito" component={ShoppingCart} />
-        <Route exact path="/registro" component={SignUp} />
+        <Route exact path="/ingresar" component={SignIn} />
+        <Route exact path="/registrarse" component={SignUp} />
 
         {/* NavBar */}
         <Route exact path="/productos" component={Products} />

@@ -21,7 +21,7 @@ const TopBar = () => (
       <TopBarLink to="/contacto">Teléfono: (011) 3220.0500</TopBarLink>
     </TopBarSection>
     <TopBarSection>
-      <TopBarLink to="/ingreso">Entrar</TopBarLink>
+      <TopBarLink to="/ingresar">Ingresar</TopBarLink>
       <TopBarLink to="/carrito">Carrito</TopBarLink>
     </TopBarSection>
   </StyledTopBar>
