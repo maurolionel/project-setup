@@ -25,14 +25,13 @@ const Title = styled.p`
   text-transform: uppercase;
 `;
 
-const Copyrights = styled.div`
+const Copyrights = styled.p`
+  padding: 0.6rem 0 0.5rem;
+  margin: 0;
   color: #757575;
   background-color: #e0e0e0;
+  font-size: 0.9rem;
   text-align: center;
-  p {
-    padding: 0.7rem 0;
-    margin: 0;
-  }
 `;
 
 const Footer = () => (
@@ -75,7 +74,7 @@ const Footer = () => (
       </section>
     </Information>
     <Copyrights>
-      <p>Sistemas Imprek &#174; es  marca registrada. Copyright 2007 - {(new Date()).getFullYear()}.</p>
+      Sistemas Imprek &#174; es  marca registrada. Copyright 2007 - {(new Date()).getFullYear()}.
     </Copyrights>
   </StyledFooter>
 );
