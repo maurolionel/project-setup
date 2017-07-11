@@ -16,16 +16,35 @@ const TopBarSection = styled.div`
 
 const TopBarLink = TopBarNavLink.withComponent(Link);
 
+const Icon = styled.i`
+  margin: 0 0.5rem;
+  font-size: 1.1rem;
+`;
+
 const TopBar = () => (
   <StyledTopBar>
     <TopBarSection>
-      <TopBarNavLink to="/horarios">Horarios</TopBarNavLink>
-      <TopBarNavLink to="/envios">Métodos de envío</TopBarNavLink>
-      <TopBarLink to="/contacto">Teléfono: (011) 3220.0500</TopBarLink>
+      <TopBarNavLink to="/horarios" title="Nuestros horarios de atención">
+        <Icon className="fa fa-clock-o" />
+        Horarios
+      </TopBarNavLink>
+      <TopBarNavLink to="/envios" title="Conocé nuestros métodos de envío">
+        <Icon className="fa fa-truck" />
+        Métodos de envío
+      </TopBarNavLink>
+      <TopBarLink to="/contacto" title="Llamanos, ¡tu consulta no molesta!">
+        <Icon className="fa fa-phone" />
+        Teléfono: (011) 3220.0500
+      </TopBarLink>
     </TopBarSection>
     <TopBarSection>
-      <TopBarNavLink to="/ingresar">Ingresar</TopBarNavLink>
-      <TopBarNavLink to="/carrito">Carrito</TopBarNavLink>
+      <TopBarNavLink to="/ingresar" title="Ingresá a tu cuenta">
+        Ingresar
+        <Icon className="fa fa-sign-in" />
+      </TopBarNavLink>
+      <TopBarNavLink to="/carrito" title="Tu carrito de compras">
+        <Icon className="fa fa-shopping-cart" />
+      </TopBarNavLink>
     </TopBarSection>
   </StyledTopBar>
 );
