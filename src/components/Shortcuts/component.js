@@ -10,7 +10,8 @@ const StyledShortcuts = styled.article`
 const StyledLink = styled(Link)`
   flex: 1;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   height: 230px;
   color: ${({ theme }) => theme.base};
@@ -29,11 +30,24 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const Icon = styled.i`
+  font-size: 8rem;
+`;
+
 const Shortcuts = () => (
   <StyledShortcuts>
-    <StyledLink to="/soporte">Instructivos y manuales</StyledLink>
-    <StyledLink to="/productos">Nuestros productos</StyledLink>
-    <StyledLink to="/horarios">Horarios de atención</StyledLink>
+    <StyledLink to="/soporte">
+      <Icon className="fa fa-cogs" />
+      Instructivos y manuales
+    </StyledLink>
+    <StyledLink to="/productos">
+      <Icon className="fa fa-shopping-bag" />
+      Nuestros productos
+    </StyledLink>
+    <StyledLink to="/horarios">
+      <Icon className="fa fa-clock-o" />
+      Horarios de atención
+    </StyledLink>
   </StyledShortcuts>
 );
 
