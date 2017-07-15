@@ -51,7 +51,7 @@ const Price = styled.span`
 const LinkActionButton = styled(Link)`
   padding: 0.5rem;
   color: ${({ theme }) => theme.base};
-  background-color: #fbb03b;
+  background-color: ${({ theme }) => theme.accent};
   font-weight: 700;
   text-align: center;
   text-decoration: none;
