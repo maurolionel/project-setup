@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import logoSource from './images/logo-imprek.svg';
 
 const StyledLink = styled(Link)`
+  width: 15rem;
   margin-right: 2rem;
 `;
 
