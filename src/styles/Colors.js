@@ -9,7 +9,7 @@ const colors = {
   redDarker: '#9612170',
   yellow: '#f6c92f',
   yellowDark: '#9b7f1e',
-  orange: '#ff6c00',
+  orange: '#fbb03b',
   orangeDarker: '#a14400',
   pink: '#ee3c80',
   pinkDarkest: '#972651',
@@ -48,6 +48,7 @@ const colorsBase = Object.assign({}, colors, {
 
   // brand
   primary: colors.blue,
+  accent: colors.orange,
   success: colors.greenLight,
   warning: colors.orangeLight,
   danger: colors.redLight,
