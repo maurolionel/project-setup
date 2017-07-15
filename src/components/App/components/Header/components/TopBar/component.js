@@ -7,7 +7,7 @@ const StyledTopBar = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: ${({ theme }) => theme.primary};
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 `;
 
 const TopBarSection = styled.div`
@@ -18,7 +18,7 @@ const TopBarLink = TopBarNavLink.withComponent(Link);
 
 const Icon = styled.i`
   margin: 0 0.5rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
 `;
 
 const TopBar = () => (
