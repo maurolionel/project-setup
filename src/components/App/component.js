@@ -37,6 +37,11 @@ injectGlobal`
     display: flex;
     flex-direction: column;
   }
+  img {
+    display: block;
+    max-width: 100%;
+    heght: auto;
+  }
 `;
 /* eslint-enable no-unused-expressions */
 
