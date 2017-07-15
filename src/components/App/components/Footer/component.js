@@ -9,7 +9,7 @@ const StyledFooter = styled.footer`
 const Information = styled.div`
   display: flex;
   color: #969696;
-  background-color: #f5f5f5;
+  background-color: ${({ theme }) => theme.whiteGray};
   section {
     flex: 1;
     padding: 0 1rem 1rem;
