@@ -30,7 +30,7 @@ const Copyrights = styled.p`
   margin: 0;
   color: #757575;
   background-color: #e0e0e0;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-align: center;
 `;
 
