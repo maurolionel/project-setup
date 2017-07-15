@@ -27,6 +27,7 @@ const colors = {
   pinkDark: '#f21f43',
   pinkDarker: '#a30f28',
   base: '#ffffff',
+  whiteGray: '#f5f5f5',
   grayLighter: '#ececec',
   grayDark: '#acacac',
   gray: '#646464',
