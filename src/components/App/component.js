@@ -40,7 +40,7 @@ injectGlobal`
   img {
     display: block;
     max-width: 100%;
-    heght: auto;
+    height: auto;
   }
 `;
 /* eslint-enable no-unused-expressions */
