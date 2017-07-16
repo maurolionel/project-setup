@@ -26,6 +26,7 @@ import Support from '../../scenes/Support';
 /* eslint-disable no-unused-expressions */
 injectGlobal`
   ${normalize()}
+  *, *:before, *:after { box-sizing: border-box; }
   html { height: 100%; }
   body {
     display: flex;
