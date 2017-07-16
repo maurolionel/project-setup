@@ -13,6 +13,7 @@ import Home from '../../scenes/Home';
 import HotSales from '../../scenes/HotSales';
 import NotFound from '../../scenes/NotFound';
 import Products from '../../scenes/Products';
+import SingleProduct from '../../scenes/SingleProduct';
 import Schedules from '../../scenes/Schedules';
 import Shippings from '../../scenes/Shippings';
 import ShoppingCart from '../../scenes/ShoppingCart';
@@ -73,6 +74,7 @@ const App = () => (
 
         {/* NavBar */}
         <Route exact path="/productos" component={Products} />
+        <Route exact path="/productos/:productId" component={SingleProduct} />
         <Route exact path="/ofertas" component={HotSales} />
         <Route exact path="/soporte" component={Support} />
         <Route exact path="/contacto" component={Contact} />
