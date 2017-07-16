@@ -28,7 +28,8 @@ const renderFilter = aFilter => (
 );
 
 const StyledAside = styled.aside`
-  flex: 0 0 13rem;
+  flex: 0 0 15rem;
+  padding: 1rem;
 `;
 
 const Title = styled.h4`
