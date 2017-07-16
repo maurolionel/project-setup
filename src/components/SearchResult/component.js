@@ -8,7 +8,8 @@ const Section = styled.section`
 `;
 
 const CardContainer = styled.article`
-  margin: 1rem;
+  flex: 1 1 30%;
+  padding: 1rem;
 `;
 
 const SearchResult = () => (
@@ -20,7 +21,7 @@ const SearchResult = () => (
     <CardContainer><Card /></CardContainer>
     <CardContainer><Card /></CardContainer>
     <CardContainer><Card /></CardContainer>
- </Section>
+  </Section>
 );
 
 export default SearchResult;

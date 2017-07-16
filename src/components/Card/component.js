@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { lighten } from 'polished';
 
 const StyledCard = styled.div`
-  flex: 0 1 23%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
