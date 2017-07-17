@@ -1,5 +1,12 @@
 import React from 'react';
+import ProductSelect from './components/ProductSelect';
 
-const Support = () => <h1>Soporte</h1>;
+const brandsData = ['Brother', 'Canon', 'Epson', 'Hewelett Packard (HP)'];
+
+const Support = () => (
+  <section>
+    <ProductSelect brands={brandsData} />
+  </section>
+);
 
 export default Support;
