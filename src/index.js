@@ -7,7 +7,9 @@ import { ThemeProvider } from 'styled-components';
 import registerServiceWorker from './services/registerServiceWorker';
 import colors from './styles/Colors';
 import configureStore, { history } from './services/store';
+import ScrollToTop from './components/ScrollToTop';
 import App from './components/App';
+
 
 const store = configureStore;
 
@@ -18,7 +20,9 @@ ReactDOM.render(
   <ThemeProvider theme={colors}>
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <Route path="/" component={App} />
+        <ScrollToTop>
+          <Route path="/" component={App} />
+        </ScrollToTop>
       </ConnectedRouter>
     </Provider>
   </ThemeProvider>,
