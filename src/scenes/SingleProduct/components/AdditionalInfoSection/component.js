@@ -3,33 +3,40 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { darken } from 'polished';
 
-const StyledDiv = styled.div`
-  padding: 1rem 0;
+const StyledWrapper = styled.div`
+  padding: 1rem;
   border-top: 1px solid ${({ theme }) => darken(0.04, theme.whiteGray)};
   color: ${({ theme }) => theme.gray};
   font-size: 0.9rem;
+
+  > * {
+    margin: 0;
+  }
+
+  ul {
+    padding: 0 1rem;
+    li {
+      margin: 0.2rem 0;
+    }
+  }
 `;
 
 const InfoTitle = styled.h3`
   margin: 0.5rem 0;
   font-size: 0.8rem;
   text-transform: uppercase;
-
-  > * {
-    margin: 0;
-  }
 `;
 
-const AdditionalInfo = ({ title, children }) => (
-  <StyledDiv>
+const AdditionalInfoSection = ({ title, children }) => (
+  <StyledWrapper>
     <InfoTitle>{title}:</InfoTitle>
     {children}
-  </StyledDiv>
+  </StyledWrapper>
 );
 
-AdditionalInfo.propTypes = {
+AdditionalInfoSection.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.any.isRequired
 };
 
-export default AdditionalInfo;
+export default AdditionalInfoSection;
