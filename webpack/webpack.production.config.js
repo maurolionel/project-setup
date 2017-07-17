@@ -14,7 +14,7 @@ export default new WebpackConfig()
       filename: '[name].js?[hash]',
       path: resolve('dist'),
       chunkFilename: '[name].js?[hash]',
-      publicPath: ''
+      publicPath: '/'
       // necessary for HMR to know where to load the hot update chunks
     },
 
