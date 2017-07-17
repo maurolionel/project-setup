@@ -59,15 +59,15 @@ const LinkActionButton = styled(Link)`
 
 const Card = () => (
   <StyledCard>
-    <LinkImage to="/">
+    <LinkImage to="/productos/1">
       <img src="" alt="Imagen del producto" />
     </LinkImage>
     <Details>
       <Price>$599.99</Price>
-      <LinkName to="/">Nombre del producto</LinkName>
+      <LinkName to="/productos/2">Nombre del producto</LinkName>
       <Description>Breve descripción del producto...</Description>
     </Details>
-    <LinkActionButton to="/">Agregar al carrito</LinkActionButton>
+    <LinkActionButton to="/carrito">Agregar al carrito</LinkActionButton>
   </StyledCard>
 );
 
