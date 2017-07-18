@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { darken } from 'polished';
 
 const StyledWrapper = styled.div`
   padding: 1rem;
-  border-top: 1px solid ${({ theme }) => darken(0.04, theme.whiteGray)};
   color: ${({ theme }) => theme.gray};
   font-size: 0.9rem;
+  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.1);
 
   > * {
     margin: 0;
@@ -18,6 +17,9 @@ const StyledWrapper = styled.div`
     li {
       margin: 0.2rem 0;
     }
+  }
+  p {
+    margin: 0.2rem 0;
   }
 `;
 
