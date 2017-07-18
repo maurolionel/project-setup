@@ -68,7 +68,7 @@ const AddToCartSection = () => (
     <StockLabel withStock />
     <Price>$ 599.00</Price>
     <QuantityWrapper>
-      <QuantityLabel>Cantidad</QuantityLabel>
+      <QuantityLabel>Cantidad:</QuantityLabel>
       <Quantity>
         <QuantityInput />
         <Button to="/carrito"><ShopIcon />Agregar al carrito</Button>

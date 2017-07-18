@@ -6,7 +6,7 @@ const StyledWrapper = styled.div`
   padding: 1rem;
   color: ${({ theme }) => theme.gray};
   font-size: 0.9rem;
-  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.1);
+  border-top: 1px solid ${({ theme }) => theme.whiteGray};
 
   > * {
     margin: 0;
