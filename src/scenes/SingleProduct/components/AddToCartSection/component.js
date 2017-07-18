@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { darken } from 'polished';
 import StockLabel from '../../../../components/StockLabel';
+import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
 
 const StyledWrapper = styled.div`
@@ -24,27 +25,39 @@ const Price = styled.span`
 `;
 
 const QuantityWrapper = styled.div`
+  margin: 1rem 0;
+`;
+
+const QuantityLabel = styled.span`
+  display: block;
+  margin-bottom: 3px;
+  color: ${({ theme }) => darken(0.3, theme.grayLighter)};
+  font-size: 0.75rem;
+  font-weight: 300;
+  text-transform: capitalize;
+`;
+
+const Quantity = styled.div`
   display: flex;
   align-items: center;
-  margin: 1rem 0;
-  color: ${({ theme }) => theme.gray};
 `;
 
-const QuantityInput = styled.input.attrs({
+const QuantityInput = styled(Input).attrs({
   type: 'number',
-  value: 1,
+  defaultValue: 1,
   min: 1
 })`
-  width: 3rem;
+  width: 3.3rem;
   padding: 0.5rem 0 0.5rem 0.6rem;
   margin-right: 0.5rem;
-  border: 1px solid #9E9E9E;
-  border-radius: 2px;
-  color: ${({ theme }) => theme.gray};
-  font-size: 1.3rem;
+  border: 0;
+  outline: 0;
+  color: ${({ theme }) => darken(0.5, theme.grayLighter)};
 `;
 
-const Icon = styled.i`
+const ShopIcon = styled.i.attrs({
+  className: 'fa fa-shopping-cart'
+})`
   margin: -1px 0.5rem 0 0;
   font-size: 1rem;
 `;
@@ -55,13 +68,13 @@ const AddToCartSection = () => (
     <StockLabel withStock />
     <Price>$ 599.00</Price>
     <QuantityWrapper>
-      <QuantityInput type="number" value="1" min="1" />
-      <span>u.</span>
+      <QuantityLabel>Cantidad</QuantityLabel>
+      <Quantity>
+        <QuantityInput />
+        <Button to="/carrito"><ShopIcon />Agregar al carrito</Button>
+      </Quantity>
     </QuantityWrapper>
-    <div>
-      <Button to="/carrito" primary>Comprar</Button>
-      <Button to="/carrito"><Icon className="fa fa-shopping-cart" />Agregar al carrito</Button>
-    </div>
+    <Button to="/carrito" primary>Comprar</Button>
   </StyledWrapper>
 );
 
