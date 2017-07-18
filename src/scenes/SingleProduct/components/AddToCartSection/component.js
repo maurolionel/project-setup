@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import StockLabel from '../../../../components/StockLabel';
+import Button from '../../../../components/Button';
 
 const StyledWrapper = styled.div`
   flex: 1 1 50%;
@@ -43,6 +44,11 @@ const QuantityInput = styled.input.attrs({
   font-size: 1.3rem;
 `;
 
+const Icon = styled.i`
+  margin: -1px 0.5rem 0 0;
+  font-size: 1rem;
+`;
+
 const AddToCartSection = () => (
   <StyledWrapper>
     <Title>HP LaserJet PRO 100</Title>
@@ -52,7 +58,10 @@ const AddToCartSection = () => (
       <QuantityInput type="number" value="1" min="1" />
       <span>u.</span>
     </QuantityWrapper>
-    <Link to="/carrito">Comprar</Link>
+    <div>
+      <Button to="/carrito" primary>Comprar</Button>
+      <Button to="/carrito"><Icon className="fa fa-shopping-cart" />Agregar al carrito</Button>
+    </div>
   </StyledWrapper>
 );
 

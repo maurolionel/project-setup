@@ -2,15 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { lighten } from 'polished';
+import Paper from '../Paper';
 
-const StyledCard = styled.div`
+const StyledCard = Paper.extend`
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   border-radius: 4px;
-  box-shadow:
-    0 1px 1px 0 rgba(0, 0, 0, 0.1),
-    0 -1px 2px 0 rgba(0, 0, 0, 0.1);
 `;
 
 const LinkImage = styled(Link)`
