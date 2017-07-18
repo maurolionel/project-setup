@@ -14,7 +14,7 @@ const StyledNavBar = styled.div`
   border-bottom: 1px solid ${({ theme }) => darken(0.04, theme.whiteGray)};
 `;
 
-const StyledSearchBar = styled(SearchBar)`
+const SearchBarWrapper = styled.div`
   margin-left: auto;
 `;
 
@@ -22,7 +22,9 @@ const NavBar = () => (
   <StyledNavBar>
     <Logo />
     <Nav />
-    <StyledSearchBar />
+    <SearchBarWrapper>
+      <SearchBar />
+    </SearchBarWrapper>
   </StyledNavBar>
 );
 
