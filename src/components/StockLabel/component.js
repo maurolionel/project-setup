@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StyledStockLabel = styled.span`
-  padding: 0.06rem 0.2rem 0;
+  display: inline-block;
+  padding: 0.1rem 0.25rem;
   color: ${({ theme }) => theme.base};
-  border-radius: 2px;
-  font-size: 0.75rem;
+  border-radius: 3px;
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
   &.with-stock { background-color: #4CAF50; }
