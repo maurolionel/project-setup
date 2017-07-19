@@ -21,6 +21,9 @@ import SignIn from '../../scenes/SignIn';
 import SignUp from '../../scenes/SignUp';
 import Support from '../../scenes/Support';
 import '../../assets/fonts/arial_rounded.ttf';
+import '../../assets/fonts/OpenSans-Light.ttf';
+import '../../assets/fonts/OpenSans-Regular.ttf';
+import '../../assets/fonts/OpenSans-SemiBold.ttf';
 
 // import restrict from '../../components/Security/Auth';
 // <Route exact path="/dashboard" component={restrict(Dashboard)} />
@@ -30,7 +33,23 @@ injectGlobal`
   ${normalize()}
   @font-face {
     font-family: 'ArialRounded';
+    font-weight: 400;
     src: url('src/assets/fonts/arial_rounded.ttf');
+  }
+  @font-face {
+    font-family: 'OpenSans';
+    font-weight: 300;
+    src: url('src/assets/fonts/OpenSans-Light.ttf');
+  }
+  @font-face {
+    font-family: 'OpenSans';
+    font-weight: 400;
+    src: url('src/assets/fonts/OpenSans-Regular.ttf');
+  }
+  @font-face {
+    font-family: 'OpenSans';
+    font-weight: 700;
+    src: url('src/assets/fonts/OpenSans-SemiBold.ttf');
   }
   *, *:before, *:after { box-sizing: border-box; }
   html { height: 100%; }
@@ -49,6 +68,10 @@ injectGlobal`
     max-width: 100%;
     height: auto;
   }
+  input {
+    font-family: 'OpenSans', Arial, sans-serif;
+    font-weight: 400;
+  }
 `;
 /* eslint-enable no-unused-expressions */
 
@@ -56,7 +79,8 @@ const StyledApp = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  font-family: 'ArialRounded', Arial, sans-serif;
+  font-family: 'OpenSans', Arial, sans-serif;
+  font-weight: 400;
 `;
 
 const Main = styled.main`
