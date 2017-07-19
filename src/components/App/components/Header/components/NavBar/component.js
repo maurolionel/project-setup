@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 import Logo from '../../../../../../components/Logo';
 import Nav from './components/Nav';
-import SearchBar from '../../../../../../components/SearchBar';
+import Input from '../../../../../../components/Input';
 
 const StyledNavBar = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ const NavBar = () => (
     <Logo />
     <Nav />
     <SearchBarWrapper>
-      <SearchBar />
+      <Input type="search" placeholder="Buscar..." />
     </SearchBarWrapper>
   </StyledNavBar>
 );
