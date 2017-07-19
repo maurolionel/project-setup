@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import TopBarNavLink from './components/TopBarNavLink';
+import Icon from '../../../../../../components/Icon';
 
 const StyledTopBar = styled.div`
   display: flex;
@@ -15,11 +16,6 @@ const TopBarSection = styled.div`
 `;
 
 const TopBarLink = TopBarNavLink.withComponent(Link);
-
-const Icon = styled.i`
-  margin: 0 0.5rem;
-  font-size: 1rem;
-`;
 
 const TopBar = () => (
   <StyledTopBar>
@@ -40,7 +36,7 @@ const TopBar = () => (
     <TopBarSection>
       <TopBarNavLink to="/ingresar" title="Ingresá a tu cuenta">
         Ingresar
-        <Icon className="fa fa-sign-in" />
+        <Icon className="fa fa-sign-in" placement="right" />
       </TopBarNavLink>
       <TopBarNavLink to="/carrito" title="Tu carrito de compras">
         <Icon className="fa fa-shopping-cart" />
