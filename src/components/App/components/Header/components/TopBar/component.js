@@ -7,7 +7,7 @@ const StyledTopBar = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: ${({ theme }) => theme.primary};
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 `;
 
 const TopBarSection = styled.div`

@@ -13,7 +13,7 @@ const StyledNavLink = styled(NavLink)`
   align-items: center;
   padding: 0 1rem;
   color: ${({ theme }) => theme.primary};
-  font-weight: 700;
+  font-size: 1.1rem;
   text-decoration: none;
   transition: 0.05s background-color linear;
 
