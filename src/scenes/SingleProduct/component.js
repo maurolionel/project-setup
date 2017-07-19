@@ -7,7 +7,6 @@ import Description from './components/Description';
 import TechnicalDetails from './components/TechnicalDetails';
 import BoxContent from './components/BoxContent';
 
-
 const technicalDetailsData = [
   'Simple setup — 1.44" color LCD.',
   'Complete wireless solution — easy iPad, iPhone, Android tablet and smartphone printing; includes Wi-Fi Direct for network-free printing.',

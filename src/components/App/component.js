@@ -6,6 +6,7 @@ import { normalize } from 'polished';
 // layout
 import Header from './components/Header';
 import Footer from './components/Footer';
+import SceneWrapper from '../SceneWrapper';
 
 // scenes
 import Contact from '../../scenes/Contact';
@@ -14,8 +15,6 @@ import HotSales from '../../scenes/HotSales';
 import NotFound from '../../scenes/NotFound';
 import Products from '../../scenes/Products';
 import SingleProduct from '../../scenes/SingleProduct';
-import Schedules from '../../scenes/Schedules';
-import Shippings from '../../scenes/Shippings';
 import ShoppingCart from '../../scenes/ShoppingCart';
 import SignIn from '../../scenes/SignIn';
 import SignUp from '../../scenes/SignUp';
@@ -94,26 +93,26 @@ const App = () => (
   <StyledApp>
     <Header />
     <Main>
-      <Switch>
-        <Route exact path="/" component={Home} />
+      <SceneWrapper>
+        <Switch>
+          <Route exact path="/" component={Home} />
 
-        {/* TopBar */}
-        <Route exact path="/horarios" component={Schedules} />
-        <Route exact path="/envios" component={Shippings} />
-        <Route exact path="/carrito" component={ShoppingCart} />
-        <Route exact path="/ingresar" component={SignIn} />
-        <Route exact path="/registrarse" component={SignUp} />
+          {/* TopBar */}
+          <Route exact path="/carrito" component={ShoppingCart} />
+          <Route exact path="/ingresar" component={SignIn} />
+          <Route exact path="/registrarse" component={SignUp} />
 
-        {/* NavBar */}
-        <Route exact path="/productos" component={Products} />
-        <Route exact path="/productos/:productId" component={SingleProduct} />
-        <Route exact path="/ofertas" component={HotSales} />
-        <Route exact path="/soporte" component={Support} />
-        <Route exact path="/contacto" component={Contact} />
+          {/* NavBar */}
+          <Route exact path="/productos" component={Products} />
+          <Route exact path="/productos/:productId" component={SingleProduct} />
+          <Route exact path="/ofertas" component={HotSales} />
+          <Route exact path="/soporte" component={Support} />
+          <Route exact path="/contacto" component={Contact} />
 
-        <Route exact path="/" component={Home} />
-        <Route component={NotFound} />
-      </Switch>
+          <Route exact path="/" component={Home} />
+          <Route component={NotFound} />
+        </Switch>
+      </SceneWrapper>
     </Main>
     <Footer />
   </StyledApp>
