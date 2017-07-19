@@ -1,5 +1,17 @@
 import React from 'react';
+import styled from 'styled-components';
+import Aside from './components/Aside';
+import SearchResult from '../../components/SearchResult';
 
-const Products = () => <h1>Productos</h1>;
+const Section = styled.section`
+  display: flex;
+`;
+
+const Products = () => (
+  <Section>
+    <Aside />
+    <SearchResult />
+  </Section>
+);
 
 export default Products;

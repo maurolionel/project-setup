@@ -2,16 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { lighten } from 'polished';
+import Paper from '../Paper';
 
-const StyledCard = styled.div`
-  flex: 0 1 23%;
+const StyledCard = Paper.extend`
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   border-radius: 4px;
-  box-shadow:
-    0 1px 1px 0 rgba(0, 0, 0, 0.1),
-    0 -1px 2px 0 rgba(0, 0, 0, 0.1);
 `;
 
 const LinkImage = styled(Link)`
@@ -51,7 +47,7 @@ const Price = styled.span`
 const LinkActionButton = styled(Link)`
   padding: 0.5rem;
   color: ${({ theme }) => theme.base};
-  background-color: #fbb03b;
+  background-color: ${({ theme }) => theme.accent};
   font-weight: 700;
   text-align: center;
   text-decoration: none;
@@ -60,15 +56,15 @@ const LinkActionButton = styled(Link)`
 
 const Card = () => (
   <StyledCard>
-    <LinkImage to="/">
+    <LinkImage to="/productos/1">
       <img src="" alt="Imagen del producto" />
     </LinkImage>
     <Details>
       <Price>$599.99</Price>
-      <LinkName to="/">Nombre del producto</LinkName>
+      <LinkName to="/productos/2">Nombre del producto</LinkName>
       <Description>Breve descripción del producto...</Description>
     </Details>
-    <LinkActionButton to="/">Agregar al carrito</LinkActionButton>
+    <LinkActionButton to="/carrito">Agregar al carrito</LinkActionButton>
   </StyledCard>
 );
 

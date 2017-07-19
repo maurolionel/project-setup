@@ -6,7 +6,6 @@ const TopBarNavLink = styled(NavLink)`
   padding: 0.7rem 1rem;
   color: ${({ theme }) => theme.base};
   text-decoration: none;
-  text-transform: uppercase;
   transition: 0.05s background-color linear;
 
   &:hover {

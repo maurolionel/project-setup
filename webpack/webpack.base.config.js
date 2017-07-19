@@ -19,7 +19,7 @@ export default new WebpackConfig()
       filename: '[name].js?[hash]',
       path: resolve('./', 'dist'),
       chunkFilename: '[name].js?[hash]',
-      publicPath: './'
+      publicPath: '/'
     },
 
     module: {

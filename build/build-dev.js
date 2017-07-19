@@ -14,10 +14,29 @@ new WebpackDevServer(webpack(config), {
   publicPath: '/',
   historyApiFallback: true,
   stats: {
-    assets: false,
+    assets: true,
+    assetsSort: 'field',
+    cached: true,
+    cachedAssets: false,
+    children: true,
+    chunks: true,
+    chunkModules: false,
+    chunkOrigins: true,
     colors: true,
+    depth: false,
+    entrypoints: true,
+    errors: true,
+    errorDetails: true,
+    hash: true,
+    modules: false,
+    moduleTrace: true,
+    performance: true,
+    reasons: true,
+    source: false,
+    timings: true,
+    usedExports: false,
     version: true,
-    chunkModules: false
+    warnings: true
   }
 }).listen(appConfig.clientPort, appConfig.clientDomain, (error) => {
   if (error) {

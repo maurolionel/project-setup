@@ -13,16 +13,15 @@ const StyledNavLink = styled(NavLink)`
   align-items: center;
   padding: 0 1rem;
   color: ${({ theme }) => theme.primary};
-  font-weight: 700;
+  font-size: 1.1rem;
   text-decoration: none;
-  text-transform: uppercase;
   transition: 0.05s background-color linear;
 
   &:hover {
-    background-color: ${({ theme }) => darken(0.02, theme.base)}
+    background-color: ${({ theme }) => theme.whiteGray}
   }
   &:active, &.active {
-    background-color: ${({ theme }) => darken(0.04, theme.base)}
+    background-color: ${({ theme }) => darken(0.02, theme.whiteGray)}
   }
 `;
 
