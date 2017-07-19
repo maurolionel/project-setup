@@ -87,6 +87,7 @@ const Main = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column;
+  background-color: ${({ theme }) => theme.whiteGray};
 `;
 
 const App = () => (

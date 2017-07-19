@@ -10,7 +10,7 @@ const StyledNavBar = styled.div`
   align-items: center;
   height: 60px;
   padding: 0 0.5rem;
-  background-color: ${({ theme }) => theme.whiteGray};
+  background-color: ${({ theme }) => theme.base};
   border-bottom: 1px solid ${({ theme }) => darken(0.04, theme.whiteGray)};
 `;
 

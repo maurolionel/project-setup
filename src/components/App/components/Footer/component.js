@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -8,8 +9,9 @@ const StyledFooter = styled.footer`
 
 const Information = styled.div`
   display: flex;
+  border-top: 1px solid ${({ theme }) => darken(0.06, theme.whiteGray)};
   color: #969696;
-  background-color: ${({ theme }) => theme.whiteGray};
+  background-color: ${({ theme }) => darken(0.04, theme.whiteGray)};
   font-size: 0.9rem;
   section {
     flex: 1;
@@ -31,8 +33,8 @@ const Title = styled.p`
 const Copyrights = styled.p`
   padding: 0.6rem 0 0.5rem;
   margin: 0;
-  color: #757575;
-  background-color: #e0e0e0;
+  color: #969696;
+  background-color: ${({ theme }) => darken(0.09, theme.whiteGray)};
   font-size: 0.8rem;
   text-align: center;
 `;
