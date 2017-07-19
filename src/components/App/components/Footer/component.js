@@ -10,6 +10,7 @@ const Information = styled.div`
   display: flex;
   color: #969696;
   background-color: ${({ theme }) => theme.whiteGray};
+  font-size: 0.9rem;
   section {
     flex: 1;
     padding: 0 1rem 1rem;
@@ -17,12 +18,14 @@ const Information = styled.div`
   ul {
     padding: 0;
     list-style: none;
+    li {
+      margin: 0.3rem 0;
+    }
   }
 `;
 
 const Title = styled.p`
   font-weight: 700;
-  text-transform: uppercase;
 `;
 
 const Copyrights = styled.p`

@@ -15,7 +15,6 @@ const StyledNavLink = styled(NavLink)`
   color: ${({ theme }) => theme.primary};
   font-weight: 700;
   text-decoration: none;
-  text-transform: uppercase;
   transition: 0.05s background-color linear;
 
   &:hover {
