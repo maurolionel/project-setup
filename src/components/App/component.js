@@ -20,6 +20,7 @@ import ShoppingCart from '../../scenes/ShoppingCart';
 import SignIn from '../../scenes/SignIn';
 import SignUp from '../../scenes/SignUp';
 import Support from '../../scenes/Support';
+import '../../assets/fonts/arial_rounded.ttf';
 
 // import restrict from '../../components/Security/Auth';
 // <Route exact path="/dashboard" component={restrict(Dashboard)} />
@@ -27,6 +28,10 @@ import Support from '../../scenes/Support';
 /* eslint-disable no-unused-expressions */
 injectGlobal`
   ${normalize()}
+  @font-face {
+    font-family: 'ArialRounded';
+    src: url('src/assets/fonts/arial_rounded.ttf');
+  }
   *, *:before, *:after { box-sizing: border-box; }
   html { height: 100%; }
   body {
@@ -51,7 +56,7 @@ const StyledApp = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  font-family: Arial, sans-serif;
+  font-family: 'ArialRounded', Arial, sans-serif;
 `;
 
 const Main = styled.main`
