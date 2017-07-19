@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { darken } from 'polished';
 import Input from '../../components/Input';
+import Anchor from '../../components/Anchor';
 
 const StyledWrapper = styled.div`
   align-self: center;
@@ -25,7 +26,7 @@ const InputBlock = styled.div`
   margin-bottom: 1.5rem; 
 `;
 
-const ForgotPasswordLink = styled(Link)`
+const ForgotPasswordLink = styled(Anchor)`
   align-self: flex-end;
   margin-top: 1rem;
   font-size: 0.8rem;
@@ -38,7 +39,7 @@ const Label = styled.label`
   font-size: 0.8rem;
 `;
 
-const StyledInput = Input.extend`
+const StyledInput = styled(Input)`
   justify-content: center;
   text-align: center;
   cursor: pointer;
@@ -64,7 +65,7 @@ const SignIn = () => (
       <ForgotPasswordLink to="/registrarse">Olvidé mi contraseña</ForgotPasswordLink>
     </InputBlock>
     <StyledInput type="submit" value="Ingresar" primary />
-    <SignUp>No tengo cuenta, <Link to="/registrarse">conseguir una</Link>.</SignUp>
+    <SignUp>No tengo cuenta, <Anchor to="/registrarse">conseguir una</Anchor>.</SignUp>
   </StyledWrapper>
 );
 
