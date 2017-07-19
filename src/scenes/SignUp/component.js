@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { darken } from 'polished';
 import Input from '../../components/Input';
+import Anchor from '../../components/Anchor';
 
 const StyledWrapper = styled.div`
   align-self: center;
@@ -32,7 +33,7 @@ const Label = styled.label`
   font-size: 0.8rem;
 `;
 
-const StyledInput = Input.extend`
+const StyledInput = styled(Input)`
   justify-content: center;
   text-align: center;
   cursor: pointer;
@@ -69,7 +70,7 @@ const SignUp = () => (
       <Input id="password-repeat" type="password" />
     </InputBlock>
     <StyledInput type="submit" value="Registrar cuenta" primary />
-    <SignIn>Ya tengo cuenta, <Link to="/ingresar">ingresar</Link>.</SignIn>
+    <SignIn>Ya tengo una cuenta, <Anchor to="/ingresar">ingresar</Anchor>.</SignIn>
   </StyledWrapper>
 );
 
