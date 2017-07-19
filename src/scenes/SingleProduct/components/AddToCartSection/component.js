@@ -30,7 +30,7 @@ const QuantityWrapper = styled.div`
 
 const QuantityLabel = styled.span`
   display: block;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
   color: ${({ theme }) => darken(0.3, theme.grayLighter)};
   font-size: 0.75rem;
   font-weight: 300;
