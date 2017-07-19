@@ -63,7 +63,7 @@ const SignIn = () => (
       <Input id="password" type="password" />
       <ForgotPasswordLink to="/registrarse">Olvidé mi contraseña</ForgotPasswordLink>
     </InputBlock>
-    <StyledInput type="submit" value="Ingresar" />
+    <StyledInput type="submit" value="Ingresar" primary />
     <SignUp>No tengo cuenta, <Link to="/registrarse">conseguir una</Link>.</SignUp>
   </StyledWrapper>
 );

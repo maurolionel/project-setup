@@ -68,7 +68,7 @@ const SignUp = () => (
       <Label htmlFor="password-repeat">Repetir contraseña:</Label>
       <Input id="password-repeat" type="password" />
     </InputBlock>
-    <StyledInput type="submit" value="Registrar cuenta" />
+    <StyledInput type="submit" value="Registrar cuenta" primary />
     <SignIn>Ya tengo cuenta, <Link to="/ingresar">ingresar</Link>.</SignIn>
   </StyledWrapper>
 );
