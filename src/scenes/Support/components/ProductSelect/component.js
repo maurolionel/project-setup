@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Input from '../../../../components/Input';
 
 const renderBrandOption = (aBrand, index) => (
   <option key={index}>{aBrand}</option>
@@ -10,8 +11,8 @@ const ProductSelect = ({ brands }) => (
     <select>
       {brands.map(renderBrandOption)}
     </select>
-    <input type="search" placeholder="Buscar modelo" />
-    <input type="submit" value="Buscar" />
+    <Input type="search" placeholder="Buscar modelo" />
+    <Input type="submit" value="Buscar" primary />
   </div>
 );
 
