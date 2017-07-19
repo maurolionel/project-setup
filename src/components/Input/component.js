@@ -1,9 +1,10 @@
+import styled from 'styled-components';
 import { darken } from 'polished';
 import Paper from '../Paper';
 
-const StyledInput = Paper.withComponent('input');
+const PaperInput = Paper.withComponent('input');
 
-const Input = StyledInput.extend`
+const Input = styled(PaperInput)`
   padding: 0.5rem 0.8rem;
   border: 0;
   outline: 0;

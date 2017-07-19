@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { darken } from 'polished';
 import Paper from '../Paper';
 
 const PaperLink = Paper.withComponent(Link);
 
-const Button = PaperLink.extend`
+const Button = styled(PaperLink)`
   display: inline-block;
   padding: 0.5rem 0.8rem;
   color: ${({ primary, theme }) => (primary ? theme.base : theme.gray)};
