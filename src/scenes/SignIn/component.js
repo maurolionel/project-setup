@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { darken } from 'polished';
 import Input from '../../components/Input';
@@ -9,15 +8,15 @@ const StyledWrapper = styled.div`
   align-self: center;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 300px;
+  min-width: 350px;
   margin: 1.5rem 0 5rem;
+  color: ${({ theme }) => theme.gray};
 `;
 
 const Title = styled.h1`
   margin-bottom: 1.5rem;
-  color: ${({ theme }) => theme.gray};
   font-size: 1.3rem;
+  font-weight: 400;
 `;
 
 const InputBlock = styled.div`
@@ -28,8 +27,8 @@ const InputBlock = styled.div`
 
 const ForgotPasswordLink = styled(Anchor)`
   align-self: flex-end;
-  margin-top: 1rem;
-  font-size: 0.8rem;
+  margin-top: 0.7rem;
+  font-size: 0.85rem;
 `;
 
 const Label = styled.label`
@@ -48,8 +47,8 @@ const StyledInput = styled(Input)`
 const SignUp = styled.p`
   padding-top: 1rem;
   margin-top: 1.3rem;
-  border-top: 1px solid ${({ theme }) => theme.whiteGray};
-  font-size: 0.8rem;
+  border-top: 1px solid ${({ theme }) => darken(0.05, theme.whiteGray)};
+  font-size: 0.85rem;
 `;
 
 const SignIn = () => (
@@ -57,7 +56,7 @@ const SignIn = () => (
     <Title>Ingresá a tu cuenta</Title>
     <InputBlock>
       <Label htmlFor="email">E-mail:</Label>
-      <Input id="email" type="email" />
+      <Input id="email" type="email" autoFocus />
     </InputBlock>
     <InputBlock>
       <Label htmlFor="password">Contraseña:</Label>
@@ -65,7 +64,7 @@ const SignIn = () => (
       <ForgotPasswordLink to="/registrarse">Olvidé mi contraseña</ForgotPasswordLink>
     </InputBlock>
     <StyledInput type="submit" value="Ingresar" primary />
-    <SignUp>No tengo cuenta, <Anchor to="/registrarse">conseguir una</Anchor>.</SignUp>
+    <SignUp>No estoy registrado, <Anchor to="/registrarse">crear una cuenta</Anchor>.</SignUp>
   </StyledWrapper>
 );
 
