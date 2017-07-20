@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { darken } from 'polished';
 
@@ -45,10 +46,9 @@ const Footer = () => (
       <section>
         <Title>Destacados</Title>
         <ul>
-          <li>Producto 1</li>
-          <li>Producto 2</li>
-          <li>Producto 3</li>
-          <li>Producto 4</li>
+          <li>Nuevos productos</li>
+          <li>Ofertas</li>
+          <li><Link to="/contacto">Contacto</Link></li>
         </ul>
       </section>
       <section>

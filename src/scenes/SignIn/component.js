@@ -9,7 +9,6 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 350px;
-  margin: 1.5rem 0 5rem;
   color: ${({ theme }) => theme.gray};
 `;
 

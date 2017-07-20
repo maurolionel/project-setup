@@ -11,8 +11,7 @@ const ProductSelect = ({ brands }) => (
     <select>
       {brands.map(renderBrandOption)}
     </select>
-    <Input type="search" placeholder="Buscar modelo" />
-    <Input type="submit" value="Buscar" primary />
+    <Input type="search" placeholder="Buscar y seleccionar modelo" />
   </div>
 );
 
