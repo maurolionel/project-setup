@@ -21,8 +21,9 @@ const BreadcrumbListItem = styled.li`
   text-shadow: 1px 1px 1px ${({ theme }) => theme.base};
 
   &:after {
-    content: '>';
+    content: '\f105'; /* fontawesome fa-angle-right icon */
     margin: 0 0 0 0.5rem;
+    font-family: 'FontAwesome';
   }
 
   &:last-child:after {
