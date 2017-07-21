@@ -7,6 +7,7 @@ import { normalize } from 'polished';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import SceneWrapper from '../SceneWrapper';
+import Breadcrumb from '../Breadcrumb';
 
 // scenes
 import Contact from '../../scenes/Contact';
@@ -94,9 +95,8 @@ const App = () => (
     <Header />
     <Main>
       <SceneWrapper>
+        <Route component={Breadcrumb} />
         <Switch>
-          <Route exact path="/" component={Home} />
-
           {/* TopBar */}
           <Route exact path="/carrito" component={ShoppingCart} />
           <Route exact path="/ingresar" component={SignIn} />
