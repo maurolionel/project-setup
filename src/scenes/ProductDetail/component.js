@@ -29,10 +29,10 @@ const Wrapper = styled(Paper)`
 
 const MainInfo = styled.div`
   display: flex;
-  height: 400px;
+  height: 500px;
 `;
 
-const SingleProduct = () => (
+const ProductDetail = () => (
   <Wrapper withoutChangingStateStyle>
     <MainInfo>
       <Pictures />
@@ -50,4 +50,4 @@ const SingleProduct = () => (
   </Wrapper>
 );
 
-export default SingleProduct;
+export default ProductDetail;
