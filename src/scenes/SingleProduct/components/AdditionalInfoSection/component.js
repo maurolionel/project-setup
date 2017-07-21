@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const StyledWrapper = styled.div`
   padding: 1rem;
   color: ${({ theme }) => theme.gray};
+  background-color: ${({ theme }) => theme.base};
   font-size: 0.9rem;
   border-top: 1px solid ${({ theme }) => theme.whiteGray};
 

@@ -5,9 +5,10 @@ import StockLabel from '../../../../components/StockLabel';
 import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
 
-const StyledWrapper = styled.div`
+const Wrapper = styled.div`
   flex: 1 1 50%;
   padding: 1rem;
+  background-color: ${({ theme }) => theme.base};
 `;
 
 const Title = styled.h1`
@@ -63,7 +64,7 @@ const ShopIcon = styled.i.attrs({
 `;
 
 const AddToCartSection = () => (
-  <StyledWrapper>
+  <Wrapper>
     <Title>HP LaserJet PRO 100</Title>
     <StockLabel withStock />
     <Price>$ 599.00</Price>
@@ -75,7 +76,7 @@ const AddToCartSection = () => (
       </Quantity>
     </QuantityWrapper>
     <Button to="/carrito" primary>Comprar</Button>
-  </StyledWrapper>
+  </Wrapper>
 );
 
 export default AddToCartSection;
