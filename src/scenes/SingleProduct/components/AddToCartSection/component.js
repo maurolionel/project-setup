@@ -7,7 +7,7 @@ import Button from '../../../../components/Button';
 
 const Wrapper = styled.div`
   flex: 1 1 50%;
-  padding: 1rem;
+  padding: 2rem;
   background-color: ${({ theme }) => theme.base};
 `;
 
@@ -20,13 +20,13 @@ const Title = styled.h1`
 
 const Price = styled.span`
   display: block;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   color: ${({ theme }) => theme.primary};
   font-size: 1.5rem;
 `;
 
 const QuantityWrapper = styled.div`
-  margin: 1rem 0;
+  margin: 1.5rem 0 1rem;
 `;
 
 const QuantityLabel = styled.span`
