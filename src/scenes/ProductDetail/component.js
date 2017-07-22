@@ -24,6 +24,7 @@ const boxContentData = [
 
 const Wrapper = styled(Paper)`
   flex-direction: column;
+  padding: 0;
   border-radius: 0;
 `;
 

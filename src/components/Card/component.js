@@ -4,9 +4,10 @@ import styled from 'styled-components';
 import { lighten } from 'polished';
 import Paper from '../Paper';
 
-const StyledCard = Paper.extend`
+const StyledCard = styled(Paper)`
   display: flex;
   flex-direction: column;
+  padding: 0;
   border-radius: 4px;
 `;
 
