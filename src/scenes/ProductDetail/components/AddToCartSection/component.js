@@ -4,6 +4,8 @@ import { darken } from 'polished';
 import StockLabel from '../../../../components/StockLabel';
 import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
+import Title from '../../../../components/Title';
+import Label from '../../../../components/Label';
 
 const Wrapper = styled.div`
   flex: 1 1 50%;
@@ -11,11 +13,9 @@ const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.base};
 `;
 
-const Title = styled.h1`
+const Name = styled(Title)`
   margin: 0 0 0.3rem;
-  color: ${({ theme }) => theme.gray};
   font-size: 1.5rem;
-  font-weight: 700;
 `;
 
 const Price = styled.span`
@@ -29,10 +29,7 @@ const QuantityWrapper = styled.div`
   margin: 1.5rem 0 1rem;
 `;
 
-const QuantityLabel = styled.span`
-  display: block;
-  margin-bottom: 5px;
-  color: ${({ theme }) => darken(0.3, theme.grayLighter)};
+const QuantityLabel = styled(Label)`
   font-size: 0.75rem;
   font-weight: 300;
   text-transform: capitalize;
@@ -65,7 +62,7 @@ const ShopIcon = styled.i.attrs({
 
 const AddToCartSection = () => (
   <Wrapper>
-    <Title>HP LaserJet PRO 100</Title>
+    <Name>HP LaserJet PRO 100</Name>
     <StockLabel withStock />
     <Price>$ 599.00</Price>
     <QuantityWrapper>
