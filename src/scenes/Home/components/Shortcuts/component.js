@@ -18,20 +18,36 @@ const StyledLink = styled(Link)`
   font-weight: 700;
   text-decoration: none;
   text-transform: uppercase;
+  transition: 0.25s background-color ease;
 
   &:nth-child(1) {
     background-color: ${({ theme }) => lighten(0.03, theme.primary)};
+    &:hover {
+      background-color: ${({ theme }) => lighten(0.1, theme.primary)};
+    }
   }
   &:nth-child(2) {
     background-color: ${({ theme }) => theme.primary};
+    &:hover {
+      background-color: ${({ theme }) => lighten(0.07, theme.primary)};
+    }
   }
   &:nth-child(3) {
     background-color: ${({ theme }) => darken(0.03, theme.primary)};
+    &:hover {
+      background-color: ${({ theme }) => lighten(0.04, theme.primary)};
+    }
   }
+
+  &:hover > i {
+    transform: scale(1.15);
+  }
+
 `;
 
 const Icon = styled.i`
   font-size: 8rem;
+  transition: 0.25s transform ease;
 `;
 
 const Shortcuts = () => (
