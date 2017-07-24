@@ -3,7 +3,7 @@ import { darken } from 'polished';
 
 const Label = styled.label`
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   color: ${({ theme }) => darken(0.3, theme.grayLighter)};
   font-size: 0.8rem;
 `;

@@ -30,6 +30,7 @@ const QuantityWrapper = styled.div`
 `;
 
 const QuantityLabel = styled(Label)`
+  margin-bottom: 5px;
   font-size: 0.75rem;
   font-weight: 300;
   text-transform: capitalize;
