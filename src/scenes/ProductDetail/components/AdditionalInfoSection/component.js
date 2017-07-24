@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Title from '../../../../components/Title';
 
 const Wrapper = styled.div`
   padding: 2rem;
@@ -25,15 +26,13 @@ const Wrapper = styled.div`
   }
 `;
 
-const InfoTitle = styled.h3`
-  margin: 0.5rem 0;
-  font-size: 0.8rem;
-  text-transform: uppercase;
+const InfoTitle = styled(Title)`
+  margin: 0 0 1rem;
 `;
 
 const AdditionalInfoSection = ({ title, children }) => (
   <Wrapper>
-    <InfoTitle>{title}:</InfoTitle>
+    <InfoTitle>{title}</InfoTitle>
     {children}
   </Wrapper>
 );

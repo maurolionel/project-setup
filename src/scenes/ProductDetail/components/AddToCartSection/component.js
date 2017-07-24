@@ -8,14 +8,14 @@ import Title from '../../../../components/Title';
 import Label from '../../../../components/Label';
 
 const Wrapper = styled.div`
-  flex: 1 1 50%;
+  flex: 1 1 40%;
   padding: 2rem;
   background-color: ${({ theme }) => theme.base};
 `;
 
 const Name = styled(Title)`
   margin: 0 0 0.3rem;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 `;
 
 const Price = styled.span`

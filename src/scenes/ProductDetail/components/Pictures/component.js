@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledPictures = styled.div`
-  flex: 1 1 50%;
+  flex: 1 1 60%;
   background-color: #ececec;
 `;
 
