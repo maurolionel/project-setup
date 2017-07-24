@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 const InputBlock = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
 `;
 
 const renderBrandOption = (aBrand, index) => (
