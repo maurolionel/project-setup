@@ -48,7 +48,7 @@ const QuantityInput = styled(Input).attrs({
 })`
   width: 3.3rem;
   padding: 0.5rem 0 0.5rem 0.6rem;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
   border: 0;
   outline: 0;
   color: ${({ theme }) => darken(0.5, theme.grayLighter)};
