@@ -6,7 +6,7 @@ import Anchor from '../../components/Anchor';
 import Title from '../../components/Title';
 import Label from '../../components/Label';
 
-const StyledWrapper = styled.div`
+const Wrapper = styled.div`
   align-self: center;
   display: flex;
   flex-direction: column;
@@ -15,6 +15,7 @@ const StyledWrapper = styled.div`
 `;
 
 const InputRow = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5rem;
@@ -42,7 +43,7 @@ const SignIn = styled.p`
 `;
 
 const SignUp = () => (
-  <StyledWrapper>
+  <Wrapper>
     <Title>Registrá tu cuenta</Title>
     <InputColumn>
       <InputRow>
@@ -68,7 +69,7 @@ const SignUp = () => (
     </InputRow>
     <StyledInput type="submit" value="Registrar cuenta" primary />
     <SignIn>Ya estoy registrado, <Anchor to="/ingresar">ingresar a mi cuenta</Anchor>.</SignIn>
-  </StyledWrapper>
+  </Wrapper>
 );
 
 export default SignUp;
