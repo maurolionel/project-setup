@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Title from '../../../../components/Title';
 
-const StyledWrapper = styled.div`
-  padding: 1rem;
-  color: ${({ theme }) => theme.gray};
-  font-size: 0.9rem;
+const Wrapper = styled.div`
+  padding: 2rem;
   border-top: 1px solid ${({ theme }) => theme.whiteGray};
+  color: ${({ theme }) => theme.gray};
+  background-color: ${({ theme }) => theme.base};
+  font-size: 0.9rem;
+  line-height: 1.5;
 
   > * {
     margin: 0;
@@ -23,17 +26,15 @@ const StyledWrapper = styled.div`
   }
 `;
 
-const InfoTitle = styled.h3`
-  margin: 0.5rem 0;
-  font-size: 0.8rem;
-  text-transform: uppercase;
+const InfoTitle = styled(Title)`
+  margin: 0 0 1rem;
 `;
 
 const AdditionalInfoSection = ({ title, children }) => (
-  <StyledWrapper>
-    <InfoTitle>{title}:</InfoTitle>
+  <Wrapper>
+    <InfoTitle>{title}</InfoTitle>
     {children}
-  </StyledWrapper>
+  </Wrapper>
 );
 
 AdditionalInfoSection.propTypes = {

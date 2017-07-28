@@ -4,34 +4,33 @@ import { darken } from 'polished';
 import StockLabel from '../../../../components/StockLabel';
 import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
+import Title from '../../../../components/Title';
+import Label from '../../../../components/Label';
 
-const StyledWrapper = styled.div`
-  flex: 1 1 50%;
-  padding: 1rem;
+const Wrapper = styled.div`
+  flex: 1 1 40%;
+  padding: 2rem;
+  background-color: ${({ theme }) => theme.base};
 `;
 
-const Title = styled.h1`
+const Name = styled(Title)`
   margin: 0 0 0.3rem;
-  color: ${({ theme }) => theme.gray};
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.8rem;
 `;
 
 const Price = styled.span`
   display: block;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   color: ${({ theme }) => theme.primary};
   font-size: 1.5rem;
 `;
 
 const QuantityWrapper = styled.div`
-  margin: 1rem 0;
+  margin: 1.5rem 0 1rem;
 `;
 
-const QuantityLabel = styled.span`
-  display: block;
+const QuantityLabel = styled(Label)`
   margin-bottom: 5px;
-  color: ${({ theme }) => darken(0.3, theme.grayLighter)};
   font-size: 0.75rem;
   font-weight: 300;
   text-transform: capitalize;
@@ -49,7 +48,7 @@ const QuantityInput = styled(Input).attrs({
 })`
   width: 3.3rem;
   padding: 0.5rem 0 0.5rem 0.6rem;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
   border: 0;
   outline: 0;
   color: ${({ theme }) => darken(0.5, theme.grayLighter)};
@@ -63,8 +62,8 @@ const ShopIcon = styled.i.attrs({
 `;
 
 const AddToCartSection = () => (
-  <StyledWrapper>
-    <Title>HP LaserJet PRO 100</Title>
+  <Wrapper>
+    <Name>HP LaserJet PRO 100</Name>
     <StockLabel withStock />
     <Price>$ 599.00</Price>
     <QuantityWrapper>
@@ -75,7 +74,7 @@ const AddToCartSection = () => (
       </Quantity>
     </QuantityWrapper>
     <Button to="/carrito" primary>Comprar</Button>
-  </StyledWrapper>
+  </Wrapper>
 );
 
 export default AddToCartSection;

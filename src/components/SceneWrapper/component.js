@@ -5,6 +5,7 @@ const SceneWrapper = styled.section`
   flex-direction: column;
   width: 100%;
   max-width: 1220px;
+  padding: 0 1rem;
   margin: 2rem auto;
 `;
 

@@ -3,23 +3,19 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 import Input from '../../components/Input';
 import Anchor from '../../components/Anchor';
+import Title from '../../components/Title';
+import Label from '../../components/Label';
 
-const StyledWrapper = styled.div`
+const Wrapper = styled.div`
   align-self: center;
   display: flex;
   flex-direction: column;
   min-width: 350px;
-  margin: 1.5rem 0 5rem;
   color: ${({ theme }) => theme.gray};
 `;
 
-const Title = styled.h1`
-  margin-bottom: 1.5rem;
-  font-size: 1.3rem;
-  font-weight: 400;
-`;
-
 const InputRow = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5rem;
@@ -31,13 +27,6 @@ const InputColumn = styled.div`
   > *:first-child {
     margin-right: 1rem;
   }
-`;
-
-const Label = styled.label`
-  display: block;
-  margin-bottom: 5px;
-  color: ${({ theme }) => darken(0.3, theme.grayLighter)};
-  font-size: 0.8rem;
 `;
 
 const StyledInput = styled(Input)`
@@ -54,7 +43,7 @@ const SignIn = styled.p`
 `;
 
 const SignUp = () => (
-  <StyledWrapper>
+  <Wrapper>
     <Title>Registrá tu cuenta</Title>
     <InputColumn>
       <InputRow>
@@ -80,7 +69,7 @@ const SignUp = () => (
     </InputRow>
     <StyledInput type="submit" value="Registrar cuenta" primary />
     <SignIn>Ya estoy registrado, <Anchor to="/ingresar">ingresar a mi cuenta</Anchor>.</SignIn>
-  </StyledWrapper>
+  </Wrapper>
 );
 
 export default SignUp;

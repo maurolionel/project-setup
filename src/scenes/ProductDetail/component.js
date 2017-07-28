@@ -6,6 +6,7 @@ import AdditionalInfoSection from './components/AdditionalInfoSection';
 import Description from './components/Description';
 import TechnicalDetails from './components/TechnicalDetails';
 import BoxContent from './components/BoxContent';
+import Paper from '../../components/Paper';
 
 const technicalDetailsData = [
   'Simple setup — 1.44" color LCD.',
@@ -21,13 +22,19 @@ const boxContentData = [
   '1 Instrucciones de uso'
 ];
 
-const MainInfo = styled.div`
-  display: flex;
-  height: 400px;
+const Wrapper = styled(Paper)`
+  flex-direction: column;
+  padding: 0;
+  border-radius: 0;
 `;
 
-const SingleProduct = () => (
-  <section>
+const MainInfo = styled.div`
+  display: flex;
+  height: 500px;
+`;
+
+const ProductDetail = () => (
+  <Wrapper withoutChangingStateStyle>
     <MainInfo>
       <Pictures />
       <AddToCartSection />
@@ -41,7 +48,7 @@ const SingleProduct = () => (
     <AdditionalInfoSection title="Contenido de la caja">
       <BoxContent data={boxContentData} />
     </AdditionalInfoSection>
-  </section>
+  </Wrapper>
 );
 
-export default SingleProduct;
+export default ProductDetail;

@@ -3,20 +3,15 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 import Input from '../../components/Input';
 import Anchor from '../../components/Anchor';
+import Title from '../../components/Title';
+import Label from '../../components/Label';
 
 const StyledWrapper = styled.div`
   align-self: center;
   display: flex;
   flex-direction: column;
   min-width: 350px;
-  margin: 1.5rem 0 5rem;
   color: ${({ theme }) => theme.gray};
-`;
-
-const Title = styled.h1`
-  margin-bottom: 1.5rem;
-  font-size: 1.3rem;
-  font-weight: 400;
 `;
 
 const InputBlock = styled.div`
@@ -29,13 +24,6 @@ const ForgotPasswordLink = styled(Anchor)`
   align-self: flex-end;
   margin-top: 0.7rem;
   font-size: 0.85rem;
-`;
-
-const Label = styled.label`
-  display: block;
-  margin-bottom: 5px;
-  color: ${({ theme }) => darken(0.3, theme.grayLighter)};
-  font-size: 0.8rem;
 `;
 
 const StyledInput = styled(Input)`
