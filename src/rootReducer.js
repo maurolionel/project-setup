@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import user from './reducers/user';
+import products from './services/products/reducer';
 
 const rootReducer = combineReducers({
-  user,
+  products,
   routing: routerReducer
 });
 
