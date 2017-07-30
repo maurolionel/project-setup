@@ -13,6 +13,7 @@ import Breadcrumb from '../Breadcrumb';
 import Contact from '../../scenes/Contact';
 import Home from '../../scenes/Home';
 import HotSales from '../../scenes/HotSales';
+import MyAccount from '../../scenes/MyAccount';
 import NotFound from '../../scenes/NotFound';
 import Products from '../../scenes/Products';
 import ProductDetail from '../../scenes/ProductDetail';
@@ -101,6 +102,7 @@ const App = () => (
           <Route exact path="/carrito" component={ShoppingCart} />
           <Route exact path="/ingresar" component={SignIn} />
           <Route exact path="/registrarse" component={SignUp} />
+          <Route exact path="/mi-cuenta" component={MyAccount} />
 
           {/* NavBar */}
           <Route exact path="/productos" component={Products} />
