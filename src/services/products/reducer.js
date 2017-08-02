@@ -9,7 +9,7 @@ export default function products(state = initialState, action) {
     case GET_PRODUCTS: {
       return {
         ...state,
-        all: [{ id: 1 }]
+        all: action.payload.result
       };
     }
     default: {

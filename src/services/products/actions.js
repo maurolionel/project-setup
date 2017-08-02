@@ -17,8 +17,12 @@ const saveProductsInStore = {
 /* eslint-disable import/prefer-default-export */
 export const getProducts = () => ({
   [CALL_API]: {
-    endpoint: `${appConfig.api.path}test.json`,
+    endpoint: `${appConfig.api.path}products/`,
     method: 'GET',
+    credentials: 'include',
+    headers: {
+      'content-type': 'application/json'
+    },
     types: ['REQUEST', saveProductsInStore, 'FAILURE']
   }
 });

@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Aside from './components/Aside';
 import SearchResult from '../../components/SearchResult';
@@ -13,14 +14,22 @@ class Products extends PureComponent {
   }
 
   render() {
-    console.log('PRODUCTS.ALL', this.props.products);
     return (
       <Section>
         <Aside />
-        <SearchResult />
+        <SearchResult results={this.props.products} />
       </Section>
     );
   }
 }
+
+Products.propTypes = {
+  products: PropTypes.array,
+  onMount: PropTypes.func.isRequired
+};
+
+Products.defaultProps = {
+  products: []
+};
 
 export default Products;

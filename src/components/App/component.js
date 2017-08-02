@@ -95,7 +95,7 @@ const App = () => (
     <Header />
     <Main>
       <SceneWrapper>
-        <Route component={Breadcrumb} />
+        <Breadcrumb />
         <Switch>
           {/* TopBar */}
           <Route exact path="/carrito" component={ShoppingCart} />
@@ -104,7 +104,8 @@ const App = () => (
 
           {/* NavBar */}
           <Route exact path="/productos" component={Products} />
-          <Route exact path="/productos/:productId" component={ProductDetail} />
+          <Route exact path="/productos/:categoryId" component={Products} />
+          <Route exact path="/productos/:categoryId/:productId" component={ProductDetail} />
           <Route exact path="/ofertas" component={HotSales} />
           <Route exact path="/soporte" component={Support} />
           <Route exact path="/contacto" component={Contact} />
