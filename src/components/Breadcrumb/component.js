@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import breadcrumbConfig from 'auto-breadcrumb';
 import styled from 'styled-components';
 import { lighten } from 'polished';
-import Anchor from '../Anchor';
+import BreadcrumbListItem from './components/BreadcrumbListItem';
+import BreadcrumbAnchor from './components/BreadcrumbAnchor';
 
 const BreadcrumbList = styled.ul`
   display: flex;
@@ -12,24 +13,6 @@ const BreadcrumbList = styled.ul`
   margin: 0 0 1.5rem;
   color: ${({ theme }) => lighten(0.2, theme.gray)};
   font-size: 0.9rem;
-`;
-
-const BreadcrumbListItem = styled.li`
-  display: flex;
-  align-items: center;
-  margin: 0 0.5rem 0 0;
-  text-shadow: 1px 1px 1px ${({ theme }) => theme.base};
-
-  &:after {
-    content: '\f105'; /* fontawesome fa-angle-right icon */
-    margin: 0 0 0 0.5rem;
-    font-family: 'FontAwesome';
-  }
-
-  &:last-child:after {
-    content: '';
-    display: none;
-  }
 `;
 
 const config = {
@@ -44,12 +27,13 @@ const config = {
     '/registrarse': 'Creá una cuenta'
   },
   dynamicRoutesMap: {
-    '/productos/:id': '{{id}}'
+    '/productos/:categoryName': '{{categoryName}}',
+    '/productos/:categoryName/:productId': '{{productId}}'
   },
   notFound: 'La página no existe',
   Breadcrumb: BreadcrumbList,
   BreadcrumbItem: BreadcrumbListItem,
-  LinkComponent: Anchor
+  LinkComponent: BreadcrumbAnchor
 };
 
 const AutoBreadcrumb = breadcrumbConfig(config);

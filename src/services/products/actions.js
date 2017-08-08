@@ -6,12 +6,7 @@ const saveProductsInStore = {
   type: GET_PRODUCTS,
   payload: (action, state, rsp) =>
     getJSON(rsp)
-      .then((json) => {
-        console.log(json, state, action);
-        // TODO: guardar en localStore || sessionStorage
-        // login(json.session.session, state);
-        return json;
-      })
+      .then(json => json)
 };
 
 /* eslint-disable import/prefer-default-export */
