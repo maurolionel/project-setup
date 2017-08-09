@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
-const StyledFilter = styled.div``;
+import Anchor from '../../../Anchor';
 
 const Title = styled.h3`
   margin: 0.5rem 0;
@@ -11,35 +10,24 @@ const Title = styled.h3`
   text-transform: capitalize;
 `;
 
-const Value = styled.div`
+const StyledAnchor = styled(Anchor)`
+  display: block;
   margin: 0.2rem;
-`;
-
-const Checkbox = styled.input.attrs({
-  type: 'checkbox',
-  id: props => props.id,
-  name: props => props.name
-})`
-  margin-right: 0.5rem
-`;
-
-const Label = styled.label`
   color: ${({ theme }) => theme.gray};
   text-transform: capitalize;
 `;
 
 const Filter = ({ type, values }) => (
-  <StyledFilter>
+  <div>
     <Title>{type}</Title>
     <div>
-      {values.map((aValue, index) => (
-        <Value>
-          <Checkbox key={index} id={aValue} name={index} />
-          <Label htmlFor={aValue}>{aValue}</Label>
-        </Value>
+      {values.map(aValue => (
+        <StyledAnchor key={aValue.id} to={`/productos/${aValue.name}`}>
+          {aValue.name.replace(/-/g, ' ')}
+        </StyledAnchor>
       ))}
     </div>
-  </StyledFilter>
+  </div>
 );
 
 Filter.propTypes = {

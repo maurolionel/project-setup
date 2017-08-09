@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { lighten } from 'polished';
@@ -55,18 +56,23 @@ const LinkActionButton = styled(Link)`
   text-transform: uppercase;
 `;
 
-const Card = () => (
+const Card = ({ product, categoryName }) => (
   <StyledCard>
-    <LinkImage to="/productos/1">
-      <img src="" alt="Imagen del producto" />
+    <LinkImage to={`/productos/${categoryName}/${product.id}`}>
+      <img src="" alt={product.name} />
     </LinkImage>
     <Details>
-      <Price>$599.99</Price>
-      <LinkName to="/productos/2">Nombre del producto</LinkName>
+      <Price>${product.price}</Price>
+      <LinkName to={`/productos/${categoryName}/${product.id}`}>{product.name}</LinkName>
       <Description>Breve descripción del producto...</Description>
     </Details>
     <LinkActionButton to="/carrito">Agregar al carrito</LinkActionButton>
   </StyledCard>
 );
+
+Card.propTypes = {
+  product: PropTypes.object.isRequired,
+  categoryName: PropTypes.string.isRequired
+};
 
 export default Card;
