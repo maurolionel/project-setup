@@ -13,11 +13,12 @@ const shoppingCartAddThunk = (productId, quantity) => (dispatch, getState) => {
 
 const shoppingCartDecrementThunk = (productId, quantity) => (dispatch, getState) => {
   const state = getState();
-  const product = getProductFromState(state.products.all, productId);
+  const product = getProductFromState(state.shoppingCart.all, productId);
   const validQuantity = formatValidNumber(quantity);
-  const action = productIsAlreadyInCart(state.shoppingCart.all, productId)
-    ? shoppingCartDecrement({ product, quantity: validQuantity })
-    : shoppingCartRemove({ product, quantity: validQuantity });
+  const isTheLastItem = product.quantity === 1;
+  const action = isTheLastItem
+    ? shoppingCartRemove({ product })
+    : shoppingCartDecrement({ product, quantity: validQuantity });
   dispatch(action);
 };
 

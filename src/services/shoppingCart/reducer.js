@@ -52,7 +52,11 @@ function shoppingCartReducer(state = initialState, action = {}) {
       };
     }
     case SHOPPING_CART_REMOVE: {
-      return state.all.filter(aProductInCart => aProductInCart.id !== action.payload.product.id);
+      const all = state.all.filter(aProductInCart => aProductInCart.id !== action.payload.product.id);
+      return {
+        ...state,
+        all
+      };
     }
     default:
       return state;
