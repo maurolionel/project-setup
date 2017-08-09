@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Pictures from './components/Pictures';
 import AddToCartSection from './components/AddToCartSection';
 import AdditionalInfoSection from './components/AdditionalInfoSection';
-import Description from './components/Description';
 import TechnicalDetails from './components/TechnicalDetails';
 import BoxContent from './components/BoxContent';
 import Paper from '../../components/Paper';
@@ -38,7 +37,7 @@ class ProductDetail extends PureComponent {
   constructor(props) {
     super(props);
     const { products, match: { params } } = this.props;
-    let product = null;
+    let product = {};
     if (products) {
       product = products.find(aProduct => params.productId === aProduct.id);
     }
@@ -56,14 +55,15 @@ class ProductDetail extends PureComponent {
   }
 
   render() {
+    const { product } = this.state;
     return (
       <Wrapper withoutChangingStateStyle>
         <MainInfo>
           <Pictures />
-          <AddToCartSection product={this.state.product} />
+          <AddToCartSection product={product} />
         </MainInfo>
         <AdditionalInfoSection title="Descripción del producto">
-          <Description />
+          <p>{product.description}</p>
         </AdditionalInfoSection>
         <AdditionalInfoSection title="Ficha técnica">
           <TechnicalDetails data={technicalDetailsData} />
