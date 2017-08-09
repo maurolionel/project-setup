@@ -1,31 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Filter from '../../../../components/Filter';
-
-const filters = [
-  {
-    id: 1,
-    type: 'categoria',
-    values: [
-      'impresoras',
-      'sistemas continuos',
-      'cartuchos recargables'
-    ]
-  },
-  {
-    id: 2,
-    type: 'marca',
-    values: [
-      'epson',
-      'hp',
-      'canon'
-    ]
-  }
-];
-
-const renderFilter = aFilter => (
-  <Filter key={aFilter.id} type={aFilter.type} values={aFilter.values} />
-);
+import Filter from '../Filter';
 
 const StyledAside = styled.aside`
   flex: 0 0 15rem;
@@ -35,14 +11,23 @@ const Title = styled.h4`
   color: ${({ theme }) => theme.primary};
 `;
 
-const Aside = () => (
-  <StyledAside>
-    <Title>Filtrar búsqueda</Title>
-    <div>
-      {filters.map(renderFilter)}
-    </div>
-    <div>--destacados--</div>
-  </StyledAside>
+const Aside = ({ categories }) => (
+  categories
+    ? (
+      <StyledAside>
+        <Title>Filtrar búsqueda</Title>
+        <Filter type="categorías" values={categories} />
+      </StyledAside>
+    )
+    : null
 );
+
+Aside.propTypes = {
+  categories: PropTypes.array
+};
+
+Aside.defaultProps = {
+  categories: []
+};
 
 export default Aside;
