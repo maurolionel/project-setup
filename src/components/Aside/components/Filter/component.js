@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Anchor from '../../../../components/Anchor';
+import Anchor from '../../../Anchor';
 
 const Title = styled.h3`
   margin: 0.5rem 0;
@@ -21,8 +21,8 @@ const Filter = ({ type, values }) => (
   <div>
     <Title>{type}</Title>
     <div>
-      {values.map((aValue, index) => (
-        <StyledAnchor key={index} to={`/productos/${aValue.name}`}>
+      {values.map(aValue => (
+        <StyledAnchor key={aValue.id} to={`/productos/${aValue.name}`}>
           {aValue.name.replace(/-/g, ' ')}
         </StyledAnchor>
       ))}

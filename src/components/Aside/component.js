@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Filter from '../Filter';
+import Filter from './components/Filter';
 
 const StyledAside = styled.aside`
   flex: 0 0 15rem;
