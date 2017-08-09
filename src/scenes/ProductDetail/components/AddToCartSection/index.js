@@ -1,3 +1,3 @@
-import AddToCartSection from './component';
+import AddToCartSection from './container';
 
 export default AddToCartSection;

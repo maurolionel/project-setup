@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { darken } from 'polished';
@@ -8,13 +8,13 @@ import Button from '../../../../components/Button';
 import Title from '../../../../components/Title';
 import Label from '../../../../components/Label';
 
-const Wrapper = styled.div`
+const Wrapper = styled.form`
   flex: 1 1 40%;
   padding: 2rem;
   background-color: ${({ theme }) => theme.base};
 `;
 
-const Name = styled(Title)`
+const Name = styled(Title) `
   margin: 0 0 0.3rem;
   font-size: 1.8rem;
 `;
@@ -30,7 +30,7 @@ const QuantityWrapper = styled.div`
   margin: 1.5rem 0 1rem;
 `;
 
-const QuantityLabel = styled(Label)`
+const QuantityLabel = styled(Label) `
   margin-bottom: 5px;
   font-size: 0.75rem;
   font-weight: 300;
@@ -46,7 +46,7 @@ const QuantityInput = styled(Input).attrs({
   type: 'number',
   defaultValue: 1,
   min: 1
-})`
+}) `
   width: 3.3rem;
   padding: 0.5rem 0 0.5rem 0.6rem;
   margin-right: 1rem;
@@ -55,35 +55,46 @@ const QuantityInput = styled(Input).attrs({
   color: ${({ theme }) => darken(0.5, theme.grayLighter)};
 `;
 
+const ButtonSubmit = Button.withComponent('button');
+
 const ShopIcon = styled.i.attrs({
   className: 'fa fa-shopping-cart'
-})`
+}) `
   margin: -1px 0.5rem 0 0;
   font-size: 1rem;
 `;
 
-const AddToCartSection = ({ product }) => (
-  product
-    ? (
-      <Wrapper>
-        <Name>{product.name}</Name>
-        <StockLabel withStock />
-        <Price>$ {product.price}</Price>
-        <QuantityWrapper>
-          <QuantityLabel>Cantidad:</QuantityLabel>
-          <Quantity>
-            <QuantityInput />
-            <Button to="/carrito"><ShopIcon />Agregar al carrito</Button>
-          </Quantity>
-        </QuantityWrapper>
-        <Button to="/carrito" primary>Comprar</Button>
-      </Wrapper>
-    )
-    : null
-);
+class AddToCartSection extends PureComponent {
+  registerQuantityInputRef = ref => (this.quantityInput = ref);
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.onAddProductToCart(this.props.product.id, this.quantityInput.value);
+  }
+  render() {
+    const { product } = this.props;
+    return product
+      ? (
+        <Wrapper onSubmit={this.handleSubmit}>
+          <Name>{product.name}</Name>
+          <StockLabel withStock />
+          <Price>$ {product.price}</Price>
+          <QuantityWrapper>
+            <QuantityLabel>Cantidad:</QuantityLabel>
+            <Quantity>
+              <QuantityInput innerRef={this.registerQuantityInputRef} />
+              <ButtonSubmit type="submit"><ShopIcon />Agregar al carrito</ButtonSubmit>
+            </Quantity>
+          </QuantityWrapper>
+          <Button to="/carrito" primary>Comprar</Button>
+        </Wrapper>
+      )
+      : null;
+  }
+}
 
 AddToCartSection.propTypes = {
-  product: PropTypes.object
+  product: PropTypes.object,
+  onAddProductToCart: PropTypes.func.isRequired
 };
 
 AddToCartSection.defaultProps = {
