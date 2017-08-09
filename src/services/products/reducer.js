@@ -4,7 +4,7 @@ const initialState = {
   all: null
 };
 
-export default function products(state = initialState, action) {
+export default function productsReducer(state = initialState, action) {
   switch (action.type) {
     case GET_PRODUCTS: {
       return {

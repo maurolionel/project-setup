@@ -10,7 +10,6 @@ import configureStore, { history } from './services/store';
 import ScrollToTop from './components/ScrollToTop';
 import App from './components/App';
 
-
 const store = configureStore;
 
 // Now you can dispatch navigation actions from anywhere!

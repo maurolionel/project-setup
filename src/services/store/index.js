@@ -12,4 +12,3 @@ export default createStore(rootReducer, undefined, compose(
   applyMiddleware(routerMiddleware(history), thunk, apiMiddleware, logger),
   window.devToolsExtension ? window.devToolsExtension() : f => f,
 ));
-

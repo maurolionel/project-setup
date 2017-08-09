@@ -1,23 +1,23 @@
 import { CALL_API, getJSON } from 'redux-api-middleware';
-import { GET_PRODUCTS } from './actionTypes';
+import { GET_CATEGORIES } from './actionTypes';
 import appConfig from '../../config';
 
-const saveProductsInStore = {
-  type: GET_PRODUCTS,
+const saveCategoriesInStore = {
+  type: GET_CATEGORIES,
   payload: (action, state, rsp) =>
     getJSON(rsp)
       .then(json => json)
 };
 
 /* eslint-disable import/prefer-default-export */
-export const getProducts = () => ({
+export const getCategories = () => ({
   [CALL_API]: {
-    endpoint: `${appConfig.api.path}products/`,
+    endpoint: `${appConfig.api.path}categories/`,
     method: 'GET',
     credentials: 'include',
     headers: {
       'content-type': 'application/json'
     },
-    types: ['REQUEST', saveProductsInStore, 'FAILURE']
+    types: ['REQUEST', saveCategoriesInStore, 'FAILURE']
   }
 });
