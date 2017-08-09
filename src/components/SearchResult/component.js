@@ -13,22 +13,27 @@ const CardContainer = styled.article`
   padding: 1rem;
 `;
 
-const SearchResult = ({ results }) => (
+const SearchResult = ({ results, categories }) => (
   <Section>
-    {results && results.map(aResult => (
-      <CardContainer key={aResult.id}>
-        <Card product={aResult} />
-      </CardContainer>
-    ))}
+    {results && results.map((aResult) => {
+      const categoryName = categories.find(aCategory => aResult.category_id === aCategory.id).name;
+      return (
+        <CardContainer key={aResult.id}>
+          <Card product={aResult} categoryName={categoryName} />
+        </CardContainer>
+      );
+    })}
   </Section>
 );
 
 SearchResult.propTypes = {
-  results: PropTypes.array
+  results: PropTypes.array,
+  categories: PropTypes.array
 };
 
 SearchResult.defaultProps = {
-  results: []
+  results: [],
+  categories: []
 };
 
 export default SearchResult;

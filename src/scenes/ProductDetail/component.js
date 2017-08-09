@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Pictures from './components/Pictures';
 import AddToCartSection from './components/AddToCartSection';
@@ -33,22 +34,55 @@ const MainInfo = styled.div`
   height: 500px;
 `;
 
-const ProductDetail = () => (
-  <Wrapper withoutChangingStateStyle>
-    <MainInfo>
-      <Pictures />
-      <AddToCartSection />
-    </MainInfo>
-    <AdditionalInfoSection title="Descripción del producto">
-      <Description />
-    </AdditionalInfoSection>
-    <AdditionalInfoSection title="Ficha técnica">
-      <TechnicalDetails data={technicalDetailsData} />
-    </AdditionalInfoSection>
-    <AdditionalInfoSection title="Contenido de la caja">
-      <BoxContent data={boxContentData} />
-    </AdditionalInfoSection>
-  </Wrapper>
-);
+class ProductDetail extends PureComponent {
+  constructor(props) {
+    super(props);
+    const { products, match: { params } } = this.props;
+    let product = null;
+    if (products) {
+      product = products.find(aProduct => params.productId === aProduct.id);
+    }
+    this.state = {
+      product
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { match: { params } } = this.props;
+    if (nextProps.products) {
+      const product = nextProps.products.find(aProduct => params.productId === aProduct.id);
+      this.setState({ product });
+    }
+  }
+
+  render() {
+    return (
+      <Wrapper withoutChangingStateStyle>
+        <MainInfo>
+          <Pictures />
+          <AddToCartSection product={this.state.product} />
+        </MainInfo>
+        <AdditionalInfoSection title="Descripción del producto">
+          <Description />
+        </AdditionalInfoSection>
+        <AdditionalInfoSection title="Ficha técnica">
+          <TechnicalDetails data={technicalDetailsData} />
+        </AdditionalInfoSection>
+        <AdditionalInfoSection title="Contenido de la caja">
+          <BoxContent data={boxContentData} />
+        </AdditionalInfoSection>
+      </Wrapper>
+    );
+  }
+}
+
+ProductDetail.propTypes = {
+  products: PropTypes.array,
+  match: PropTypes.object.isRequired
+};
+
+ProductDetail.defaultProps = {
+  products: []
+};
 
 export default ProductDetail;

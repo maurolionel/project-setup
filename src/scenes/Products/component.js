@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Aside from './components/Aside';
@@ -8,27 +8,24 @@ const Section = styled.section`
   display: flex;
 `;
 
-class Products extends PureComponent {
-  componentDidMount() {
-    this.props.onMount();
-  }
-
-  render() {
-    return (
+const Products = ({ products, categories }) => (
+  (products && categories)
+    ? (
       <Section>
-        <Aside />
-        <SearchResult results={this.props.products} />
+        <Aside categories={categories} />
+        <SearchResult results={products} categories={categories} />
       </Section>
-    );
-  }
-}
+    )
+    : null
+);
 
 Products.propTypes = {
-  products: PropTypes.array,
-  onMount: PropTypes.func.isRequired
+  categories: PropTypes.array,
+  products: PropTypes.array
 };
 
 Products.defaultProps = {
+  categories: [],
   products: []
 };
 

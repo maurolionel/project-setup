@@ -1,18 +1,14 @@
 import { connect } from 'react-redux';
 import Products from './component';
-import { getProducts } from '../../services/products/actions';
 
 const mapStateToProps = state => ({
+  categories: state.categories.all,
   products: state.products.all
-});
-
-const mapDispatchToProps = dispatch => ({
-  onMount: () => dispatch(getProducts())
 });
 
 const ProductsContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(Products);
 
 export default ProductsContainer;

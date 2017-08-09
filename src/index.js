@@ -9,8 +9,12 @@ import colors from './styles/Colors';
 import configureStore, { history } from './services/store';
 import ScrollToTop from './components/ScrollToTop';
 import App from './components/App';
+import { getCategories } from './services/categories/actions';
+import { getProducts } from './services/products/actions';
 
 const store = configureStore;
+store.dispatch(getCategories());
+store.dispatch(getProducts());
 
 // Now you can dispatch navigation actions from anywhere!
 // store.dispatch(push('/foo'))

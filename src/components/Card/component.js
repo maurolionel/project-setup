@@ -56,14 +56,14 @@ const LinkActionButton = styled(Link)`
   text-transform: uppercase;
 `;
 
-const Card = ({ product }) => (
+const Card = ({ product, categoryName }) => (
   <StyledCard>
-    <LinkImage to={`/productos/${product.id}`}>
+    <LinkImage to={`/productos/${categoryName}/${product.id}`}>
       <img src="" alt={product.name} />
     </LinkImage>
     <Details>
       <Price>${product.price}</Price>
-      <LinkName to={`/productos/${product.id}`}>{product.name}</LinkName>
+      <LinkName to={`/productos/${categoryName}/${product.id}`}>{product.name}</LinkName>
       <Description>Breve descripción del producto...</Description>
     </Details>
     <LinkActionButton to="/carrito">Agregar al carrito</LinkActionButton>
@@ -71,7 +71,8 @@ const Card = ({ product }) => (
 );
 
 Card.propTypes = {
-  product: PropTypes.object.isRequired
+  product: PropTypes.object.isRequired,
+  categoryName: PropTypes.string.isRequired
 };
 
 export default Card;

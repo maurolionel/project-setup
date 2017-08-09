@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { darken } from 'polished';
 import StockLabel from '../../../../components/StockLabel';
@@ -61,20 +62,35 @@ const ShopIcon = styled.i.attrs({
   font-size: 1rem;
 `;
 
-const AddToCartSection = () => (
-  <Wrapper>
-    <Name>HP LaserJet PRO 100</Name>
-    <StockLabel withStock />
-    <Price>$ 599.00</Price>
-    <QuantityWrapper>
-      <QuantityLabel>Cantidad:</QuantityLabel>
-      <Quantity>
-        <QuantityInput />
-        <Button to="/carrito"><ShopIcon />Agregar al carrito</Button>
-      </Quantity>
-    </QuantityWrapper>
-    <Button to="/carrito" primary>Comprar</Button>
-  </Wrapper>
+const AddToCartSection = ({ product }) => (
+  product
+    ? (
+      <Wrapper>
+        <Name>{product.name}</Name>
+        <StockLabel withStock />
+        <Price>$ {product.price}</Price>
+        <QuantityWrapper>
+          <QuantityLabel>Cantidad:</QuantityLabel>
+          <Quantity>
+            <QuantityInput />
+            <Button to="/carrito"><ShopIcon />Agregar al carrito</Button>
+          </Quantity>
+        </QuantityWrapper>
+        <Button to="/carrito" primary>Comprar</Button>
+      </Wrapper>
+    )
+    : null
 );
+
+AddToCartSection.propTypes = {
+  product: PropTypes.object
+};
+
+AddToCartSection.defaultProps = {
+  product: {
+    name: '',
+    price: ''
+  }
+};
 
 export default AddToCartSection;
