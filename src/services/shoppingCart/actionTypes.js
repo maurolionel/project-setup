@@ -1,0 +1,2 @@
+export const SHOPPING_CART_ADD = 'imprek.SHOPPING_CART_ADD';
+export const SHOPPING_CART_REMOVE = 'imprek.SHOPPING_CART_REMOVE';
