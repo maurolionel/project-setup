@@ -68,7 +68,7 @@ class AddToCartSection extends PureComponent {
   registerQuantityInputRef = ref => (this.quantityInput = ref);
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onAddProductToCart(this.props.product.id, this.quantityInput.value);
+    this.props.onSubmitQuantity(this.props.product.id, this.quantityInput.value);
   }
   render() {
     const { product } = this.props;
@@ -94,7 +94,7 @@ class AddToCartSection extends PureComponent {
 
 AddToCartSection.propTypes = {
   product: PropTypes.object,
-  onAddProductToCart: PropTypes.func.isRequired
+  onSubmitQuantity: PropTypes.func.isRequired
 };
 
 AddToCartSection.defaultProps = {

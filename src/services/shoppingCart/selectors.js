@@ -6,11 +6,11 @@ const formatValidNumber = (quantity) => {
 const getProductFromState = (allProducts, id) =>
   allProducts.find(aProduct => id === aProduct.id);
 
-const productIsAlreadyInCart = (producstInCart, id) =>
-  producstInCart.some(aProductInCart => id === aProductInCart.id);
+const isProductInCart = (productsInCart, id) =>
+  productsInCart.some(aProductInCart => id === aProductInCart.id);
 
 export {
   formatValidNumber,
   getProductFromState,
-  productIsAlreadyInCart
+  isProductInCart
 };

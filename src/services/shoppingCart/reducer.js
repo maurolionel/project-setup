@@ -1,4 +1,4 @@
-import { SHOPPING_CART_ADD, SHOPPING_CART_INCREMENT, SHOPPING_CART_DECREMENT, SHOPPING_CART_REMOVE } from './actionTypes';
+import { SHOPPING_CART_INCREASE, SHOPPING_CART_ADD, SHOPPING_CART_DECREASE, SHOPPING_CART_REMOVE } from './actionTypes';
 
 const initialState = {
   all: []
@@ -6,20 +6,7 @@ const initialState = {
 
 function shoppingCartReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case SHOPPING_CART_ADD: {
-      const { product, quantity } = action.payload;
-      return {
-        ...state,
-        all: [
-          ...state.all,
-          {
-            ...product,
-            quantity
-          }
-        ]
-      };
-    }
-    case SHOPPING_CART_INCREMENT: {
+    case SHOPPING_CART_INCREASE: {
       const { product, quantity } = action.payload;
       const all = state.all.map((aProductInCart) => {
         if (aProductInCart.id !== product.id) {
@@ -35,7 +22,20 @@ function shoppingCartReducer(state = initialState, action = {}) {
         all
       };
     }
-    case SHOPPING_CART_DECREMENT: {
+    case SHOPPING_CART_ADD: {
+      const { product, quantity } = action.payload;
+      return {
+        ...state,
+        all: [
+          ...state.all,
+          {
+            ...product,
+            quantity
+          }
+        ]
+      };
+    }
+    case SHOPPING_CART_DECREASE: {
       const { product, quantity } = action.payload;
       const all = state.all.map((aProductInCart) => {
         if (aProductInCart.id !== product.id) {

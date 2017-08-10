@@ -1,28 +1,28 @@
-import { shoppingCartAdd, shoppingCartIncrement, shoppingCartDecrement, shoppingCartRemove } from './actions';
-import { formatValidNumber, getProductFromState, productIsAlreadyInCart } from './selectors';
+import { shoppingCartIncrease, shoppingCartAdd, shoppingCartDecrease, shoppingCartRemove } from './actions';
+import { formatValidNumber, getProductFromState, isProductInCart } from './selectors';
 
-const shoppingCartAddThunk = (productId, quantity) => (dispatch, getState) => {
+const shoppingCartIncreaseThunk = (productId, quantity) => (dispatch, getState) => {
   const state = getState();
   const product = getProductFromState(state.products.all, productId);
   const validQuantity = formatValidNumber(quantity);
-  const action = productIsAlreadyInCart(state.shoppingCart.all, productId)
-    ? shoppingCartIncrement({ product, quantity: validQuantity })
+  const action = isProductInCart(state.shoppingCart.all, productId)
+    ? shoppingCartIncrease({ product, quantity: validQuantity })
     : shoppingCartAdd({ product, quantity: validQuantity });
   dispatch(action);
 };
 
-const shoppingCartDecrementThunk = (productId, quantity) => (dispatch, getState) => {
+const shoppingCartDecreaseThunk = (productId, quantity) => (dispatch, getState) => {
   const state = getState();
   const product = getProductFromState(state.shoppingCart.all, productId);
   const validQuantity = formatValidNumber(quantity);
   const isTheLastItem = product.quantity === 1;
   const action = isTheLastItem
     ? shoppingCartRemove({ product })
-    : shoppingCartDecrement({ product, quantity: validQuantity });
+    : shoppingCartDecrease({ product, quantity: validQuantity });
   dispatch(action);
 };
 
 export {
-  shoppingCartAddThunk,
-  shoppingCartDecrementThunk
+  shoppingCartIncreaseThunk,
+  shoppingCartDecreaseThunk
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ShoppingCart = ({ productsInCart, onDecrementQuantity }) => (
+const ShoppingCart = ({ productsInCart, onIncreaseQuantity, onDecreaseQuantity, onRemoveFromCart }) => (
   <div>
     <ul>
       {productsInCart.map((aProductInCart, index) => (
@@ -10,9 +10,13 @@ const ShoppingCart = ({ productsInCart, onDecrementQuantity }) => (
             <li>{index}</li>
             <li>{aProductInCart.name}</li>
             <li>{aProductInCart.price}</li>
-            <li>{aProductInCart.quantity}</li>
             <li>
-              <button onClick={() => onDecrementQuantity(aProductInCart.id)}>-</button>
+              <button onClick={() => onDecreaseQuantity(aProductInCart.id)}>-</button>
+              <span>{aProductInCart.quantity}</span>
+              <button onClick={() => onIncreaseQuantity(aProductInCart.id)}>+</button>
+            </li>
+            <li>
+              <button onClick={() => onRemoveFromCart(aProductInCart.id)}>X</button>
             </li>
           </ul>
         </li>
@@ -23,7 +27,9 @@ const ShoppingCart = ({ productsInCart, onDecrementQuantity }) => (
 
 ShoppingCart.propTypes = {
   productsInCart: PropTypes.array,
-  onDecrementQuantity: PropTypes.func.isRequired
+  onIncreaseQuantity: PropTypes.func.isRequired,
+  onDecreaseQuantity: PropTypes.func.isRequired,
+  onRemoveFromCart: PropTypes.func.isRequired
 };
 
 ShoppingCart.defaultProps = {
