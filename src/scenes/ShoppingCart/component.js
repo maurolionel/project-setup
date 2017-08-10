@@ -1,67 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Anchor from '../../components/Anchor';
-import Button from '../../components/Button';
+import Paper from '../../components/Paper';
+import ShoppingList from './components/ShoppingList';
 
-const ShoppingCart = ({ productsInCart, onIncreaseQuantity, onDecreaseQuantity, onRemoveFromCart }) => (
-  productsInCart.length > 0
-    ? (
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th colSpan="6">Productos: {productsInCart.length}</th>
-            </tr>
-            <tr>
-              <th>#</th>
-              <th>Producto</th>
-              <th>Precio unitario</th>
-              <th>Cantidad</th>
-              <th>Precio total</th>
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            {productsInCart.map((aProductInCart, index) => (
-              <tr key={aProductInCart.id}>
-                <td>{index + 1}</td>
-                <td>{aProductInCart.name}</td>
-                <td>$ {aProductInCart.price}</td>
-                <td>
-                  <Button onClick={() => onDecreaseQuantity(aProductInCart.id)}>-</Button>
-                  <span>{aProductInCart.quantity}</span>
-                  <Button onClick={() => onIncreaseQuantity(aProductInCart.id)}>+</Button>
-                </td>
-                <td>$ {aProductInCart.price * aProductInCart.quantity}</td>
-                <td>
-                  <Button onClick={() => onRemoveFromCart(aProductInCart.id)}>X</Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colSpan="3" />
-              <td>Total</td>
-              <td>$...</td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    )
-    : (
-      <div>
-        <p>Todavía no tenés ningún producto en el carrito.</p>
-        <p>Podés hacerlo desde la sección <Anchor to="/productos">productos</Anchor>.</p>
-      </div>
-    )
+const Wrapper = styled(Paper)`
+  flex: 1;
+  padding: 2rem;
+  border-radius: 0;
+`;
+
+const ShoppingCart = ({ productsInCart }) => (
+  <Wrapper withoutChangingStateStyle>
+    {productsInCart.length > 0
+      ? <ShoppingList listOfProducts={productsInCart} />
+      : (
+        <div>
+          <p>Todavía no tenés ningún producto en el carrito.</p>
+          <p>Podés hacerlo desde la sección <Anchor to="/productos">productos</Anchor>.</p>
+        </div>
+      )
+    }
+  </Wrapper>
 );
 
 ShoppingCart.propTypes = {
-  productsInCart: PropTypes.array,
-  onIncreaseQuantity: PropTypes.func.isRequired,
-  onDecreaseQuantity: PropTypes.func.isRequired,
-  onRemoveFromCart: PropTypes.func.isRequired
+  productsInCart: PropTypes.array
 };
 
 ShoppingCart.defaultProps = {

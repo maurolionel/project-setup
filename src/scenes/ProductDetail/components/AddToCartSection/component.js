@@ -15,7 +15,7 @@ const Wrapper = styled.form`
   background-color: ${({ theme }) => theme.base};
 `;
 
-const Name = styled(Title) `
+const Name = styled(Title)`
   margin: 0 0 0.3rem;
   font-size: 1.8rem;
 `;
@@ -31,7 +31,7 @@ const QuantityWrapper = styled.div`
   margin: 1.5rem 0 1rem;
 `;
 
-const QuantityLabel = styled(Label) `
+const QuantityLabel = styled(Label)`
   margin-bottom: 5px;
   font-size: 0.75rem;
   font-weight: 300;
