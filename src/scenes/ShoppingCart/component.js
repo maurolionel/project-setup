@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Anchor from '../../components/Anchor';
+import Button from '../../components/Button';
 
 const ShoppingCart = ({ productsInCart, onIncreaseQuantity, onDecreaseQuantity, onRemoveFromCart }) => (
   productsInCart.length > 0
@@ -27,13 +28,13 @@ const ShoppingCart = ({ productsInCart, onIncreaseQuantity, onDecreaseQuantity, 
                 <td>{aProductInCart.name}</td>
                 <td>$ {aProductInCart.price}</td>
                 <td>
-                  <button onClick={() => onDecreaseQuantity(aProductInCart.id)}>-</button>
+                  <Button onClick={() => onDecreaseQuantity(aProductInCart.id)}>-</Button>
                   <span>{aProductInCart.quantity}</span>
-                  <button onClick={() => onIncreaseQuantity(aProductInCart.id)}>+</button>
+                  <Button onClick={() => onIncreaseQuantity(aProductInCart.id)}>+</Button>
                 </td>
                 <td>$ {aProductInCart.price * aProductInCart.quantity}</td>
                 <td>
-                  <button onClick={() => onRemoveFromCart(aProductInCart.id)}>X</button>
+                  <Button onClick={() => onRemoveFromCart(aProductInCart.id)}>X</Button>
                 </td>
               </tr>
             ))}

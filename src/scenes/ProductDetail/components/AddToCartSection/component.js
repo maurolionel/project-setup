@@ -5,6 +5,7 @@ import { darken } from 'polished';
 import StockLabel from '../../../../components/StockLabel';
 import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
+import Link from '../../../../components/Link';
 import Title from '../../../../components/Title';
 import Label from '../../../../components/Label';
 
@@ -55,8 +56,6 @@ const QuantityInput = styled(Input).attrs({
   color: ${({ theme }) => darken(0.5, theme.grayLighter)};
 `;
 
-const ButtonSubmit = Button.withComponent('button');
-
 const ShopIcon = styled.i.attrs({
   className: 'fa fa-shopping-cart'
 }) `
@@ -82,10 +81,10 @@ class AddToCartSection extends PureComponent {
             <QuantityLabel>Cantidad:</QuantityLabel>
             <Quantity>
               <QuantityInput innerRef={this.registerQuantityInputRef} />
-              <ButtonSubmit type="submit"><ShopIcon />Agregar al carrito</ButtonSubmit>
+              <Button type="submit"><ShopIcon />Agregar al carrito</Button>
             </Quantity>
           </QuantityWrapper>
-          <Button to="/carrito" primary>Comprar</Button>
+          <Link to="/carrito" primary>Comprar</Link>
         </Wrapper>
       )
       : null;
