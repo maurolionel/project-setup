@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { darken } from 'polished';
 import Logo from '../../../../../../components/Logo';
 import Nav from './components/Nav';
 import Input from '../../../../../../components/Input';
@@ -8,10 +7,10 @@ import Input from '../../../../../../components/Input';
 const StyledNavBar = styled.div`
   display: flex;
   align-items: center;
+  max-width: ${({ theme }) => theme.desktop}px;
   height: 60px;
   padding: 0 0.5rem;
-  background-color: ${({ theme }) => theme.base};
-  border-bottom: 1px solid ${({ theme }) => darken(0.04, theme.whiteGray)};
+  margin: 0 auto;
 `;
 
 const SearchBarWrapper = styled.div`

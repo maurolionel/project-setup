@@ -5,8 +5,8 @@ const SceneWrapper = styled.section`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1220px;
   padding: 0 1rem;
+  max-width: ${({ theme }) => theme.desktop}px;
   margin: 2rem auto;
 `;
 

@@ -8,7 +8,8 @@ import Icon from '../../../../../../components/Icon';
 const StyledTopBar = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: ${({ theme }) => theme.primary};
+  max-width: ${({ theme }) => theme.desktop}px;
+  margin: 0 auto;
   font-size: 0.9rem;
 `;
 
