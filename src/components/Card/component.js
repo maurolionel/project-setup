@@ -46,17 +46,24 @@ const Price = styled.span`
   text-transform: uppercase;
 `;
 
-const LinkActionButton = styled(Link)`
+const LinkActionButton = styled.button`
   padding: 0.5rem;
+  border: 0;
+  outline: 0;
   color: ${({ theme }) => theme.base};
   background-color: ${({ theme }) => theme.accent};
   font-weight: 700;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.2s background-color;
+  &:hover {
+    background-color: ${({ theme }) => lighten(0.1, theme.accent)};
+  }
 `;
 
-const Card = ({ product, categoryName }) => (
+const Card = ({ product, categoryName, onAddToCart }) => (
   <StyledCard>
     <LinkImage to={`/productos/${categoryName}/${product.id}`}>
       <img src="" alt={product.name} />
@@ -66,13 +73,14 @@ const Card = ({ product, categoryName }) => (
       <LinkName to={`/productos/${categoryName}/${product.id}`}>{product.name}</LinkName>
       <Description>Breve descripción del producto...</Description>
     </Details>
-    <LinkActionButton to="/carrito">Agregar al carrito</LinkActionButton>
+    <LinkActionButton onClick={() => onAddToCart(product.id)}>Agregar al carrito</LinkActionButton>
   </StyledCard>
 );
 
 Card.propTypes = {
   product: PropTypes.object.isRequired,
-  categoryName: PropTypes.string.isRequired
+  categoryName: PropTypes.string.isRequired,
+  onAddToCart: PropTypes.func.isRequired
 };
 
 export default Card;

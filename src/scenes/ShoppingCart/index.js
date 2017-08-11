@@ -1,3 +1,3 @@
-import ShoppingCart from './component';
+import ShoppingCart from './container';
 
 export default ShoppingCart;

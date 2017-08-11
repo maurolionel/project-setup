@@ -1,13 +1,13 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { darken } from 'polished';
 import Paper from '../Paper';
 
-const PaperButton = Paper.withComponent('button');
+const PaperLink = Paper.withComponent(Link);
 
-const Button = styled(PaperButton)`
+const LinkCustom = styled(PaperLink)`
   color: ${({ primary, theme }) => (primary ? theme.base : theme.gray)};
   background-color: ${({ primary, theme }) => (primary ? theme.accent : theme.whiteGray)};
-  cursor: pointer;
 
   &:active {
     color: ${({ primary, theme }) => darken(0.05, primary ? theme.base : theme.gray)};
@@ -15,4 +15,4 @@ const Button = styled(PaperButton)`
   }
 `;
 
-export default Button;
+export default LinkCustom;
