@@ -1,3 +1,12 @@
+const breakpoints = {
+  desktop: 1220,
+  ipad: 1024, // ipad pro - 25
+  tablet: 768, // ipad - 25
+  phoneL: 415, // iphone 6Plus - 30
+  phoneM: 375, // iphone 6 - 18
+  phoneS: 320 // iphone 5 - 15
+};
+
 const colors = {
   aqua: '#1fbba6',
   aquaDark: '#189786',
@@ -37,7 +46,7 @@ const colors = {
   petroleum: '#3f454e'
 };
 
-const colorsBase = Object.assign({}, colors, {
+const colorsBase = Object.assign({}, breakpoints, colors, {
   // fonts
   fontBrandom: '"Brandon", Helvetica, Arial, sans-serif',
   fontMikado: '"Mikado Black", Arial, sans-serif;',
