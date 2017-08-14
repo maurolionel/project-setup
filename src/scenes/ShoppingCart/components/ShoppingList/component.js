@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { FormattedNumber } from 'react-intl';
 import Button from '../../../../components/Button';
 import Table from '../Table';
 
@@ -39,7 +40,7 @@ const ShoppingList = ({ listOfProducts, onIncreaseQuantity, onDecreaseQuantity, 
         <tr key={aProduct.id}>
           <td>{index + 1}</td>
           <td>{aProduct.name}</td>
-          <td>$ {aProduct.price}</td>
+          <td><FormattedNumber value={aProduct.price} style="currency" currency="USD" /></td>
           <td className="quantity">
             <span>{aProduct.quantity}</span>
             <div>
@@ -51,7 +52,7 @@ const ShoppingList = ({ listOfProducts, onIncreaseQuantity, onDecreaseQuantity, 
               </ActionButton>
             </div>
           </td>
-          <td>$ {aProduct.price * aProduct.quantity}</td>
+          <td><FormattedNumber value={aProduct.price * aProduct.quantity} style="currency" currency="USD" /></td>
           <td>
             <ActionButton onClick={() => onRemoveFromCart(aProduct.id)}>
               <Icon type="remove" />
@@ -64,7 +65,7 @@ const ShoppingList = ({ listOfProducts, onIncreaseQuantity, onDecreaseQuantity, 
       <tr>
         <td colSpan="3" />
         <td>Total</td>
-        <td>$ {getTotal(listOfProducts)}</td>
+        <td><FormattedNumber value={getTotal(listOfProducts)} style="currency" currency="USD" /></td>
       </tr>
     </tfoot>
   </Table>

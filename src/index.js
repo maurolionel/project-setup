@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
+import { IntlProvider } from 'react-intl';
 import { ThemeProvider } from 'styled-components';
 import registerServiceWorker from './services/registerServiceWorker';
 import colors from './styles/Colors';
@@ -22,11 +23,13 @@ store.dispatch(getProducts());
 ReactDOM.render(
   <ThemeProvider theme={colors}>
     <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <ScrollToTop>
-          <Route path="/" component={App} />
-        </ScrollToTop>
-      </ConnectedRouter>
+      <IntlProvider locale="es-419">
+        <ConnectedRouter history={history}>
+          <ScrollToTop>
+            <Route path="/" component={App} />
+          </ScrollToTop>
+        </ConnectedRouter>
+      </IntlProvider>
     </Provider>
   </ThemeProvider>,
   document.getElementById('root')
