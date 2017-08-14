@@ -11,15 +11,28 @@ const Wrapper = styled(Paper)`
   border-radius: 0;
 `;
 
+const NoProductsWrapper = styled.div`
+  text-align: center;
+`;
+
+const IconBasket = styled.i.attrs({
+  className: 'fa fa-cart-plus'
+})`
+  margin-top: 2rem;
+  color: ${({ theme }) => theme.grayLighter};
+  font-size: 10rem;
+`;
+
 const ShoppingCart = ({ productsInCart }) => (
   <Wrapper withoutChangingStateStyle>
     {productsInCart.length > 0
       ? <ShoppingList listOfProducts={productsInCart} />
       : (
-        <div>
-          <p>Todavía no tenés ningún producto en el carrito.</p>
-          <p>Podés hacerlo desde la sección <Anchor to="/productos">productos</Anchor>.</p>
-        </div>
+        <NoProductsWrapper>
+          <p>No tenés ningún producto en el carrito de compras.</p>
+          <p>Podés agregarlos desde la sección <Anchor to="/productos">productos</Anchor>.</p>
+          <IconBasket />
+        </NoProductsWrapper>
       )
     }
   </Wrapper>
