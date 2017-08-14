@@ -1,11 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import TopBarNavLink from './components/TopBarNavLink';
+import ShoppingCartBadge from './components/ShoppingCartBadge';
 import Icon from '../../../../../../components/Icon';
 
 const StyledTopBar = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-between;
   max-width: ${({ theme }) => theme.desktop}px;
@@ -19,7 +20,7 @@ const TopBarSection = styled.div`
 
 const TopBarLink = TopBarNavLink.withComponent(Link);
 
-const TopBar = ({ productsInCartQuantity }) => (
+const TopBar = () => (
   <StyledTopBar>
     <TopBarSection>
       <TopBarLink to="/contacto" title="Conocé nuestros horarios de atención">
@@ -41,15 +42,12 @@ const TopBar = ({ productsInCartQuantity }) => (
         <Icon className="fa fa-sign-in" placement="right" />
       </TopBarNavLink>
       <TopBarNavLink to="/carrito" title="Tu carrito de compras">
-        <Icon className="fa fa-shopping-cart" />
-        {productsInCartQuantity > 0 ? `(${productsInCartQuantity})` : null}
+        Carrito
+        <Icon className="fa fa-shopping-cart" placement="right" />
+        <ShoppingCartBadge />
       </TopBarNavLink>
     </TopBarSection>
   </StyledTopBar>
 );
-
-TopBar.propTypes = {
-  productsInCartQuantity: PropTypes.number.isRequired
-};
 
 export default TopBar;

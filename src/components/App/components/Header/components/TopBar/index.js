@@ -1,3 +1,3 @@
-import TopBar from './container';
+import TopBar from './component';
 
 export default TopBar;
