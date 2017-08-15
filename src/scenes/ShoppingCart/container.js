@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import ShoppingCart from './component';
 
 const mapStateToProps = ({ shoppingCart }) => ({
-  productsInCart: shoppingCart.all
+  isCartFilled: Boolean(shoppingCart.all.length)
 });
 
 const ShoppingCartContainer = connect(

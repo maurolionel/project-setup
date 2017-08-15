@@ -5,7 +5,7 @@ const Table = styled.table.attrs({
 }) `
   width: 100%;
   border: 1px solid ${({ theme }) => theme.whiteGray};
-  border-radius: 4px;
+  border-radius: 0 0 4px 4px;
   text-align: left;
 
   thead {

@@ -3,6 +3,10 @@ import ShoppingList from './component';
 import { shoppingCartIncreaseThunk, shoppingCartDecreaseThunk } from '../../../../services/shoppingCart/thunks';
 import { shoppingCartRemove } from '../../../../services/shoppingCart/actions';
 
+const mapStateToProps = ({ shoppingCart }) => ({
+  listOfProducts: shoppingCart.all
+});
+
 const mapDispatchToProps = dispatch => ({
   onIncreaseQuantity: productId => dispatch(shoppingCartIncreaseThunk(productId, 1)),
   onDecreaseQuantity: productId => dispatch(shoppingCartDecreaseThunk(productId, 1)),
@@ -10,7 +14,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const ShoppingListContainer = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ShoppingList);
 

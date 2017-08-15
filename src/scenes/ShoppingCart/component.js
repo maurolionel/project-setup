@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Anchor from '../../components/Anchor';
 import Paper from '../../components/Paper';
-import ShoppingList from './components/ShoppingList';
+import BuyingSteps from './components/BuyingSteps';
 
 const Wrapper = styled(Paper)`
   flex: 1;
@@ -23,10 +23,10 @@ const IconBasket = styled.i.attrs({
   font-size: 10rem;
 `;
 
-const ShoppingCart = ({ productsInCart }) => (
+const ShoppingCart = ({ isCartFilled }) => (
   <Wrapper withoutChangingStateStyle>
-    {productsInCart.length > 0
-      ? <ShoppingList listOfProducts={productsInCart} />
+    {isCartFilled
+      ? <BuyingSteps />
       : (
         <NoProductsWrapper>
           <p>No tenés ningún producto en el carrito de compras.</p>
@@ -39,11 +39,11 @@ const ShoppingCart = ({ productsInCart }) => (
 );
 
 ShoppingCart.propTypes = {
-  productsInCart: PropTypes.array
+  isCartFilled: PropTypes.boolean
 };
 
 ShoppingCart.defaultProps = {
-  productsInCart: []
+  isCartFilled: false
 };
 
 export default ShoppingCart;

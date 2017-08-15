@@ -72,14 +72,10 @@ const ShoppingList = ({ listOfProducts, onIncreaseQuantity, onDecreaseQuantity, 
 );
 
 ShoppingList.propTypes = {
-  listOfProducts: PropTypes.array,
+  listOfProducts: PropTypes.array.isRequired,
   onIncreaseQuantity: PropTypes.func.isRequired,
   onDecreaseQuantity: PropTypes.func.isRequired,
   onRemoveFromCart: PropTypes.func.isRequired
-};
-
-ShoppingList.defaultProps = {
-  listOfProducts: []
 };
 
 export default ShoppingList;
