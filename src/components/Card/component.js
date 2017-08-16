@@ -6,6 +6,7 @@ import { lighten } from 'polished';
 import Paper from '../Paper';
 
 const StyledCard = styled(Paper)`
+  flex: 1;
   display: flex;
   flex-direction: column;
   padding: 0;
@@ -18,6 +19,7 @@ const LinkImage = styled(Link)`
 `;
 
 const Details = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -35,8 +37,12 @@ const LinkName = styled(Link)`
 `;
 
 const Description = styled.p`
-  margin: 0 0 1rem;
+  overflow: hidden;
+  margin: 0;
   color: ${({ theme }) => lighten(0.1, theme.gray)};
+  font-size: 0.9rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const Price = styled.span`
@@ -63,19 +69,25 @@ const LinkActionButton = styled.button`
   }
 `;
 
-const Card = ({ product, categoryName, onAddToCart }) => (
-  <StyledCard>
-    <LinkImage to={`/productos/${categoryName}/${product.id}`}>
-      <img src="" alt={product.name} />
-    </LinkImage>
-    <Details>
-      <Price>${product.price}</Price>
-      <LinkName to={`/productos/${categoryName}/${product.id}`}>{product.name}</LinkName>
-      <Description>Breve descripción del producto...</Description>
-    </Details>
-    <LinkActionButton onClick={() => onAddToCart(product.id)}>Agregar al carrito</LinkActionButton>
-  </StyledCard>
-);
+const Card = ({ product, categoryName, onAddToCart }) => {
+  const hasStock = Boolean(parseInt(product.has_stock, 10));
+  return (
+    <StyledCard>
+      <LinkImage to={`/productos/${categoryName}/${product.id}`}>
+        <img src="" alt={product.name} />
+      </LinkImage>
+      <Details>
+        <Price>${product.price}</Price>
+        <LinkName to={`/productos/${categoryName}/${product.id}`}>{product.name}</LinkName>
+        <Description>{product.description}</Description>
+      </Details>
+      {hasStock
+        ? <LinkActionButton onClick={() => onAddToCart(product.id)}>Agregar al carrito</LinkActionButton>
+        : <p>Sin stock</p>
+      }
+    </StyledCard>
+  );
+};
 
 Card.propTypes = {
   product: PropTypes.object.isRequired,

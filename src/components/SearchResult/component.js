@@ -10,6 +10,7 @@ const Section = styled.section`
 
 const CardContainer = styled.article`
   flex: 0 1 30%;
+  display: flex;
   min-width: 300px;
   padding: 1rem;
 `;

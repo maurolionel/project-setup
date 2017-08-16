@@ -9,7 +9,7 @@ const StyledFeatures = styled.section`
 const Feature = styled.div`
   flex: 1;
   padding: 0.5rem 1.5rem;
-  border-right: 1px solid ${({ theme }) => theme.grayDark};
+  border-right: 1px solid ${({ theme }) => theme.grayLighter};
   color: ${({ theme }) => theme.gray};
   text-align: justify;
   &:last-child {

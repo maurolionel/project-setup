@@ -60,7 +60,7 @@ const Shortcuts = () => (
       <Icon className="fa fa-shopping-bag" />
       Nuestros productos
     </StyledLink>
-    <StyledLink to="/horarios">
+    <StyledLink to="/contacto">
       <Icon className="fa fa-clock-o" />
       Horarios de atención
     </StyledLink>

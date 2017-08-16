@@ -77,14 +77,19 @@ class AddToCartSection extends PureComponent {
         <Name>{product.name}</Name>
         <StockLabel withStock={hasStock} />
         <Price>$ {product.price}</Price>
-        <QuantityWrapper>
-          <QuantityLabel>Cantidad:</QuantityLabel>
-          <Quantity>
-            <QuantityInput innerRef={this.registerQuantityInputRef} />
-            <Button type="submit"><ShopIcon />Agregar al carrito</Button>
-          </Quantity>
-        </QuantityWrapper>
-        <Link to="/carrito" primary>Comprar</Link>
+        {hasStock
+          ? (<div>
+            <QuantityWrapper>
+              <QuantityLabel>Cantidad:</QuantityLabel>
+              <Quantity>
+                <QuantityInput innerRef={this.registerQuantityInputRef} />
+                <Button type="submit" disabled><ShopIcon />Agregar al carrito</Button>
+              </Quantity>
+            </QuantityWrapper>
+            <Link to="/carrito" primary>Comprar</Link>
+          </div>)
+          : <p>Por el momento no contamos con stock de este producto.</p>
+        }
       </Wrapper>
     );
   }

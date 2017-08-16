@@ -26,8 +26,8 @@ const InputBlock = styled.div`
   margin-bottom: 2.5rem;
 `;
 
-const renderBrandOption = (aBrand, index) => (
-  <option key={index}>{aBrand}</option>
+const renderBrandOption = aBrand => (
+  <option key={aBrand.id} value={aBrand.id}>{aBrand}</option>
 );
 
 const ProductSelect = ({ brands }) => (
