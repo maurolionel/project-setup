@@ -71,23 +71,22 @@ class AddToCartSection extends PureComponent {
   }
   render() {
     const { product } = this.props;
-    return product
-      ? (
-        <Wrapper onSubmit={this.handleSubmit}>
-          <Name>{product.name}</Name>
-          <StockLabel withStock />
-          <Price>$ {product.price}</Price>
-          <QuantityWrapper>
-            <QuantityLabel>Cantidad:</QuantityLabel>
-            <Quantity>
-              <QuantityInput innerRef={this.registerQuantityInputRef} />
-              <Button type="submit"><ShopIcon />Agregar al carrito</Button>
-            </Quantity>
-          </QuantityWrapper>
-          <Link to="/carrito" primary>Comprar</Link>
-        </Wrapper>
-      )
-      : null;
+    const hasStock = Boolean(parseInt(product.has_stock, 10));
+    return (
+      <Wrapper onSubmit={this.handleSubmit}>
+        <Name>{product.name}</Name>
+        <StockLabel withStock={hasStock} />
+        <Price>$ {product.price}</Price>
+        <QuantityWrapper>
+          <QuantityLabel>Cantidad:</QuantityLabel>
+          <Quantity>
+            <QuantityInput innerRef={this.registerQuantityInputRef} />
+            <Button type="submit"><ShopIcon />Agregar al carrito</Button>
+          </Quantity>
+        </QuantityWrapper>
+        <Link to="/carrito" primary>Comprar</Link>
+      </Wrapper>
+    );
   }
 }
 
