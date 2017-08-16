@@ -8,13 +8,13 @@ export default new WebpackConfig()
     bail: true,
     devtool: 'source-map',
 
-    entry: ['babel-polyfill', './src/index.jsx'],
+    entry: ['babel-polyfill', './src/index.js'],
 
     output: {
       filename: '[name].js?[hash]',
       path: resolve('dist'),
       chunkFilename: '[name].js?[hash]',
-      publicPath: '/'
+      publicPath: './'
       // necessary for HMR to know where to load the hot update chunks
     },
 
