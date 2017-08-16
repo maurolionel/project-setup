@@ -12,10 +12,12 @@ import ScrollToTop from './components/ScrollToTop';
 import App from './components/App';
 import { getCategories } from './services/categories/actions';
 import { getProducts } from './services/products/actions';
+import { getBrands } from './services/brands/actions';
 
 const store = configureStore;
 store.dispatch(getCategories());
 store.dispatch(getProducts());
+store.dispatch(getBrands());
 
 // Now you can dispatch navigation actions from anywhere!
 // store.dispatch(push('/foo'))
