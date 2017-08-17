@@ -1,3 +1,3 @@
-import ProductSelect from './component';
+import ProductSelect from './container';
 
 export default ProductSelect;

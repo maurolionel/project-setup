@@ -18,7 +18,7 @@ const CardContainer = styled.article`
 const SearchResult = ({ results, categories }) => (
   <Section>
     {results && results.map((aResult) => {
-      const categoryName = categories.find(aCategory => aResult.category_id === aCategory.id).name;
+      const categoryName = categories.find(aCategory => aResult.categoryId === aCategory.id).name;
       return (
         <CardContainer key={aResult.id}>
           <Card product={aResult} categoryName={categoryName} />

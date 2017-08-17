@@ -16,7 +16,7 @@ const Wrapper = styled.form`
 `;
 
 const Name = styled(Title)`
-  margin: 0 0 0.3rem;
+  margin: 1rem 0 0;
   font-size: 1.8rem;
 `;
 
@@ -71,13 +71,13 @@ class AddToCartSection extends PureComponent {
   }
   render() {
     const { product } = this.props;
-    const hasStock = Boolean(parseInt(product.has_stock, 10));
     return (
       <Wrapper onSubmit={this.handleSubmit}>
+        <StockLabel withStock={product.hasStock} />
         <Name>{product.name}</Name>
-        <StockLabel withStock={hasStock} />
+        <p>{product.description}</p>
         <Price>$ {product.price}</Price>
-        {hasStock
+        {product.hasStock
           ? (<div>
             <QuantityWrapper>
               <QuantityLabel>Cantidad:</QuantityLabel>

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { lighten } from 'polished';
 import Paper from '../Paper';
+import Button from '../Button';
+import LinkCustom from '../Link';
 
 const StyledCard = styled(Paper)`
   flex: 1;
@@ -52,42 +54,38 @@ const Price = styled.span`
   text-transform: uppercase;
 `;
 
-const LinkActionButton = styled.button`
-  padding: 0.5rem;
-  border: 0;
-  outline: 0;
-  color: ${({ theme }) => theme.base};
-  background-color: ${({ theme }) => theme.accent};
-  font-weight: 700;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: 0.2s background-color;
-  &:hover {
-    background-color: ${({ theme }) => lighten(0.1, theme.accent)};
+const ActionWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0 1rem 1rem;
+  button {
+    width: auto;
+    margin-right: 0.5rem;
+  }
+  span {
+    margin-left: 0.5rem;
+    font-style: italic;
   }
 `;
 
-const Card = ({ product, categoryName, onAddToCart }) => {
-  const hasStock = Boolean(parseInt(product.has_stock, 10));
-  return (
-    <StyledCard>
-      <LinkImage to={`/productos/${categoryName}/${product.id}`}>
-        <img src="" alt={product.name} />
-      </LinkImage>
-      <Details>
-        <Price>${product.price}</Price>
-        <LinkName to={`/productos/${categoryName}/${product.id}`}>{product.name}</LinkName>
-        <Description>{product.description}</Description>
-      </Details>
-      {hasStock
-        ? <LinkActionButton onClick={() => onAddToCart(product.id)}>Agregar al carrito</LinkActionButton>
-        : <p>Sin stock</p>
-      }
-    </StyledCard>
-  );
-};
+const Card = ({ product, categoryName, onAddToCart }) => (
+  <StyledCard>
+    <LinkImage to={`/productos/${categoryName}/${product.id}`}>
+      <img src="" alt={product.name} />
+    </LinkImage>
+    <Details>
+      <Price>${product.price}</Price>
+      <LinkName to={`/productos/${categoryName}/${product.id}`}>{product.name}</LinkName>
+      <Description>{product.description}</Description>
+    </Details>
+    <ActionWrapper>
+      {product.hasStock &&
+        <Button onClick={() => onAddToCart(product.id)} primary>Agregar al carrito</Button>}
+      <LinkCustom to={`/productos/${categoryName}/${product.id}`}>Ver</LinkCustom>
+      {!product.hasStock && <span>Sin stock</span>}
+    </ActionWrapper>
+  </StyledCard>
+);
 
 Card.propTypes = {
   product: PropTypes.object.isRequired,

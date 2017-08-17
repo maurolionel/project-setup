@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { replaceMiddleDashWithSpace } from '../../../../services/utils';
 
 const StyledBreadcrumbListItem = styled.li`
   display: flex;
@@ -23,9 +24,7 @@ const StyledBreadcrumbListItem = styled.li`
 
 const BreadcrumbListItem = ({ children }) => {
   let label = children;
-  if (typeof children === 'string') {
-    label = children.replace(/-/g, ' ');
-  }
+  if (typeof children === 'string') label = replaceMiddleDashWithSpace(children);
   return <StyledBreadcrumbListItem>{label}</StyledBreadcrumbListItem>;
 };
 

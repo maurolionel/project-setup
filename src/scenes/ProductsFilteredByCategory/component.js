@@ -11,7 +11,7 @@ const Section = styled.section`
 const ProductsFilteredByCategory = ({ match: { params: { categoryName } }, products, categories }) => {
   if (products && categories) {
     const categoryId = categories.find(aCategory => categoryName === aCategory.name).id;
-    const result = products.filter(aProduct => categoryId === aProduct.category_id);
+    const result = products.filter(aProduct => categoryId === aProduct.categoryId);
     return (
       <Section>
         <Aside categories={categories} />

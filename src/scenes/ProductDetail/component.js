@@ -39,7 +39,7 @@ class ProductDetail extends PureComponent {
     const { products, match: { params } } = this.props;
     let product = {};
     if (products) {
-      product = products.find(aProduct => params.productId === aProduct.id);
+      product = products.find(aProduct => parseInt(params.productId, 10) === aProduct.id);
     }
     this.state = {
       product
@@ -49,7 +49,7 @@ class ProductDetail extends PureComponent {
   componentWillReceiveProps(nextProps) {
     const { match: { params } } = this.props;
     if (nextProps.products) {
-      const product = nextProps.products.find(aProduct => params.productId === aProduct.id);
+      const product = nextProps.products.find(aProduct => parseInt(params.productId, 10) === aProduct.id);
       this.setState({ product });
     }
   }
