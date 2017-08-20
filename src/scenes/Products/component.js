@@ -8,20 +8,25 @@ const Section = styled.section`
   display: flex;
 `;
 
-const Products = ({ products, categories }) => (
-  (products && categories)
-    ? (
-      <Section>
-        <Aside categories={categories} />
-        <SearchResult results={products} categories={categories} />
-      </Section>
-    )
-    : null
-);
+const Products = ({ products, categories, match }) => {
+  if (!products || !categories) {
+    return null;
+  }
+  const filteredProducts = match.url === '/ofertas'
+    ? products.filter(p => p.isOfferMode)
+    : products;
+  return (
+    <Section>
+      <Aside categories={categories} />
+      <SearchResult results={filteredProducts} categories={categories} />
+    </Section>
+  );
+};
 
 Products.propTypes = {
   categories: PropTypes.array,
-  products: PropTypes.array
+  products: PropTypes.array,
+  match: PropTypes.object.isRequired
 };
 
 Products.defaultProps = {

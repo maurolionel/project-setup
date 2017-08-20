@@ -21,15 +21,12 @@ const mapProductFromApiToState = aProduct => ({
 
 function productsReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_PRODUCTS: {
+    case GET_PRODUCTS:
       return {
         ...state,
         all: action.payload.result.map(mapProductFromApiToState)
       };
-    }
-    default: {
-      return state;
-    }
+    default: return state;
   }
 }
 

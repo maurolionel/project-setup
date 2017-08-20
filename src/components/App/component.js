@@ -115,7 +115,7 @@ class App extends PureComponent {
               <Route exact path="/productos" component={Products} />
               <Route exact path="/productos/:categoryName" component={ProductsFilteredByCategory} />
               <Route exact path="/productos/:categoryName/:productId" component={ProductDetail} />
-              <Route exact path="/ofertas" component={HotSales} />
+              <Route exact path="/ofertas" component={Products} />
               <Route exact path="/soporte" component={Support} />
               <Route exact path="/contacto" component={Contact} />
 

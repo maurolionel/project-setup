@@ -9,17 +9,17 @@ const Section = styled.section`
 `;
 
 const ProductsFilteredByCategory = ({ match: { params: { categoryName } }, products, categories }) => {
-  if (products && categories) {
-    const categoryId = categories.find(aCategory => categoryName === aCategory.name).id;
-    const result = products.filter(aProduct => categoryId === aProduct.categoryId);
-    return (
-      <Section>
-        <Aside categories={categories} />
-        <SearchResult results={result} categories={categories} />
-      </Section>
-    );
+  if (!products || !categories) {
+    return null;
   }
-  return null;
+  const categoryId = categories.find(aCategory => categoryName === aCategory.name).id;
+  const result = products.filter(aProduct => categoryId === aProduct.categoryId);
+  return (
+    <Section>
+      <Aside categories={categories} />
+      <SearchResult results={result} categories={categories} />
+    </Section>
+  );
 };
 
 ProductsFilteredByCategory.propTypes = {
