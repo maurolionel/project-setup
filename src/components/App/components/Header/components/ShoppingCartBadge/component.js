@@ -10,6 +10,7 @@ const Badge = styled.span`
   min-width: 13px;
   padding: 0.1rem 0.23rem;
   border-radius: 1rem;
+  color: ${({ theme }) => theme.base};
   background-color: ${({ theme }) => theme.success};
   font-size: 0.65rem;
   transform: translateY(${({ children }) => (children > 0 ? '0' : '-50')}px);
