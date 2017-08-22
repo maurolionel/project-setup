@@ -11,6 +11,8 @@ const StyledCard = styled(Paper)`
   flex: 1;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  position: relative;
   padding: 0;
   border-radius: 4px;
 `;
@@ -68,8 +70,25 @@ const ActionWrapper = styled.div`
   }
 `;
 
+const OfferBadge = styled.span`
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 50;
+  width: 200px;
+  padding: 0.15rem;
+  color: #fff;
+  background-color: orange;
+  font-size: 0.6rem;
+  text-align: center;
+  text-transform: uppercase;
+  transform: rotate(45deg);
+  transform-origin: 120px 108px;
+`;
+
 const Card = ({ product, categoryName, onAddToCart }) => (
   <StyledCard>
+    {product.isOfferMode && <OfferBadge>¡En oferta!</OfferBadge>}
     <LinkImage to={`/productos/${categoryName}/${product.id}`}>
       <img src="" alt={product.name} />
     </LinkImage>
