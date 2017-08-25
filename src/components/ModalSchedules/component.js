@@ -8,7 +8,7 @@ const ModalSchedules = ({ isOpen }) => (
     ? (
       <Modal>
         <Title>Horarios de atención</Title>
-        <img src="http://www.imprek.com.ar/Horario.jpg" />
+        <img src="http://www.imprek.com.ar/Horario.jpg" alt="Horarios" />
       </Modal>
     )
     : null

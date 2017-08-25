@@ -8,7 +8,7 @@ const ModalShippings = ({ isOpen }) => (
     ? (
       <Modal>
         <Title>Métodos de envío</Title>
-        <img src="http://www.imprek.com.ar/imagenes/envios-horarios.png" />
+        <img src="http://www.imprek.com.ar/imagenes/envios-horarios.png" alt="Métodos de envío" />
       </Modal>
     )
     : null
