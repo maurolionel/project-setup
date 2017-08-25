@@ -14,7 +14,14 @@ const StyledBanner = styled.img`
 
 const Banner = () => (
   <Section>
-    <StyledBanner src={bannerSource} />
+    <img
+      src={bannerSource}
+      style={{
+        flex: 1,
+        objectFit: 'cover'
+      }}
+      alt=""
+    />
   </Section>
 );
 

@@ -43,7 +43,6 @@ const StyledLink = styled(Link)`
   &:hover > i {
     transform: scale(1.15);
   }
-
 `;
 
 const Icon = styled.i`
@@ -51,28 +50,29 @@ const Icon = styled.i`
   transition: 0.25s transform ease;
 `;
 
-const Shortcuts = ({ onOpenModalSchedules }) => (
-  <StyledShortcuts>
-    <StyledLink to="/soporte">
-      <Icon className="fa fa-cogs" />
-      Instructivos y manuales
-    </StyledLink>
-    <StyledLink to="/productos">
-      <Icon className="fa fa-shopping-bag" />
-      Nuestros productos
-    </StyledLink>
-    <StyledLink
-      to="#"
-      onClick={(event) => {
-        event.preventDefault();
-        onOpenModalSchedules();
-      }}
-    >
-      <Icon className="fa fa-clock-o" />
-      Horarios de atención
-    </StyledLink>
-  </StyledShortcuts>
-);
+const Shortcuts = ({ onOpenModalSchedules }) => {
+  const openModalSchedules = (event) => {
+    event.preventDefault();
+    onOpenModalSchedules();
+  };
+
+  return (
+    <StyledShortcuts>
+      <StyledLink to="/soporte">
+        <Icon className="fa fa-cogs" />
+        Instructivos y manuales
+      </StyledLink>
+      <StyledLink to="/productos">
+        <Icon className="fa fa-shopping-bag" />
+        Nuestros productos
+      </StyledLink>
+      <StyledLink to="#" onClick={openModalSchedules}>
+        <Icon className="fa fa-clock-o" />
+        Horarios de atención
+      </StyledLink>
+    </StyledShortcuts>
+  );
+};
 
 Shortcuts.propTypes = {
   onOpenModalSchedules: PropTypes.func.isRequired
