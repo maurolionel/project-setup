@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { darken, lighten } from 'polished';
@@ -50,7 +51,7 @@ const Icon = styled.i`
   transition: 0.25s transform ease;
 `;
 
-const Shortcuts = () => (
+const Shortcuts = ({ onOpenModalSchedules }) => (
   <StyledShortcuts>
     <StyledLink to="/soporte">
       <Icon className="fa fa-cogs" />
@@ -60,11 +61,21 @@ const Shortcuts = () => (
       <Icon className="fa fa-shopping-bag" />
       Nuestros productos
     </StyledLink>
-    <StyledLink to="/contacto">
+    <StyledLink
+      to="#"
+      onClick={(event) => {
+        event.preventDefault();
+        onOpenModalSchedules();
+      }}
+    >
       <Icon className="fa fa-clock-o" />
       Horarios de atención
     </StyledLink>
   </StyledShortcuts>
 );
+
+Shortcuts.propTypes = {
+  onOpenModalSchedules: PropTypes.func.isRequired
+};
 
 export default Shortcuts;
