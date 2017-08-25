@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import TopBarNavLink from './components/TopBarNavLink';
-import ShoppingCartBadge from './components/ShoppingCartBadge';
+import ShoppingCartBadge from '../ShoppingCartBadge';
 import Icon from '../../../../../../components/Icon';
 
 const StyledTopBar = styled.div`

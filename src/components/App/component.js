@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import styled, { injectGlobal } from 'styled-components';
 import { normalize } from 'polished';
@@ -91,33 +91,43 @@ const Main = styled.main`
   background-color: ${({ theme }) => theme.whiteGray};
 `;
 
-const App = () => (
-  <StyledApp>
-    <Header />
-    <Main>
-      <SceneWrapper>
-        <Breadcrumb />
-        <Switch>
-          {/* TopBar */}
-          <Route exact path="/carrito" component={ShoppingCart} />
-          <Route exact path="/ingresar" component={SignIn} />
-          <Route exact path="/registrarse" component={SignUp} />
+class App extends PureComponent {
+  state = {
+    headerHeight: 0
+  }
 
-          {/* NavBar */}
-          <Route exact path="/productos" component={Products} />
-          <Route exact path="/productos/:categoryName" component={ProductsFilteredByCategory} />
-          <Route exact path="/productos/:categoryName/:productId" component={ProductDetail} />
-          <Route exact path="/ofertas" component={HotSales} />
-          <Route exact path="/soporte" component={Support} />
-          <Route exact path="/contacto" component={Contact} />
+  handleHeaderLayout = headerHeight => this.setState({ headerHeight });
 
-          <Route exact path="/" component={Home} />
-          <Route component={NotFound} />
-        </Switch>
-      </SceneWrapper>
-    </Main>
-    <Footer />
-  </StyledApp>
-);
+  render() {
+    return (
+      <StyledApp style={{ paddingTop: this.state.headerHeight }}>
+        <Header onHeaderLayout={this.handleHeaderLayout} />
+        <Main>
+          <SceneWrapper>
+            <Breadcrumb />
+            <Switch>
+              {/* TopBar */}
+              <Route exact path="/carrito" component={ShoppingCart} />
+              <Route exact path="/ingresar" component={SignIn} />
+              <Route exact path="/registrarse" component={SignUp} />
+
+              {/* NavBar */}
+              <Route exact path="/productos" component={Products} />
+              <Route exact path="/productos/:categoryName" component={ProductsFilteredByCategory} />
+              <Route exact path="/productos/:categoryName/:productId" component={ProductDetail} />
+              <Route exact path="/ofertas" component={Products} />
+              <Route exact path="/soporte" component={Support} />
+              <Route exact path="/contacto" component={Contact} />
+
+              <Route exact path="/" component={Home} />
+              <Route component={NotFound} />
+            </Switch>
+          </SceneWrapper>
+        </Main>
+        <Footer />
+      </StyledApp>
+    );
+  }
+}
 
 export default App;

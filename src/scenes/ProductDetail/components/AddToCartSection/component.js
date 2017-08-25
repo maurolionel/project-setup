@@ -83,7 +83,7 @@ class AddToCartSection extends PureComponent {
               <QuantityLabel>Cantidad:</QuantityLabel>
               <Quantity>
                 <QuantityInput innerRef={this.registerQuantityInputRef} />
-                <Button type="submit" disabled><ShopIcon />Agregar al carrito</Button>
+                <Button type="submit"><ShopIcon />Agregar al carrito</Button>
               </Quantity>
             </QuantityWrapper>
             <Link to="/carrito" primary>Comprar</Link>

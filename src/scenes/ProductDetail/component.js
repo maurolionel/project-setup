@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { convertStringToNumber } from '../../services/utils';
 import Pictures from './components/Pictures';
 import AddToCartSection from './components/AddToCartSection';
 import AdditionalInfoSection from './components/AdditionalInfoSection';
@@ -37,19 +38,18 @@ class ProductDetail extends PureComponent {
   constructor(props) {
     super(props);
     const { products, match: { params } } = this.props;
-    let product = {};
-    if (products) {
-      product = products.find(aProduct => parseInt(params.productId, 10) === aProduct.id);
-    }
-    this.state = {
-      product
-    };
+    const product = products
+      ? products.find(aProduct => convertStringToNumber(params.productId) === aProduct.id)
+      : {};
+    this.state = { product };
   }
 
   componentWillReceiveProps(nextProps) {
     const { match: { params } } = this.props;
     if (nextProps.products) {
-      const product = nextProps.products.find(aProduct => parseInt(params.productId, 10) === aProduct.id);
+      const product = nextProps.products.find(aProduct =>
+        convertStringToNumber(params.productId) === aProduct.id
+      );
       this.setState({ product });
     }
   }
