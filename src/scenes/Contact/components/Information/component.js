@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import InfoTitle from '../InfoTitle';
 import Label from '../../../../components/Label';
 import Input from '../../../../components/Input';
+import Anchor from '../../../../components/Anchor';
 
 const Wrapper = styled.div`
   display: flex;
@@ -45,12 +47,23 @@ const StyledLabel = styled(Label)`
   margin: 10px 0 0;
 `;
 
-const Contact = () => (
+const Information = ({ onOpenModalSchedules }) => (
   <Wrapper>
     <InfoBox>
       <InfoTitle>Ubicación</InfoTitle>
       <InfoList>
         <InfoListItem>Agüero 931, Ciudad Autónoma de Buenos Aires, Argentina</InfoListItem>
+        <InfoListItem>
+          <Anchor
+            to="#"
+            onClick={(event) => {
+              event.preventDefault();
+              onOpenModalSchedules();
+            }}
+          >
+          Horarios
+          </Anchor>
+        </InfoListItem>
       </InfoList>
     </InfoBox>
 
@@ -101,4 +114,8 @@ const Contact = () => (
   </Wrapper>
 );
 
-export default Contact;
+Information.propTypes = {
+  onOpenModalSchedules: PropTypes.func.isRequired
+};
+
+export default Information;

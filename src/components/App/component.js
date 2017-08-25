@@ -21,6 +21,12 @@ import ShoppingCart from '../../scenes/ShoppingCart';
 import SignIn from '../../scenes/SignIn';
 import SignUp from '../../scenes/SignUp';
 import Support from '../../scenes/Support';
+
+// modals
+import ModalSchedules from '../ModalSchedules';
+import ModalShippings from '../ModalShippings';
+
+// assets
 import '../../assets/fonts/arial_rounded.ttf';
 import '../../assets/fonts/OpenSans-Light.ttf';
 import '../../assets/fonts/OpenSans-Regular.ttf';
@@ -125,6 +131,8 @@ class App extends PureComponent {
           </SceneWrapper>
         </Main>
         <Footer />
+        <ModalSchedules />
+        <ModalShippings />
       </StyledApp>
     );
   }

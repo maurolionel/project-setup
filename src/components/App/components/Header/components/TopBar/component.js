@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import TopBarNavLink from './components/TopBarNavLink';
@@ -20,14 +21,28 @@ const TopBarSection = styled.div`
 
 const TopBarLink = TopBarNavLink.withComponent(Link);
 
-const TopBar = () => (
+const TopBar = ({ onOpenModalSchedules, onOpenModalShippings }) => (
   <StyledTopBar>
     <TopBarSection>
-      <TopBarLink to="/contacto" title="Conocé nuestros horarios de atención">
+      <TopBarLink
+        to="#"
+        onClick={(event) => {
+          event.preventDefault();
+          onOpenModalSchedules();
+        }}
+        title="Conocé nuestros horarios de atención"
+      >
         <Icon className="fa fa-clock-o" />
         Horarios
       </TopBarLink>
-      <TopBarLink to="/contacto" title="Conocé nuestros métodos de envío">
+      <TopBarLink
+        to="#"
+        onClick={(event) => {
+          event.preventDefault();
+          onOpenModalShippings();
+        }}
+        title="Conocé nuestros métodos de envío"
+      >
         <Icon className="fa fa-truck" />
         Métodos de envío
       </TopBarLink>
@@ -49,5 +64,10 @@ const TopBar = () => (
     </TopBarSection>
   </StyledTopBar>
 );
+
+TopBar.propTypes = {
+  onOpenModalSchedules: PropTypes.func.isRequired,
+  onOpenModalShippings: PropTypes.func.isRequired
+};
 
 export default TopBar;
