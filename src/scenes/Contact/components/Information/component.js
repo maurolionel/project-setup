@@ -47,7 +47,7 @@ const StyledLabel = styled(Label)`
   margin: 10px 0 0;
 `;
 
-const Information = ({ onOpenModalSchedules }) => (
+const Information = ({ onOpenModalSchedules, onOpenModalShippings }) => (
   <Wrapper>
     <InfoBox>
       <InfoTitle>Ubicación</InfoTitle>
@@ -61,7 +61,18 @@ const Information = ({ onOpenModalSchedules }) => (
               onOpenModalSchedules();
             }}
           >
-          Horarios
+            Horarios
+          </Anchor>
+        </InfoListItem>
+        <InfoListItem>
+          <Anchor
+            to="#"
+            onClick={(event) => {
+              event.preventDefault();
+              onOpenModalShippings();
+            }}
+          >
+            Métodos de envío
           </Anchor>
         </InfoListItem>
       </InfoList>
@@ -115,7 +126,8 @@ const Information = ({ onOpenModalSchedules }) => (
 );
 
 Information.propTypes = {
-  onOpenModalSchedules: PropTypes.func.isRequired
+  onOpenModalSchedules: PropTypes.func.isRequired,
+  onOpenModalShippings: PropTypes.func.isRequired
 };
 
 export default Information;
