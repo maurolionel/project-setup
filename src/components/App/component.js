@@ -12,10 +12,8 @@ import Breadcrumb from '../Breadcrumb';
 // scenes
 import Contact from '../../scenes/Contact';
 import Home from '../../scenes/Home';
-import HotSales from '../../scenes/HotSales';
 import NotFound from '../../scenes/NotFound';
 import Products from '../../scenes/Products';
-import ProductsFilteredByCategory from '../../scenes/ProductsFilteredByCategory';
 import ProductDetail from '../../scenes/ProductDetail';
 import ShoppingCart from '../../scenes/ShoppingCart';
 import SignIn from '../../scenes/SignIn';
@@ -119,8 +117,7 @@ class App extends PureComponent {
 
               {/* NavBar */}
               <Route exact path="/productos" component={Products} />
-              <Route exact path="/productos/:categoryName" component={ProductsFilteredByCategory} />
-              <Route exact path="/productos/:categoryName/:productId" component={ProductDetail} />
+              <Route exact path="/productos/:productId" component={ProductDetail} />
               <Route exact path="/ofertas" component={Products} />
               <Route exact path="/soporte" component={Support} />
               <Route exact path="/contacto" component={Contact} />

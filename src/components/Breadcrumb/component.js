@@ -27,8 +27,7 @@ const config = {
     '/registrarse': 'Creá una cuenta'
   },
   dynamicRoutesMap: {
-    '/productos/:categoryName': '{{categoryName}}',
-    '/productos/:categoryName/:productId': '{{productId}}'
+    '/productos/:productId': '{{productId}}'
   },
   notFound: 'La página no existe',
   Breadcrumb: BreadcrumbList,

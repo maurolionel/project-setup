@@ -86,29 +86,31 @@ const OfferBadge = styled.span`
   transform-origin: 120px 108px;
 `;
 
-const Card = ({ product, categoryName, onAddToCart }) => (
-  <StyledCard>
-    {product.isOfferMode && <OfferBadge>¡En oferta!</OfferBadge>}
-    <LinkImage to={`/productos/${categoryName}/${product.id}`}>
-      <img src="" alt={product.name} />
-    </LinkImage>
-    <Details>
-      <Price>${product.price}</Price>
-      <LinkName to={`/productos/${categoryName}/${product.id}`}>{product.name}</LinkName>
-      <Description>{product.description}</Description>
-    </Details>
-    <ActionWrapper>
-      {product.hasStock &&
-        <Button onClick={() => onAddToCart(product.id)} primary>Agregar al carrito</Button>}
-      <LinkCustom to={`/productos/${categoryName}/${product.id}`}>Ver</LinkCustom>
-      {!product.hasStock && <span>Sin stock</span>}
-    </ActionWrapper>
-  </StyledCard>
-);
+const Card = ({ product, onAddToCart }) => {
+  const addToCart = () => onAddToCart(product.id);
+  return (
+    <StyledCard>
+      {product.isOfferMode && <OfferBadge>¡En oferta!</OfferBadge>}
+      <LinkImage to={`/productos/${product.id}`}>
+        <img src="" alt={product.name} />
+      </LinkImage>
+      <Details>
+        <Price>${product.price}</Price>
+        <LinkName to={`/productos/${product.id}`}>{product.name}</LinkName>
+        <Description>{product.description}</Description>
+      </Details>
+      <ActionWrapper>
+        {product.hasStock
+          && <Button onClick={addToCart} primary>Agregar al carrito</Button>}
+        <LinkCustom to={`/productos/${product.id}`}>Ver</LinkCustom>
+        {!product.hasStock && <span>Sin stock</span>}
+      </ActionWrapper>
+    </StyledCard>
+  );
+};
 
 Card.propTypes = {
   product: PropTypes.object.isRequired,
-  categoryName: PropTypes.string.isRequired,
   onAddToCart: PropTypes.func.isRequired
 };
 
