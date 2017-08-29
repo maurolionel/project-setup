@@ -18,8 +18,14 @@ const StyledCard = styled(Paper)`
 `;
 
 const LinkImage = styled(Link)`
-  flex-basis: 180px;
-  background-color: #ededed;
+  position: relative;
+  border-bottom: 1px solid ${({ theme }) => theme.whiteGray};
+  &:hover {
+    .offer-badge {
+      opacity: 0.5;
+      background-color: ${({ theme }) => lighten(0.2, theme.grayDark)};
+    }
+  }
 `;
 
 const Details = styled.div`
@@ -72,27 +78,27 @@ const ActionWrapper = styled.div`
 
 const OfferBadge = styled.span`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 10px;
   z-index: 50;
-  width: 200px;
-  padding: 0.15rem;
+  padding: 0.3rem 0.3rem;
+  border-radius: 1rem;
   color: #fff;
-  background-color: orange;
-  font-size: 0.6rem;
+  background-color: ${({ theme }) => theme.success};
+  font-size: 0.7rem;
   text-align: center;
   text-transform: uppercase;
-  transform: rotate(45deg);
-  transform-origin: 120px 108px;
+  transition: opacity 0.2s, background-color 0.2s;
 `;
 
-const Card = ({ product, onAddToCart }) => {
+const Card = ({ product, staticPath, onAddToCart }) => {
   const addToCart = () => onAddToCart(product.id);
+  const path = `${staticPath}${product.categoryId}/${product.id}.jpg`;
   return (
     <StyledCard>
-      {product.isOfferMode && <OfferBadge>¡En oferta!</OfferBadge>}
       <LinkImage to={`/productos/${product.id}`}>
-        <img src="" alt={product.name} />
+        {product.isOfferMode && <OfferBadge className="offer-badge">¡oferta!</OfferBadge>}
+        <img src={path} alt={product.name} />
       </LinkImage>
       <Details>
         <Price>${product.price}</Price>
@@ -111,6 +117,7 @@ const Card = ({ product, onAddToCart }) => {
 
 Card.propTypes = {
   product: PropTypes.object.isRequired,
+  staticPath: PropTypes.string.isRequired,
   onAddToCart: PropTypes.func.isRequired
 };
 

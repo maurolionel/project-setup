@@ -27,7 +27,7 @@ const colors = {
   blueDarker: '#263f70',
   blueLight: '#00c0ff',
   blueDarkBtn: '#008fa4',
-  greenLight: '#73bf43',
+  greenLight: '#8bc34a',
   greenDarkBtn: '#5fa235',
   redLight: '#ee3e36',
   redDark: '#b32923',

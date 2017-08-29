@@ -56,10 +56,11 @@ class ProductDetail extends PureComponent {
 
   render() {
     const { product } = this.state;
+    const imagePath = `${this.props.staticPath}${product.categoryId}/${product.id}.jpg`;
     return (
       <Wrapper withoutChangingStateStyle>
         <MainInfo>
-          <Pictures />
+          <Pictures url={imagePath} />
           <AddToCartSection product={product} />
         </MainInfo>
         <AdditionalInfoSection title="Descripción del producto">
@@ -78,7 +79,8 @@ class ProductDetail extends PureComponent {
 
 ProductDetail.propTypes = {
   products: PropTypes.array,
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
+  staticPath: PropTypes.string.isRequired
 };
 
 ProductDetail.defaultProps = {
