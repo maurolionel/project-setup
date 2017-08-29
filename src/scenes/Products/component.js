@@ -8,17 +8,23 @@ const Section = styled.section`
   display: flex;
 `;
 
-const Products = ({ products, categories, match }) => {
+const Products = ({ products, categories, match, visibilityFilter }) => {
   if (!products || !categories) {
     return null;
   }
-  const filteredProducts = match.url === '/ofertas'
-    ? products.filter(p => p.isOfferMode)
-    : products;
+
+  const filteredByCategory = visibilityFilter === 0
+    ? products
+    : products.filter(aProduct => aProduct.categoryId === visibilityFilter);
+
+  const filteredByMode = match.url === '/ofertas'
+    ? filteredByCategory.filter(p => p.isOfferMode)
+    : filteredByCategory;
+
   return (
     <Section>
-      <Aside categories={categories} />
-      <SearchResult results={filteredProducts} categories={categories} />
+      <Aside />
+      <SearchResult results={filteredByMode} categories={categories} />
     </Section>
   );
 };
@@ -26,7 +32,8 @@ const Products = ({ products, categories, match }) => {
 Products.propTypes = {
   categories: PropTypes.array,
   products: PropTypes.array,
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
+  visibilityFilter: PropTypes.number.isRequired
 };
 
 Products.defaultProps = {

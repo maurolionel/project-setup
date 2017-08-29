@@ -1,8 +1,9 @@
-import { GET_PRODUCTS } from './actionTypes';
+import { GET_PRODUCTS, SET_VISIBILITY_FILTER } from './actionTypes';
 import { convertStringToNumber } from '../utils';
 
 const initialState = {
-  all: null
+  all: null,
+  visibilityFilter: 0
 };
 
 const mapProductFromApiToState = aProduct => ({
@@ -26,7 +27,13 @@ function productsReducer(state = initialState, action) {
         ...state,
         all: action.payload.result.map(mapProductFromApiToState)
       };
-    default: return state;
+    case SET_VISIBILITY_FILTER:
+      return {
+        ...state,
+        visibilityFilter: action.payload.categoryId
+      };
+    default:
+      return state;
   }
 }
 

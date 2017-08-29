@@ -1,14 +1,12 @@
 import { connect } from 'react-redux';
 import Products from './component';
 
-const mapStateToProps = state => ({
-  categories: state.categories.all,
-  products: state.products.all
+const mapStateToProps = ({ products, categories }) => ({
+  categories: categories.all,
+  products: products.all,
+  visibilityFilter: products.visibilityFilter
 });
 
-const ProductsContainer = connect(
-  mapStateToProps,
-  null
-)(Products);
+const ProductsContainer = connect(mapStateToProps, null)(Products);
 
 export default ProductsContainer;

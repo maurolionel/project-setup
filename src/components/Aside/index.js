@@ -1,3 +1,3 @@
-import Aside from './component';
+import Aside from './container';
 
 export default Aside;

@@ -11,19 +11,20 @@ const Title = styled.h4`
   color: ${({ theme }) => theme.primary};
 `;
 
-const Aside = ({ categories }) => (
+const Aside = ({ categories, onSelectVisibilityFilter }) => (
   categories
     ? (
       <StyledAside>
         <Title>Filtrar búsqueda</Title>
-        <Filter type="categorías" values={categories} />
+        <Filter type="categorías" values={categories} onSelectVisibilityFilter={onSelectVisibilityFilter} />
       </StyledAside>
     )
     : null
 );
 
 Aside.propTypes = {
-  categories: PropTypes.array
+  categories: PropTypes.array,
+  onSelectVisibilityFilter: PropTypes.func.isRequired
 };
 
 Aside.defaultProps = {
