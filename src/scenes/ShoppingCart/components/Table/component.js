@@ -4,24 +4,32 @@ const Table = styled.table.attrs({
   cellSpacing: 0
 }) `
   width: 100%;
-  border: 1px solid ${({ theme }) => theme.whiteGray};
-  border-radius: 0 0 4px 4px;
   text-align: left;
-
+  
   thead {
-    background-color: ${({ theme }) => theme.whiteGray};
+    font-size: 0.8rem;
+    font-weight: 700;
+    th {
+      padding: 1rem 0.5rem;
+      border-bottom: 1px solid ${({ theme }) => theme.whiteGray};
+    }
+  }
+  
+  tfoot {
+    font-size: 0.8rem;
+    font-weight: 700;
+    td {
+      padding: 1rem 0.5rem;
+      border: none;
+    }
   }
 
   tbody {
     td {
-      border-width: 0 1px 1px 0;
-      border-style: solid;
-      border-color: ${({ theme }) => theme.whiteGray};
-      &:last-child {
-        border-right: 0;
-        text-align: center;
-      }
-      &.quantity {
+      padding: 0.5rem;
+      border-bottom: 1px solid ${({ theme }) => theme.whiteGray};
+
+      &.product-quantity {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -37,9 +45,9 @@ const Table = styled.table.attrs({
     }
   }
 
-  th, td {
-    padding: 0.5rem;
-  }
+  .text-left { text-align: left; }
+  .text-center { text-align: center; }
+  .text-right { text-align: right; }
 `;
 
 export default Table;

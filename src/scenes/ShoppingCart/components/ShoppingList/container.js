@@ -2,9 +2,11 @@ import { connect } from 'react-redux';
 import ShoppingList from './component';
 import { shoppingCartIncreaseThunk, shoppingCartDecreaseThunk } from '../../../../services/shoppingCart/thunks';
 import { shoppingCartRemove } from '../../../../services/shoppingCart/actions';
+import config from '../../../../config';
 
 const mapStateToProps = ({ shoppingCart }) => ({
-  listOfProducts: shoppingCart.all
+  listOfProducts: shoppingCart.all,
+  staticPath: `${config.api.path}images/`
 });
 
 const mapDispatchToProps = dispatch => ({
