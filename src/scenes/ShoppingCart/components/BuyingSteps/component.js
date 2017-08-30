@@ -6,20 +6,20 @@ import Button from '../../../../components/Button';
 
 const tabs = [
   {
-    name: '01. Carrito de compras',
+    name: '1. Carrito de compras',
     content: () => <ShoppingList />
   },
   {
-    name: '02. Método de envío',
+    name: '2. Método de envío',
     content: () => <ShippingSelection />
 
   },
   {
-    name: '03. Resumen',
+    name: '3. Resumen',
     content: () => <p>Tab content 3</p>
   },
   {
-    name: '04. Método de pago',
+    name: '4. Método de pago',
     content: () => <p>Tab content 4</p>
   }
 ];
@@ -60,6 +60,7 @@ const ActionGroup = styled.div`
   display: flex;
   justify-content: ${({ hasOnlyChild }) => (hasOnlyChild ? 'flex-end' : 'space-between')};
   width: 100%;
+  margin-top: 1rem;
 `;
 
 class Tabs extends React.Component {
