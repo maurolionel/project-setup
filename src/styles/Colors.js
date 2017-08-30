@@ -29,7 +29,7 @@ const colors = {
   blueDarkBtn: '#008fa4',
   greenLight: '#8bc34a',
   greenDarkBtn: '#5fa235',
-  redLight: '#ee3e36',
+  redLight: '#f44336',
   redDark: '#b32923',
   orangeLight: '#ff8400',
   OrangeDark: '#b75f01',

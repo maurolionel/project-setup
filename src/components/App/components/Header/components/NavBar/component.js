@@ -49,7 +49,7 @@ const FixedNav = ({ className }) => (
     </NavLink>
     <NavLink to="/carrito" title="Tu carrito de compras">
       <Icon className="fa fa-shopping-cart" bigSize />
-      <ShoppingCartBadge />
+      <ShoppingCartBadge className="is-fixed" />
     </NavLink>
   </AdditionalLinks>
 );
