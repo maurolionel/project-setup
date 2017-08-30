@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import bannerSource from './images/banner.jpg';
+import config from '../../../../config';
 
 const Section = styled.section`
   display: flex;
   width: 100%;
+  height: 440px;
 `;
 
 const StyledBanner = styled.img`
@@ -14,14 +15,7 @@ const StyledBanner = styled.img`
 
 const Banner = () => (
   <Section>
-    <img
-      src={bannerSource}
-      style={{
-        flex: 1,
-        objectFit: 'cover'
-      }}
-      alt=""
-    />
+    <StyledBanner src={`${config.api.path}images/common/banner.jpg`} />
   </Section>
 );
 

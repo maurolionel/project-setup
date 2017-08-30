@@ -4,7 +4,7 @@ import config from '../../config';
 
 const mapStateToProps = state => ({
   products: state.products.all,
-  staticPath: `${config.api.path}/images/`
+  staticPath: `${config.api.path}images/`
 });
 
 const ProductDetailsContainer = connect(mapStateToProps, null)(ProductDetails);

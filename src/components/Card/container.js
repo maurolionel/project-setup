@@ -4,7 +4,7 @@ import { shoppingCartIncreaseThunk } from '../../services/shoppingCart/thunks';
 import config from '../../config';
 
 const mapStateToProps = () => ({
-  staticPath: `${config.api.path}/images/`
+  staticPath: `${config.api.path}images/`
 });
 
 const mapDispatchToProps = dispatch => ({
