@@ -56,6 +56,12 @@ const StepIndicator = styled.div`
   }
 `;
 
+const ActionGroup = styled.div`
+  display: flex;
+  justify-content: ${({ hasOnlyChild }) => (hasOnlyChild ? 'flex-end' : 'space-between')};
+  width: 100%;
+`;
+
 class Tabs extends React.Component {
   state = {
     selected: 0
@@ -104,11 +110,13 @@ class Tabs extends React.Component {
         <div>
           {this.props.children[this.state.selected]}
         </div>
-        {this.state.selected > 0
-          ? <Button onClick={this.handleClick.bind(this, this.state.selected - 1)}>Ver paso anterior</Button>
-          : null
-        }
-        <Button primary onClick={this.handleClick.bind(this, this.state.selected + 1)}>Siguiente</Button>
+        <ActionGroup hasOnlyChild={this.state.selected === 0}>
+          {this.state.selected > 0
+            ? <Button onClick={this.handleClick.bind(this, this.state.selected - 1)}>Volver al paso anterior</Button>
+            : null
+          }
+          <Button primary onClick={this.handleClick.bind(this, this.state.selected + 1)}>Siguiente</Button>
+        </ActionGroup>
       </div>
     );
   }
