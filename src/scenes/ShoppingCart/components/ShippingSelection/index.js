@@ -1,3 +1,3 @@
-import ShippingSelection from './component';
+import ShippingSelection from './container';
 
 export default ShippingSelection;

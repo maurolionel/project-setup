@@ -9,7 +9,6 @@ import Table from '../Table';
 const Wrapper = styled(Paper)`
   width: 100%;
   border-radius: 0;
-  margin-bottom: 1rem;
 `;
 
 const ActionButton = styled(Button)`
@@ -60,7 +59,10 @@ const ShoppingList = (props) => {
           {listOfProducts.map(aProduct => (
             <tr key={aProduct.id}>
               <td>
-                <ActionButton onClick={() => onRemoveFromCart(aProduct.id)}>
+                <ActionButton
+                  onClick={() => onRemoveFromCart(aProduct.id)}
+                  title="Eliminar producto del carrito"
+                >
                   <Icon type="remove" />
                 </ActionButton>
               </td>
@@ -76,7 +78,7 @@ const ShoppingList = (props) => {
               <td className="product-quantity">
                 <span>{aProduct.quantity}</span>
                 <div>
-                  <ActionButton onClick={() => onDecreaseQuantity(aProduct.id)}>
+                  <ActionButton onClick={() => onDecreaseQuantity(aProduct.id)} disabled={aProduct.quantity <= 1}>
                     <Icon type="minus" />
                   </ActionButton>
                   <ActionButton onClick={() => onIncreaseQuantity(aProduct.id)}>
