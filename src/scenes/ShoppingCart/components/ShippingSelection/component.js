@@ -9,7 +9,7 @@ import Select from '../../../../components/Select';
 const USER_CHOSE_LOCAL = 1;
 const USER_CHOSE_DELIVERY = 2;
 
-const Wrapper = styled.div`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
   min-height: 300px;
@@ -24,14 +24,6 @@ const Wrapper = styled.div`
 const FormGroup = styled.div`
   padding: 0.5rem;
   margin-top: 0.5rem;
-`;
-
-const RowWrapper = styled.div`
-  display: flex;
-  > div {
-    &:first-child { flex: 2; }
-    flex: 1;
-  }
 `;
 
 const InputGroup = styled.div`
@@ -67,31 +59,45 @@ const LocalInfo = () => (
 
 class ShippingSelection extends PureComponent {
   state = {
-    selectedProvinceId: 0,
-    selectedDeliveryForm: 0,
-    activeLocations: []
+    activeLocations: [],
+    form: '0',
+    name: '',
+    surname: '',
+    tel: '',
+    province: '0',
+    location: '0',
+    calle: '',
+    altura: '',
+    piso: '',
+    departamento: '',
+    zipCode: '',
+    shippingMethod: '0'
   }
 
   componentDidMount() {
     if (!this.props.provinces.length) this.props.onGetProvinces();
     if (!this.props.locations.length) this.props.onGetLocations();
+    if (!this.props.shippingMethods.length) this.props.onGetShippingMethods();
   }
 
   setActiveLocations = () => {
-    const { selectedProvinceId } = this.state;
+    const { province } = this.state;
     const { locations } = this.props;
-    const activeLocations = locations.filter(l => l.provinceId === selectedProvinceId);
+    const activeLocations = locations.filter(l => l.provinceId === parseInt(province, 10));
     this.setState({ activeLocations });
   }
 
-  selectDeliveryForm = ({ target: { value } }) => {
-    const selectedDeliveryForm = parseInt(value, 10);
-    this.setState({ selectedDeliveryForm }, () => this.setActiveLocations());
+  selectProvince = ({ target: { value } }) => {
+    this.setState({ province: value }, () => this.setActiveLocations());
   }
 
-  selectProvince = ({ target: { value } }) => {
-    const selectedProvinceId = parseInt(value, 10);
-    this.setState({ selectedProvinceId }, () => this.setActiveLocations());
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('STATE:', this.state);
+  }
+
+  saveInputValue = ({ target: { name, value } }) => {
+    this.setState({ [name]: value });
   }
 
   renderProvinces = () => {
@@ -110,24 +116,50 @@ class ShippingSelection extends PureComponent {
     <option value="0">Primero seleccioná una provincia</option>
   )
 
+  renderShippingMethods = () => {
+    const { shippingMethods } = this.props;
+    if (!shippingMethods.length) return null;
+    return shippingMethods.map(this.renderOption);
+  }
+
   renderOption = option => (
     <option key={option.id} value={option.id}>{option.name}</option>
   )
 
   render() {
+    const deliveryForm = parseInt(this.state.form, 10);
+    const {
+      activeLocations,
+      form,
+      name,
+      surname,
+      tel,
+      province,
+      location,
+      calle,
+      altura,
+      piso,
+      departamento,
+      zipCode,
+      shippingMethod
+    } = this.state;
     return (
-      <Wrapper>
+      <Form onSubmit={this.handleSubmit}>
         <FormGroup>
           <Title>Forma de entrega</Title>
           <Label>Seleccioná la forma de entrega</Label>
-          <Select value={this.state.selectedDeliveryForm} onChange={this.selectDeliveryForm}>
+          <Select
+            name="form"
+            value={form}
+            onChange={this.saveInputValue}
+          >
             <option value="0">Seleccioná la forma de entrega</option>
             <option value={USER_CHOSE_LOCAL}>Retiro en el local</option>
             <option value={USER_CHOSE_DELIVERY}>Envío a domicilio</option>
           </Select>
         </FormGroup>
-        {this.state.selectedDeliveryForm === USER_CHOSE_LOCAL && <LocalInfo />}
-        {this.state.selectedDeliveryForm === USER_CHOSE_DELIVERY
+        {deliveryForm === USER_CHOSE_LOCAL && <LocalInfo />}
+        {deliveryForm === USER_CHOSE_DELIVERY
           && (
             <div>
               <FormGroup>
@@ -135,75 +167,82 @@ class ShippingSelection extends PureComponent {
                 <InputGroup>
                   <div>
                     <Label>Nombre</Label>
-                    <Input type="text" />
+                    <Input name="name" type="text" value={name} onChange={this.saveInputValue} />
                   </div>
                   <div>
                     <Label>Apellido</Label>
-                    <Input type="text" />
+                    <Input name="surname" type="text" value={surname} onChange={this.saveInputValue} />
                   </div>
                   <div>
                     <Label>Teléfono</Label>
-                    <Input type="text" />
+                    <Input name="tel" type="text" value={tel} onChange={this.saveInputValue} />
                   </div>
                 </InputGroup>
               </FormGroup>
-              <RowWrapper>
-                <FormGroup>
-                  <Title>Dirección de destino</Title>
-                  <InputGroup>
-                    <div>
-                      <Label>Provincia</Label>
-                      <Select value={this.state.selectedProvinceId} onChange={this.selectProvince}>
-                        <option value="0">Seleccionar provincia</option>
-                        {this.renderProvinces()}
-                      </Select>
-                    </div>
-                    <div>
-                      <Label>Localidad</Label>
-                      <Select disabled={!this.state.activeLocations.length}>
-                        {this.renderLocations()}
-                      </Select>
-                    </div>
-                  </InputGroup>
-                  <InputGroup>
-                    <div>
-                      <Label>Calle</Label>
-                      <Input type="text" />
-                    </div>
-                    <div>
-                      <Label>Altura</Label>
-                      <Input type="text" />
-                    </div>
-                  </InputGroup>
-                  <InputGroup>
-                    <div>
-                      <Label>Piso</Label>
-                      <Input type="text" />
-                    </div>
-                    <div>
-                      <Label>Departamento</Label>
-                      <Input type="text" />
-                    </div>
-                    <div>
-                      <Label>Código postal</Label>
-                      <Input type="text" />
-                    </div>
-                  </InputGroup>
-                </FormGroup>
-                <FormGroup>
-                  <Title>Método de envío</Title>
-                  <Label>Seleccioná un método de envío</Label>
-                  <Select>
-                    <option value="0">Correo argentino</option>
-                    <option value="1">Micro desde Retiro</option>
-                    <option value="2">Moto</option>
-                  </Select>
-                </FormGroup>
-              </RowWrapper>
+              <FormGroup>
+                <Title>Dirección de destino</Title>
+                <InputGroup>
+                  <div>
+                    <Label>Provincia</Label>
+                    <Select name="province" value={province} onChange={this.selectProvince}>
+                      <option value="0">Seleccionar provincia</option>
+                      {this.renderProvinces()}
+                    </Select>
+                  </div>
+                  <div>
+                    <Label>Localidad</Label>
+                    <Select
+                      name="location"
+                      value={location}
+                      onChange={this.saveInputValue}
+                      disabled={!activeLocations.length}
+                    >
+                      {this.renderLocations()}
+                    </Select>
+                  </div>
+                </InputGroup>
+                <InputGroup>
+                  <div>
+                    <Label>Calle</Label>
+                    <Input name="calle" type="text" value={calle} onChange={this.saveInputValue} />
+                  </div>
+                  <div>
+                    <Label>Altura</Label>
+                    <Input name="altura" type="text" value={altura} onChange={this.saveInputValue} />
+                  </div>
+                </InputGroup>
+                <InputGroup>
+                  <div>
+                    <Label>Piso</Label>
+                    <Input name="piso" type="text" value={piso} onChange={this.saveInputValue} />
+                  </div>
+                  <div>
+                    <Label>Departamento</Label>
+                    <Input name="departamento" type="text" value={departamento} onChange={this.saveInputValue} />
+                  </div>
+                  <div>
+                    <Label>Código postal</Label>
+                    <Input name="zipCode" type="text" value={zipCode} onChange={this.saveInputValue} />
+                  </div>
+                </InputGroup>
+              </FormGroup>
+              <FormGroup>
+                <Title>Método de envío</Title>
+                <Label>Seleccioná un método de envío</Label>
+                <Select
+                  name="shippingMethod"
+                  value={shippingMethod}
+                  onChange={this.saveInputValue}
+                >
+                  <option value="0">Seleccioná un método de envío</option>
+                  {this.renderShippingMethods()}
+                </Select>
+              </FormGroup>
             </div>
           )
         }
-      </Wrapper>
+        <Input type="submit" value="Siguiente" primary />
+      </Form>
     );
   }
 }
@@ -211,8 +250,10 @@ class ShippingSelection extends PureComponent {
 ShippingSelection.propTypes = {
   provinces: PropTypes.array.isRequired,
   locations: PropTypes.array.isRequired,
+  shippingMethods: PropTypes.array.isRequired,
   onGetProvinces: PropTypes.func.isRequired,
-  onGetLocations: PropTypes.func.isRequired
+  onGetLocations: PropTypes.func.isRequired,
+  onGetShippingMethods: PropTypes.func.isRequired
 };
 
 export default ShippingSelection;
