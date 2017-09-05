@@ -4,6 +4,7 @@ import categories from './categories/reducer';
 import products from './products/reducer';
 import brands from './brands/reducer';
 import places from './places/reducer';
+import shippingMethods from './shippingMethods/reducer';
 import shoppingCart from './shoppingCart/reducer';
 import modals from './modals/reducer';
 
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   products,
   brands,
   places,
+  shippingMethods,
   shoppingCart,
   modals,
   routing: routerReducer
