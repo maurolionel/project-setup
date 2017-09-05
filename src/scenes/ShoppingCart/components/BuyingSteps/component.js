@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import ShoppingList from '../ShoppingList';
 import ShippingSelection from '../ShippingSelection';
@@ -7,28 +7,27 @@ import Button from '../../../../components/Button';
 const tabs = [
   {
     name: '1. Carrito de compras',
-    content: () => <ShoppingList />
+    component: () => <ShoppingList />
   },
   {
     name: '2. Método de envío',
-    content: () => <ShippingSelection />
+    component: () => <ShippingSelection />
 
   },
   {
     name: '3. Resumen',
-    content: () => <p>Tab content 3</p>
+    component: () => <p>Tab component 3</p>
   },
   {
-    name: '4. Método de pago',
-    content: () => <p>Tab content 4</p>
+    name: '4. Pago y confirmación',
+    component: () => <p>Tab component 4</p>
   }
 ];
-
 
 const BuyingSteps = () => (
   <Tabs>
     {tabs.map((aTab, index) =>
-      <Pane key={index} label={aTab.name}>{aTab.content()}</Pane>
+      <Pane key={index} label={aTab.name}>{aTab.component()}</Pane>
     )}
   </Tabs>
 );
@@ -63,7 +62,7 @@ const ActionGroup = styled.div`
   margin-top: 1rem;
 `;
 
-class Tabs extends React.Component {
+class Tabs extends Component {
   state = {
     selected: 0
   };
@@ -84,6 +83,7 @@ class Tabs extends React.Component {
             flex: 1,
             display: 'flex',
             justifyContent: 'center',
+            fontWeight: isActive ? '700' : 400,
             listStyle: 'none'
           }}
           role="tab"
@@ -113,8 +113,7 @@ class Tabs extends React.Component {
         </div>
         <ActionGroup hasOnlyChild={this.state.selected === 0}>
           {this.state.selected > 0
-            ? <Button onClick={this.handleClick.bind(this, this.state.selected - 1)}>Volver al paso anterior</Button>
-            : null
+            && <Button onClick={this.handleClick.bind(this, this.state.selected - 1)}>Volver al paso anterior</Button>
           }
           <Button primary onClick={this.handleClick.bind(this, this.state.selected + 1)}>Siguiente</Button>
         </ActionGroup>
