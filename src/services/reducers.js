@@ -1,22 +1,24 @@
 import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
-import categories from './categories/reducer';
-import products from './products/reducer';
+import { routerReducer as routing } from 'react-router-redux';
 import brands from './brands/reducer';
+import categories from './categories/reducer';
+import modals from './modals/reducer';
 import places from './places/reducer';
+import products from './products/reducer';
+import sales from './sales/reducer';
 import shippingMethods from './shippingMethods/reducer';
 import shoppingCart from './shoppingCart/reducer';
-import modals from './modals/reducer';
 
 const rootReducer = combineReducers({
-  categories,
-  products,
+  routing,
   brands,
-  places,
-  shippingMethods,
-  shoppingCart,
+  categories,
   modals,
-  routing: routerReducer
+  places,
+  products,
+  sales,
+  shippingMethods,
+  shoppingCart
 });
 
 export default rootReducer;
