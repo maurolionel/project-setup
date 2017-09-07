@@ -1,42 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ShoppingList from '../ShoppingList';
 import ShippingSelection from '../ShippingSelection';
-import Button from '../../../../components/Button';
-
-const tabs = [
-  {
-    name: '1. Carrito de compras',
-    component: () => <ShoppingList />
-  },
-  {
-    name: '2. Método de envío',
-    component: () => <ShippingSelection />
-
-  },
-  {
-    name: '3. Resumen',
-    component: () => <p>Tab component 3</p>
-  },
-  {
-    name: '4. Pago y confirmación',
-    component: () => <p>Tab component 4</p>
-  }
-];
-
-const BuyingSteps = () => (
-  <Tabs>
-    {tabs.map((aTab, index) =>
-      <Pane key={index} label={aTab.name}>{aTab.component()}</Pane>
-    )}
-  </Tabs>
-);
-
-const Pane = ({ children }) => <div>{children}</div>;
-
-Pane.propTypes = {
-  children: React.PropTypes.element.isRequired
-};
+import Summary from '../Summary';
 
 const StepIndicator = styled.div`
   position: relative;
@@ -55,12 +22,20 @@ const StepIndicator = styled.div`
   }
 `;
 
-const ActionGroup = styled.div`
-  display: flex;
-  justify-content: ${({ hasOnlyChild }) => (hasOnlyChild ? 'flex-end' : 'space-between')};
-  width: 100%;
-  margin-top: 1rem;
-`;
+const Pane = ({ children }) => <div>{children}</div>;
+
+Pane.propTypes = {
+  children: PropTypes.element.isRequired
+};
+
+const BuyingSteps = () => (
+  <Tabs>
+    <Pane label="Carrito de compras" />
+    <Pane label="Método de envío" />
+    <Pane label="Resumen" />
+    <Pane label="Pago y confirmación" />
+  </Tabs>
+);
 
 class Tabs extends Component {
   state = {
@@ -89,7 +64,7 @@ class Tabs extends Component {
           role="tab"
           aria-controls={`panel${index}`}
         >
-          {aLabel.props.label}
+          {`${index + 1}. ${aLabel.props.label}`}
         </li>
       );
     }
@@ -99,9 +74,42 @@ class Tabs extends Component {
         <ul role="tablist" style={{ display: 'flex', padding: 0 }}>
           {this.props.children.map(labels.bind(this))}
         </ul>
-        <StepIndicator currentStep={this.state.selected + 1} totalSteps={4} />
+        <StepIndicator currentStep={this.state.selected + 1} totalSteps={this.props.children.length} />
       </div>
     );
+  }
+
+  renderPanes = () => {
+    if (this.state.selected === 0) {
+      return (
+        <Pane>
+          <ShoppingList
+            onNextStep={() => this.handleClick(this.state.selected + 1)}
+          />
+        </Pane>
+      );
+    }
+    if (this.state.selected === 1) {
+      return (
+        <Pane>
+          <ShippingSelection
+            onPrevStep={() => this.handleClick(this.state.selected - 1)}
+            onNextStep={() => this.handleClick(this.state.selected + 1)}
+          />
+        </Pane>
+      );
+    }
+    if (this.state.selected === 2) {
+      return (
+        <Pane>
+          <Summary
+            onPrevStep={() => this.handleClick(this.state.selected - 1)}
+            onNextStep={() => this.handleClick(this.state.selected + 1)}
+          />
+        </Pane>
+      );
+    }
+    return <p>4</p>;
   }
 
   render() {
@@ -109,17 +117,15 @@ class Tabs extends Component {
       <div>
         {this.renderTitles()}
         <div>
-          {this.props.children[this.state.selected]}
+          {this.renderPanes()}
         </div>
-        <ActionGroup hasOnlyChild={this.state.selected === 0}>
-          {this.state.selected > 0
-            && <Button onClick={this.handleClick.bind(this, this.state.selected - 1)}>Volver al paso anterior</Button>
-          }
-          <Button primary onClick={this.handleClick.bind(this, this.state.selected + 1)}>Siguiente</Button>
-        </ActionGroup>
       </div>
     );
   }
 }
+
+Tabs.propTypes = {
+  children: PropTypes.any.isRequired
+};
 
 export default BuyingSteps;

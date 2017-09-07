@@ -1,8 +1,19 @@
 import { GET_SHIPPING_METHODS } from './actionTypes';
 import { convertStringToNumber } from '../utils';
+import { WITHDRAW_OPTION, SHIPPING_OPTION } from './constants';
 
 const initialState = {
-  all: []
+  forms: [
+    {
+      id: WITHDRAW_OPTION,
+      name: 'Retiro en el local'
+    },
+    {
+      id: SHIPPING_OPTION,
+      name: 'Envío a domicilio'
+    }
+  ],
+  methods: []
 };
 
 const mapMethodsFromApiToState = ({ id, name }) => ({
@@ -15,7 +26,7 @@ function shippingMethodsReducer(state = initialState, action = {}) {
     case GET_SHIPPING_METHODS:
       return {
         ...state,
-        all: action.payload.result.map(mapMethodsFromApiToState)
+        methods: action.payload.result.map(mapMethodsFromApiToState)
       };
     default:
       return state;

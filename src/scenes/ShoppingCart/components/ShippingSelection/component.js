@@ -1,24 +1,16 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { WITHDRAW_OPTION, SHIPPING_OPTION } from '../../../../services/shippingMethods/constants';
 import Title from '../../../../components/Title';
 import Label from '../../../../components/Label';
 import Input from '../../../../components/Input';
 import Select from '../../../../components/Select';
-
-const USER_CHOSE_LOCAL = 1;
-const USER_CHOSE_DELIVERY = 2;
+import Button from '../../../../components/Button';
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  min-height: 300px;
-  > div {
-    flex: 1;
-    &:nth-child(2) {
-      flex: 2;
-    }
-  }
 `;
 
 const FormGroup = styled.div`
@@ -33,6 +25,13 @@ const InputGroup = styled.div`
     flex: 1;
     margin: 0 0.5rem;
   }
+`;
+
+const ActionGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2rem;
 `;
 
 const LocalInfo = () => (
@@ -60,9 +59,10 @@ const LocalInfo = () => (
 class ShippingSelection extends PureComponent {
   state = {
     activeLocations: [],
-    form: '0',
+    shippingForm: '0',
     name: '',
     surname: '',
+    email: '',
     tel: '',
     province: '0',
     location: '0',
@@ -93,7 +93,23 @@ class ShippingSelection extends PureComponent {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('STATE:', this.state);
+    const purchase = {
+      shippingForm: parseInt(this.state.shippingForm, 10),
+      name: this.state.name,
+      surname: this.state.surname,
+      email: this.state.email,
+      tel: this.state.tel,
+      province: parseInt(this.state.province, 10),
+      location: parseInt(this.state.location, 10),
+      calle: this.state.calle,
+      altura: this.state.altura,
+      piso: this.state.piso,
+      departamento: this.state.departamento,
+      zipCode: this.state.zipCode,
+      shippingMethod: parseInt(this.state.shippingMethod, 10)
+    };
+    this.props.onSubmit(purchase);
+    this.props.onNextStep();
   }
 
   saveInputValue = ({ target: { name, value } }) => {
@@ -108,13 +124,15 @@ class ShippingSelection extends PureComponent {
 
   renderLocations = () => {
     const { activeLocations } = this.state;
-    if (!activeLocations.length) return this.renderEmptyLocationsOption();
+    if (!activeLocations.length) return null;
     return activeLocations.map(this.renderOption);
   }
 
-  renderEmptyLocationsOption = () => (
-    <option value="0">Primero seleccioná una provincia</option>
-  )
+  renderShippingForms = () => {
+    const { shippingForms } = this.props;
+    if (!shippingForms.length) return null;
+    return shippingForms.map(this.renderOption);
+  }
 
   renderShippingMethods = () => {
     const { shippingMethods } = this.props;
@@ -127,12 +145,12 @@ class ShippingSelection extends PureComponent {
   )
 
   render() {
-    const deliveryForm = parseInt(this.state.form, 10);
     const {
       activeLocations,
-      form,
+      shippingForm,
       name,
       surname,
+      email,
       tel,
       province,
       location,
@@ -143,23 +161,23 @@ class ShippingSelection extends PureComponent {
       zipCode,
       shippingMethod
     } = this.state;
+    const deliveryForm = parseInt(shippingForm, 10);
     return (
       <Form onSubmit={this.handleSubmit}>
         <FormGroup>
           <Title>Forma de entrega</Title>
           <Label>Seleccioná la forma de entrega</Label>
           <Select
-            name="form"
-            value={form}
+            name="shippingForm"
+            value={shippingForm}
             onChange={this.saveInputValue}
           >
             <option value="0">Seleccioná la forma de entrega</option>
-            <option value={USER_CHOSE_LOCAL}>Retiro en el local</option>
-            <option value={USER_CHOSE_DELIVERY}>Envío a domicilio</option>
+            {this.renderShippingForms()}
           </Select>
         </FormGroup>
-        {deliveryForm === USER_CHOSE_LOCAL && <LocalInfo />}
-        {deliveryForm === USER_CHOSE_DELIVERY
+        {deliveryForm === WITHDRAW_OPTION && <LocalInfo />}
+        {deliveryForm === SHIPPING_OPTION
           && (
             <div>
               <FormGroup>
@@ -167,15 +185,19 @@ class ShippingSelection extends PureComponent {
                 <InputGroup>
                   <div>
                     <Label>Nombre</Label>
-                    <Input name="name" type="text" value={name} onChange={this.saveInputValue} />
+                    <Input name="name" type="text" value={name} onChange={this.saveInputValue} required />
                   </div>
                   <div>
                     <Label>Apellido</Label>
-                    <Input name="surname" type="text" value={surname} onChange={this.saveInputValue} />
+                    <Input name="surname" type="text" value={surname} onChange={this.saveInputValue} required />
+                  </div>
+                  <div>
+                    <Label>E-mail</Label>
+                    <Input name="email" type="text" value={email} onChange={this.saveInputValue} required />
                   </div>
                   <div>
                     <Label>Teléfono</Label>
-                    <Input name="tel" type="text" value={tel} onChange={this.saveInputValue} />
+                    <Input name="tel" type="text" value={tel} onChange={this.saveInputValue} required />
                   </div>
                 </InputGroup>
               </FormGroup>
@@ -197,6 +219,7 @@ class ShippingSelection extends PureComponent {
                       onChange={this.saveInputValue}
                       disabled={!activeLocations.length}
                     >
+                      <option value="0">Seleccionar localidad</option>
                       {this.renderLocations()}
                     </Select>
                   </div>
@@ -204,11 +227,11 @@ class ShippingSelection extends PureComponent {
                 <InputGroup>
                   <div>
                     <Label>Calle</Label>
-                    <Input name="calle" type="text" value={calle} onChange={this.saveInputValue} />
+                    <Input name="calle" type="text" value={calle} onChange={this.saveInputValue} required />
                   </div>
                   <div>
                     <Label>Altura</Label>
-                    <Input name="altura" type="text" value={altura} onChange={this.saveInputValue} />
+                    <Input name="altura" type="text" value={altura} onChange={this.saveInputValue} required />
                   </div>
                 </InputGroup>
                 <InputGroup>
@@ -222,7 +245,7 @@ class ShippingSelection extends PureComponent {
                   </div>
                   <div>
                     <Label>Código postal</Label>
-                    <Input name="zipCode" type="text" value={zipCode} onChange={this.saveInputValue} />
+                    <Input name="zipCode" type="text" value={zipCode} onChange={this.saveInputValue} required />
                   </div>
                 </InputGroup>
               </FormGroup>
@@ -241,7 +264,10 @@ class ShippingSelection extends PureComponent {
             </div>
           )
         }
-        <Input type="submit" value="Siguiente" primary />
+        <ActionGroup>
+          <Button onClick={this.props.onPrevStep}>Ver paso anterior</Button>
+          <Button type="submit" primary disabled={shippingForm === '0'}>Siguiente</Button>
+        </ActionGroup>
       </Form>
     );
   }
@@ -250,7 +276,11 @@ class ShippingSelection extends PureComponent {
 ShippingSelection.propTypes = {
   provinces: PropTypes.array.isRequired,
   locations: PropTypes.array.isRequired,
+  shippingForms: PropTypes.array.isRequired,
   shippingMethods: PropTypes.array.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onPrevStep: PropTypes.func.isRequired,
+  onNextStep: PropTypes.func.isRequired,
   onGetProvinces: PropTypes.func.isRequired,
   onGetLocations: PropTypes.func.isRequired,
   onGetShippingMethods: PropTypes.func.isRequired
