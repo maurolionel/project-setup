@@ -1,9 +1,9 @@
 import { CALL_API } from 'redux-api-middleware';
-import { addSaleSuccess } from './actions';
+import { purchaseSuccess } from './actions';
 import appConfig from '../../config';
 
 /* eslint-disable import/prefer-default-export */
-export const addSale = sale => ({
+export const purchase = sale => ({
   [CALL_API]: {
     endpoint: `${appConfig.api.path}sales/add/`,
     method: 'POST',
@@ -12,6 +12,6 @@ export const addSale = sale => ({
       'content-type': 'application/json'
     },
     body: JSON.stringify(sale),
-    types: ['REQUEST', addSaleSuccess, 'FAILURE']
+    types: ['REQUEST', purchaseSuccess, 'FAILURE']
   }
 });

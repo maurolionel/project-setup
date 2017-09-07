@@ -5,7 +5,7 @@ const initialState = {
   payment: {}
 };
 
-function salesReducer(state = initialState, action = {}) {
+function purchaseReducer(state = initialState, action = {}) {
   switch (action.type) {
     case SAVE_SHIPPING:
       return {
@@ -17,4 +17,4 @@ function salesReducer(state = initialState, action = {}) {
   }
 }
 
-export default salesReducer;
+export default purchaseReducer;
