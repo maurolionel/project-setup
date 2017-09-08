@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => ({
   onGetProvinces: () => dispatch(getProvinces()),
   onGetLocations: () => dispatch(getLocations()),
   onGetShippingMethods: () => dispatch(getShippingMethods()),
-  onSubmit: purchase => dispatch(saveShipping({ shipping: purchase }))
+  onSubmit: shipping => dispatch(saveShipping({ shipping }))
 });
 
 const ShippingSelectionContainer = connect(mapStateToProps, mapDispatchToProps)(ShippingSelection);

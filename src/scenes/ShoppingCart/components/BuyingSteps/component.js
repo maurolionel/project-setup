@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import ShoppingList from '../ShoppingList';
 import ShippingSelection from '../ShippingSelection';
 import Summary from '../Summary';
+import Payment from '../Payment';
 
 const StepIndicator = styled.div`
   position: relative;
@@ -84,7 +85,10 @@ class Tabs extends Component {
       return (
         <Pane>
           <ShoppingList
-            onNextStep={() => this.handleClick(this.state.selected + 1)}
+            onNextStep={() => {
+              window.scrollTo(0, 0);
+              this.handleClick(this.state.selected + 1);
+            }}
           />
         </Pane>
       );
@@ -93,8 +97,14 @@ class Tabs extends Component {
       return (
         <Pane>
           <ShippingSelection
-            onPrevStep={() => this.handleClick(this.state.selected - 1)}
-            onNextStep={() => this.handleClick(this.state.selected + 1)}
+            onPrevStep={() => {
+              window.scrollTo(0, 0);
+              this.handleClick(this.state.selected - 1);
+            }}
+            onNextStep={() => {
+              window.scrollTo(0, 0);
+              this.handleClick(this.state.selected + 1);
+            }}
           />
         </Pane>
       );
@@ -103,13 +113,32 @@ class Tabs extends Component {
       return (
         <Pane>
           <Summary
-            onPrevStep={() => this.handleClick(this.state.selected - 1)}
-            onNextStep={() => this.handleClick(this.state.selected + 1)}
+            onPrevStep={() => {
+              window.scrollTo(0, 0);
+              this.handleClick(this.state.selected - 1);
+            }}
+            onNextStep={() => {
+              window.scrollTo(0, 0);
+              this.handleClick(this.state.selected + 1);
+            }}
           />
         </Pane>
       );
     }
-    return <p>4</p>;
+    return (
+      <Pane>
+        <Payment
+          onPrevStep={() => {
+            window.scrollTo(0, 0);
+            this.handleClick(this.state.selected - 1);
+          }}
+          onNextStep={() => {
+            window.scrollTo(0, 0);
+            this.handleClick(this.state.selected + 1);
+          }}
+        />
+      </Pane>
+    );
   }
 
   render() {
