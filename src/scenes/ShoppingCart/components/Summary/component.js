@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Title from '../../../../components/Title';
 import Button from '../../../../components/Button';
+import CartTable from '../CartTable';
 
 const ActionGroup = styled.div`
   display: flex;
@@ -11,15 +12,11 @@ const ActionGroup = styled.div`
   margin-top: 2rem;
 `;
 
-const Summary = ({ products, shipping, onPrevStep, onNextStep }) => {
-  const renderProducts = p => (
-    <li key={p.id}>{p.name} | {p.quantity} | ${p.price} | ${p.price * p.quantity}</li>
-  );
+const Summary = ({ products, shipping, staticPath, onPrevStep, onNextStep }) => {
   const renderShipping = (item, i) => <li key={i}>{item[0]}: {item[1]}</li>;
   return (
     <div>
-      <Title>Productos</Title>
-      <ul>{products.map(renderProducts)}</ul>
+      <CartTable products={products} staticPath={staticPath} />
       <Title>Envío</Title>
       <ul>{shipping.map(renderShipping)}</ul>
       <ActionGroup>
@@ -33,6 +30,7 @@ const Summary = ({ products, shipping, onPrevStep, onNextStep }) => {
 Summary.propTypes = {
   products: PropTypes.array.isRequired,
   shipping: PropTypes.array.isRequired,
+  staticPath: PropTypes.string.isRequired,
   onPrevStep: PropTypes.func.isRequired,
   onNextStep: PropTypes.func.isRequired
 };

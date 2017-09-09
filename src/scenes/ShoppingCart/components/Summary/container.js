@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Summary from './component';
 import { SHIPPING_OPTION, UNDEFINED_VALUE } from '../../../../services/shippingMethods/constants';
+import config from '../../../../config';
 
 const getShippingFormName = (key, forms) => forms.find(f => f.id === key).name;
 const getShippingMethodName = (key, methods) => methods.find(m => m.id === key).name;
@@ -30,14 +31,16 @@ const mapStateToProps = (state) => {
     const shippingArray = Object.entries(formattedData);
     return {
       products: state.shoppingCart.all,
-      shipping: shippingArray
+      shipping: shippingArray,
+      staticPath: `${config.api.path}images/`
     };
   }
   return {
     products: state.shoppingCart.all,
     shipping: [
       ['Forma de entrega', getShippingFormName(shippingForm, state.shippingMethods.forms)]
-    ]
+    ],
+    staticPath: `${config.api.path}images/`
   };
 };
 
