@@ -3,14 +3,20 @@ import {
   MODAL_SCHEDULES_CLOSE,
   MODAL_SHIPPINGS_CLOSE,
   MODAL_SHIPPINGS_OPEN,
+  MODAL_PAYMENT_CLOSE,
+  MODAL_PAYMENT_OPEN,
   MODAL_CLOSE_ALL
 } from './actionTypes';
+import { CREATE_PREFERENCE_REQUEST } from '../purchase/actionTypes';
 
 const initialState = {
   schedules: {
     isOpen: false
   },
   shippings: {
+    isOpen: false
+  },
+  payment: {
     isOpen: false
   }
 };
@@ -42,6 +48,21 @@ function modals(state = initialState, action = {}) {
       return {
         ...state,
         shippings: {
+          isOpen: false
+        }
+      };
+    case CREATE_PREFERENCE_REQUEST:
+    case MODAL_PAYMENT_OPEN:
+      return {
+        ...state,
+        payment: {
+          isOpen: true
+        }
+      };
+    case MODAL_PAYMENT_CLOSE:
+      return {
+        ...state,
+        payment: {
           isOpen: false
         }
       };

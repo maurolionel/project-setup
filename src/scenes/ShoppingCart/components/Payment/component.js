@@ -13,7 +13,6 @@ const ActionGroup = styled.div`
   margin-top: 2rem;
 `;
 
-
 class Payment extends PureComponent {
   state = {
     selectedPaymentType: '0'
@@ -21,7 +20,7 @@ class Payment extends PureComponent {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.onSubmit(this.props.products);
+    this.props.onSubmit();
   }
 
   selectPayment = ({ target: { value } }) => this.setState({ selectedPaymentType: value });
@@ -30,7 +29,7 @@ class Payment extends PureComponent {
 
   render() {
     const { selectedPaymentType } = this.state;
-    const { paymentTypes, mercadoPagoUrl, isLoadingMP, onPrevStep } = this.props;
+    const { paymentTypes, onPrevStep } = this.props;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -42,24 +41,9 @@ class Payment extends PureComponent {
           </Select>
           <ActionGroup>
             <Button onClick={onPrevStep}>Ver paso anterior</Button>
-            <Button type="submit" primary disabled={parseInt(selectedPaymentType, 10) === 0}>Comprar</Button>
+            <Button type="submit" primary disabled={parseInt(selectedPaymentType, 10) === 0}>Confirmar compra</Button>
           </ActionGroup>
         </form>
-        {isLoadingMP && <p>Cargando...</p>}
-        {mercadoPagoUrl
-          ? (
-            <iframe
-              src={mercadoPagoUrl}
-              frameBorder="0"
-              style={{
-                width: '100%',
-                height: 500,
-                border: 0
-              }}
-              title="MercadoPago"
-            />)
-          : null
-        }
       </div>
     );
   }
@@ -67,9 +51,6 @@ class Payment extends PureComponent {
 
 Payment.propTypes = {
   paymentTypes: PropTypes.array.isRequired,
-  mercadoPagoUrl: PropTypes.string.isRequired,
-  isLoadingMP: PropTypes.bool.isRequired,
-  products: PropTypes.object.isRequired,
   onPrevStep: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired
 };

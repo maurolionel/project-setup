@@ -23,6 +23,7 @@ import Support from '../../scenes/Support';
 // modals
 import ModalSchedules from '../ModalSchedules';
 import ModalShippings from '../ModalShippings';
+import ModalPayment from '../ModalPayment';
 
 // assets
 import '../../assets/fonts/arial_rounded.ttf';
@@ -130,6 +131,7 @@ class App extends PureComponent {
         <Footer />
         <ModalSchedules />
         <ModalShippings />
+        <ModalPayment />
       </StyledApp>
     );
   }

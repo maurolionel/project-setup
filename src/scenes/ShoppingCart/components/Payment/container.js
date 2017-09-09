@@ -2,15 +2,13 @@ import { connect } from 'react-redux';
 import Payment from './component';
 import { createPreference } from '../../../../services/purchase/thunks';
 
-const mapStateToProps = ({ paymentTypes, shoppingCart, purchase }) => ({
+const mapStateToProps = ({ paymentTypes, shoppingCart }) => ({
   paymentTypes,
-  products: shoppingCart.all[0],
-  mercadoPagoUrl: purchase.url,
-  isLoadingMP: purchase.isLoadingMP
+  products: shoppingCart.all
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: products => dispatch(createPreference(products))
+  onSubmit: () => dispatch(createPreference())
 });
 
 const PaymentContainer = connect(mapStateToProps, mapDispatchToProps)(Payment);

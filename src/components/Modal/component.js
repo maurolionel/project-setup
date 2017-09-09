@@ -32,7 +32,13 @@ const Overlay = styled.div`
 const Content = styled(Paper)`
   position: relative;
   z-index: 1000;
+  min-width: 400px;
+  min-height: 150px;
   margin: 1rem;
+  &.mercadopago {
+    width: 100%;
+    max-width: 800px;
+  }
 `;
 
 const ButtonClose = styled.button`
@@ -53,6 +59,10 @@ const ButtonClose = styled.button`
 `;
 
 class Modal extends Component {
+  static defaultProps = {
+    className: ''
+  }
+
   closeWhenEscape = (event) => {
     if (event.keyCode === 27) {
       this.props.onCloseAll();
@@ -63,7 +73,7 @@ class Modal extends Component {
     return (
       <Wrapper onKeyDown={this.closeWhenEscape} autoFocus>
         <Overlay onClick={this.props.onCloseAll} />
-        <Content>
+        <Content className={this.props.className}>
           <ButtonClose onClick={this.props.onCloseAll}>
             <i className="fa fa-close" />
           </ButtonClose>
@@ -76,6 +86,7 @@ class Modal extends Component {
 
 Modal.propTypes = {
   children: PropTypes.any.isRequired,
+  className: PropTypes.string,
   onCloseAll: PropTypes.func.isRequired
 };
 
