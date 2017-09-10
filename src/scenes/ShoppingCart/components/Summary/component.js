@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Title from '../../../../components/Title';
 import Button from '../../../../components/Button';
 import CartTable from '../CartTable';
+import Table from '../Table';
+import Payment from '../Payment';
 
 const ActionGroup = styled.div`
   display: flex;
@@ -12,16 +14,41 @@ const ActionGroup = styled.div`
   margin-top: 2rem;
 `;
 
-const Summary = ({ products, shipping, staticPath, onPrevStep, onNextStep }) => {
-  const renderShipping = (item, i) => <li key={i}>{item[0]}: {item[1]}</li>;
+const FlexRow = styled.div`
+  display: flex;
+  margin-top: 2rem;
+  > div {
+    flex: 1;
+    &:first-child {
+      margin-right: 5rem;
+    }
+  }
+`;
+
+const Summary = ({ products, shipping, staticPath, onPrevStep, onPurchase }) => {
+  const renderShipping = (item, i) => (
+    <tr key={i}>
+      <td style={{ fontWeight: '700' }}>{item[0]}</td>
+      <td>{item[1]}</td>
+    </tr>
+  );
   return (
     <div>
       <CartTable products={products} staticPath={staticPath} />
-      <Title>Envío</Title>
-      <ul>{shipping.map(renderShipping)}</ul>
+      <FlexRow>
+        <div>
+          <Title>Envío</Title>
+          <Table>
+            <tbody>{shipping.map(renderShipping)}</tbody>
+          </Table>
+        </div>
+        <div>
+          <Payment products={products} />
+        </div>
+      </FlexRow>
       <ActionGroup>
         <Button onClick={onPrevStep}>Ver paso anterior</Button>
-        <Button primary onClick={onNextStep}>Siguiente</Button>
+        <Button primary onClick={onPurchase}>Confirmar compra</Button>
       </ActionGroup>
     </div>
   );
@@ -32,7 +59,7 @@ Summary.propTypes = {
   shipping: PropTypes.array.isRequired,
   staticPath: PropTypes.string.isRequired,
   onPrevStep: PropTypes.func.isRequired,
-  onNextStep: PropTypes.func.isRequired
+  onPurchase: PropTypes.func.isRequired
 };
 
 export default Summary;

@@ -33,8 +33,7 @@ const BuyingSteps = () => (
   <Tabs>
     <Pane label="Carrito de compras" />
     <Pane label="Método de envío" />
-    <Pane label="Resumen" />
-    <Pane label="Pago y confirmación" />
+    <Pane label="Confirmación de compra" />
   </Tabs>
 );
 
@@ -109,32 +108,12 @@ class Tabs extends Component {
         </Pane>
       );
     }
-    if (this.state.selected === 2) {
-      return (
-        <Pane>
-          <Summary
-            onPrevStep={() => {
-              window.scrollTo(0, 0);
-              this.handleClick(this.state.selected - 1);
-            }}
-            onNextStep={() => {
-              window.scrollTo(0, 0);
-              this.handleClick(this.state.selected + 1);
-            }}
-          />
-        </Pane>
-      );
-    }
     return (
       <Pane>
-        <Payment
+        <Summary
           onPrevStep={() => {
             window.scrollTo(0, 0);
             this.handleClick(this.state.selected - 1);
-          }}
-          onNextStep={() => {
-            window.scrollTo(0, 0);
-            this.handleClick(this.state.selected + 1);
           }}
         />
       </Pane>

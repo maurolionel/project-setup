@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Table = styled.table.attrs({
   cellSpacing: 0
-}) `
+})`
   width: 100%;
   text-align: left;
   

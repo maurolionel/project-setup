@@ -1,7 +1,10 @@
 import { connect } from 'react-redux';
 import Summary from './component';
+import { createPreference } from '../../../../services/purchase/thunks';
 import { SHIPPING_OPTION, UNDEFINED_VALUE } from '../../../../services/shippingMethods/constants';
 import config from '../../../../config';
+
+const staticPath = `${config.api.path}images/`;
 
 const getShippingFormName = (key, forms) => forms.find(f => f.id === key).name;
 const getShippingMethodName = (key, methods) => methods.find(m => m.id === key).name;
@@ -32,7 +35,7 @@ const mapStateToProps = (state) => {
     return {
       products: state.shoppingCart.all,
       shipping: shippingArray,
-      staticPath: `${config.api.path}images/`
+      staticPath
     };
   }
   return {
@@ -40,10 +43,14 @@ const mapStateToProps = (state) => {
     shipping: [
       ['Forma de entrega', getShippingFormName(shippingForm, state.shippingMethods.forms)]
     ],
-    staticPath: `${config.api.path}images/`
+    staticPath
   };
 };
 
-const SummaryContainer = connect(mapStateToProps, null)(Summary);
+const mapDispatchToProps = dispatch => ({
+  onPurchase: () => dispatch(createPreference())
+});
+
+const SummaryContainer = connect(mapStateToProps, mapDispatchToProps)(Summary);
 
 export default SummaryContainer;
