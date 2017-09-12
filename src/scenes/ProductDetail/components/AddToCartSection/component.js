@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { darken } from 'polished';
+import { FormattedNumber } from 'react-intl';
 import StockLabel from '../../../../components/StockLabel';
 import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
-import Link from '../../../../components/Link';
 import Title from '../../../../components/Title';
 import Label from '../../../../components/Label';
 
@@ -76,17 +76,16 @@ class AddToCartSection extends PureComponent {
         <StockLabel withStock={product.hasStock} />
         <Name>{product.name}</Name>
         <p>{product.description}</p>
-        <Price>$ {product.price}</Price>
+        <Price><FormattedNumber value={product.price} style="currency" currency="USD" /></Price>
         {product.hasStock
           ? (<div>
             <QuantityWrapper>
               <QuantityLabel>Cantidad:</QuantityLabel>
               <Quantity>
                 <QuantityInput innerRef={this.registerQuantityInputRef} />
-                <Button type="submit"><ShopIcon />Agregar al carrito</Button>
+                <Button type="submit" primary><ShopIcon />Agregar al carrito</Button>
               </Quantity>
             </QuantityWrapper>
-            <Link to="/carrito" primary>Comprar</Link>
           </div>)
           : <p>Por el momento no contamos con stock de este producto.</p>
         }
