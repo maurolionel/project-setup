@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FormattedNumber } from 'react-intl';
 import Paper from '../../../../components/Paper';
@@ -47,7 +48,7 @@ const CartTable = ({ products, staticPath, isInteractive, onRemoveFromCart, onDe
           </tr>
           <tr>
             {isInteractive && <th><i className="fa fa-trash" /></th>}
-            <th>Nombre del producto</th>
+            <th>Detalle del producto</th>
             <th className="text-right">Precio unitario</th>
             <th className="text-center">Cantidad</th>
             <th className="text-right">Precio total</th>
@@ -68,7 +69,9 @@ const CartTable = ({ products, staticPath, isInteractive, onRemoveFromCart, onDe
               )}
               <td>
                 <FlexCenter>
-                  <ProductImage src={`${staticPath}${aProduct.categoryId}/${aProduct.id}.jpg`} />
+                  <Link to={`productos/${aProduct.id}`} title="Ver producto">
+                    <ProductImage src={`${staticPath}${aProduct.categoryId}/${aProduct.id}.jpg`} />
+                  </Link>
                   {aProduct.name}
                 </FlexCenter>
               </td>
