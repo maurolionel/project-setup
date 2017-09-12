@@ -39,7 +39,7 @@ const ShoppingCart = ({ isCartFilled }) => (
 );
 
 ShoppingCart.propTypes = {
-  isCartFilled: PropTypes.boolean
+  isCartFilled: PropTypes.bool
 };
 
 ShoppingCart.defaultProps = {
