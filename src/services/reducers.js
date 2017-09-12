@@ -7,7 +7,7 @@ import paymentTypes from './paymentTypes/reducer';
 import places from './places/reducer';
 import products from './products/reducer';
 import purchase from './purchase/reducer';
-import shippingMethods from './shippingMethods/reducer';
+import shippings from './shippings/reducer';
 import shoppingCart from './shoppingCart/reducer';
 
 const rootReducer = combineReducers({
@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
   places,
   products,
   purchase,
-  shippingMethods,
+  shippings,
   shoppingCart
 });
 

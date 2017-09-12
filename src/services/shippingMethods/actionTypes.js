@@ -1,1 +1,0 @@
-export const GET_SHIPPING_METHODS = 'imprek.GET_SHIPPING_METHODS';

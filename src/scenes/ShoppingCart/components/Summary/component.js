@@ -5,7 +5,7 @@ import Title from '../../../../components/Title';
 import Button from '../../../../components/Button';
 import CartTable from '../CartTable';
 import Table from '../Table';
-import Payment from '../Payment';
+import Payment from './components/Payment';
 
 const ActionGroup = styled.div`
   display: flex;
@@ -43,7 +43,7 @@ const Summary = ({ products, shipping, staticPath, onPrevStep, onPurchase }) => 
           </Table>
         </div>
         <div>
-          <Payment products={products} />
+          <Payment />
         </div>
       </FlexRow>
       <ActionGroup>

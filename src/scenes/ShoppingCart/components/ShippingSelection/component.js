@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { WITHDRAW_OPTION, SHIPPING_OPTION } from '../../../../services/shippingMethods/constants';
+import { WITHDRAW_OPTION, SHIPPING_OPTION } from '../../../../services/shippings/constants';
 import Title from '../../../../components/Title';
 import Label from '../../../../components/Label';
 import Input from '../../../../components/Input';
@@ -11,6 +11,14 @@ import Button from '../../../../components/Button';
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  `;
+  
+const FlexRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  > * {
+    flex: 1;
+  }
 `;
 
 const FormGroup = styled.div`
@@ -35,11 +43,10 @@ const ActionGroup = styled.div`
 `;
 
 const LocalInfo = () => (
-  <div>
+  <FlexRow>
     <FormGroup>
       <Title>Dirección de retiro</Title>
       <p>Agüero 927 / 931, entre San Luis y Av. Córdoba, Ciudad Autónoma de Buenos Aires, Argentina.</p>
-      <br />
       <Title>Horarios de atención</Title>
       <p>
         <span style={{ fontWeight: '700' }}>Lunes a viernes</span><br />
@@ -53,7 +60,19 @@ const LocalInfo = () => (
         Ventas de impresoras: 9 a 11 hs.
       </p>
     </FormGroup>
-  </div>
+    <FormGroup>
+      <Title>¿Cómo llegar?</Title>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.205635894197!2d-58.412594885251885!3d-34.598961280460585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca8ec36e1f7b%3A0xd9de65f9f55b0c9f!2sSistemas+Imprek!5e0!3m2!1ses-419!2sar!4v1501033810010"
+        width="600"
+        height="450"
+        frameBorder="0"
+        style={{ border: 0 }}
+        title="Mapa"
+        allowFullScreen
+      />
+    </FormGroup>
+  </FlexRow>
 );
 
 class ShippingSelection extends PureComponent {
@@ -77,7 +96,6 @@ class ShippingSelection extends PureComponent {
   componentDidMount() {
     if (!this.props.provinces.length) this.props.onGetProvinces();
     if (!this.props.locations.length) this.props.onGetLocations();
-    if (!this.props.shippingMethods.length) this.props.onGetShippingMethods();
   }
 
   setActiveLocations = () => {
@@ -114,6 +132,10 @@ class ShippingSelection extends PureComponent {
 
   saveInputValue = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
+  }
+
+  handleLocationsChange = ({ target: { name, value } }) => {
+    this.setState({ [name]: value }, () => this.props.onGetShippingMethods(value));
   }
 
   renderProvinces = () => {
@@ -216,7 +238,7 @@ class ShippingSelection extends PureComponent {
                     <Select
                       name="location"
                       value={location}
-                      onChange={this.saveInputValue}
+                      onChange={this.handleLocationsChange}
                       disabled={!activeLocations.length}
                     >
                       <option value="0">Seleccionar localidad</option>

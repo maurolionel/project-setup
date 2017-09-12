@@ -1,7 +1,8 @@
-import { SAVE_SHIPPING, CREATE_PREFERENCE_REQUEST, CREATE_PREFERENCE_SUCCESS } from './actionTypes';
+import { SAVE_SHIPPING, ADD_PURCHASE, CREATE_PREFERENCE_REQUEST, CREATE_PREFERENCE_SUCCESS } from './actionTypes';
 
 const initialState = {
   shipping: {},
+  paymentType: 0,
   url: '',
   isLoadingMP: false
 };
@@ -12,6 +13,11 @@ function purchaseReducer(state = initialState, action = {}) {
       return {
         ...state,
         shipping: action.payload.shipping
+      };
+    case ADD_PURCHASE:
+      return {
+        ...state,
+        paymentType: action.payload.paymentType
       };
     case CREATE_PREFERENCE_REQUEST:
       return {

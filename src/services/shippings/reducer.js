@@ -1,4 +1,4 @@
-import { GET_SHIPPING_METHODS } from './actionTypes';
+import { GET_SHIPPING_METHODS_SUCCESS } from './actionTypes';
 import { convertStringToNumber } from '../utils';
 import { WITHDRAW_OPTION, SHIPPING_OPTION } from './constants';
 
@@ -21,9 +21,9 @@ const mapMethodsFromApiToState = ({ id, name }) => ({
   name
 });
 
-function shippingMethodsReducer(state = initialState, action = {}) {
+function shippingsReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case GET_SHIPPING_METHODS:
+    case GET_SHIPPING_METHODS_SUCCESS:
       return {
         ...state,
         methods: action.payload.result.map(mapMethodsFromApiToState)
@@ -33,4 +33,4 @@ function shippingMethodsReducer(state = initialState, action = {}) {
   }
 }
 
-export default shippingMethodsReducer;
+export default shippingsReducer;

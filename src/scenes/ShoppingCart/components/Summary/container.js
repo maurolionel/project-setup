@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Summary from './component';
 import { createPreference } from '../../../../services/purchase/thunks';
-import { SHIPPING_OPTION, UNDEFINED_VALUE } from '../../../../services/shippingMethods/constants';
+import { SHIPPING_OPTION, UNDEFINED_VALUE } from '../../../../services/shippings/constants';
 import config from '../../../../config';
 
 const staticPath = `${config.api.path}images/`;
@@ -12,7 +12,7 @@ const getProvinceName = (key, provinces) => provinces.find(p => p.id === key).na
 const getLocationName = (key, locations) => locations.find(l => l.id === key).name;
 
 const formatShippingData = (data, state) => ({
-  'Forma de entrega': getShippingFormName(data.shippingForm, state.shippingMethods.forms),
+  'Forma de entrega': getShippingFormName(data.shippingForm, state.shippings.forms),
   Nombre: data.name,
   Apellido: data.surname,
   Email: data.email,
@@ -24,25 +24,21 @@ const formatShippingData = (data, state) => ({
   Piso: data.piso || UNDEFINED_VALUE,
   Departamento: data.departamento || UNDEFINED_VALUE,
   'Código postal': data.zipCode,
-  'Método de envío': getShippingMethodName(data.shippingMethod, state.shippingMethods.methods)
+  'Método de envío': getShippingMethodName(data.shippingMethod, state.shippings.methods)
 });
 
 const mapStateToProps = (state) => {
   const { shippingForm } = state.purchase.shipping;
+  let shipping = [
+    ['Forma de entrega', getShippingFormName(shippingForm, state.shippings.forms)]
+  ];
   if (shippingForm === SHIPPING_OPTION) {
     const formattedData = formatShippingData(state.purchase.shipping, state);
-    const shippingArray = Object.entries(formattedData);
-    return {
-      products: state.shoppingCart.all,
-      shipping: shippingArray,
-      staticPath
-    };
+    shipping = Object.entries(formattedData);
   }
   return {
     products: state.shoppingCart.all,
-    shipping: [
-      ['Forma de entrega', getShippingFormName(shippingForm, state.shippingMethods.forms)]
-    ],
+    shipping,
     staticPath
   };
 };

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import ShoppingList from '../ShoppingList';
 import ShippingSelection from '../ShippingSelection';
 import Summary from '../Summary';
-import Payment from '../Payment';
 
 const StepIndicator = styled.div`
   position: relative;
