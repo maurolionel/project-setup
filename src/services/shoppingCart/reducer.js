@@ -1,20 +1,7 @@
 import { SHOPPING_CART_INCREASE, SHOPPING_CART_ADD, SHOPPING_CART_DECREASE, SHOPPING_CART_REMOVE } from './actionTypes';
 
 const initialState = {
-  all: [{
-    id: 2,
-    mlId: null,
-    categoryId: 1,
-    brandId: 1,
-    name: 'CISS Epson XP211 - 100cc',
-    price: 599,
-    date: '2017-06-01',
-    description: 'Sin descripción',
-    isActive: true,
-    isOfferMode: false,
-    hasStock: true,
-    quantity: 1
-  }]
+  all: []
 };
 
 function shoppingCartReducer(state = initialState, action = {}) {
