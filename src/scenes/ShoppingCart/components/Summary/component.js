@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Alert from '../../../../components/Alert';
 import Title from '../../../../components/Title';
 import Button from '../../../../components/Button';
 import CartTable from '../CartTable';
@@ -44,10 +45,13 @@ const Summary = ({ products, shipping, staticPath, onPrevStep, onPurchase }) => 
         </div>
         <div>
           <Payment />
+          <Alert kind="info">
+            Luego de confirmar la compra te enviaremos un mail con todos los datos necesarios para coordinar la entrega del pedido.
+          </Alert>
         </div>
       </FlexRow>
       <ActionGroup>
-        <Button onClick={onPrevStep}>Ver paso anterior</Button>
+        <Button type="button" onClick={onPrevStep}>Ver paso anterior</Button>
         <Button primary onClick={onPurchase}>Confirmar compra</Button>
       </ActionGroup>
     </div>

@@ -11,8 +11,8 @@ import Button from '../../../../components/Button';
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  `;
-  
+`;
+
 const FlexRow = styled.div`
   display: flex;
   flex-direction: row;
@@ -207,19 +207,19 @@ class ShippingSelection extends PureComponent {
                 <InputGroup>
                   <div>
                     <Label>Nombre</Label>
-                    <Input name="name" type="text" value={name} onChange={this.saveInputValue} required />
+                    <Input name="name" type="text" value={name} onChange={this.saveInputValue} />
                   </div>
                   <div>
                     <Label>Apellido</Label>
-                    <Input name="surname" type="text" value={surname} onChange={this.saveInputValue} required />
+                    <Input name="surname" type="text" value={surname} onChange={this.saveInputValue} />
                   </div>
                   <div>
                     <Label>E-mail</Label>
-                    <Input name="email" type="text" value={email} onChange={this.saveInputValue} required />
+                    <Input name="email" type="text" value={email} onChange={this.saveInputValue} />
                   </div>
                   <div>
                     <Label>Teléfono</Label>
-                    <Input name="tel" type="text" value={tel} onChange={this.saveInputValue} required />
+                    <Input name="tel" type="text" value={tel} onChange={this.saveInputValue} />
                   </div>
                 </InputGroup>
               </FormGroup>
@@ -249,11 +249,11 @@ class ShippingSelection extends PureComponent {
                 <InputGroup>
                   <div>
                     <Label>Calle</Label>
-                    <Input name="calle" type="text" value={calle} onChange={this.saveInputValue} required />
+                    <Input name="calle" type="text" value={calle} onChange={this.saveInputValue} />
                   </div>
                   <div>
                     <Label>Altura</Label>
-                    <Input name="altura" type="text" value={altura} onChange={this.saveInputValue} required />
+                    <Input name="altura" type="text" value={altura} onChange={this.saveInputValue} />
                   </div>
                 </InputGroup>
                 <InputGroup>
@@ -267,7 +267,7 @@ class ShippingSelection extends PureComponent {
                   </div>
                   <div>
                     <Label>Código postal</Label>
-                    <Input name="zipCode" type="text" value={zipCode} onChange={this.saveInputValue} required />
+                    <Input name="zipCode" type="text" value={zipCode} onChange={this.saveInputValue} />
                   </div>
                 </InputGroup>
               </FormGroup>
@@ -287,7 +287,7 @@ class ShippingSelection extends PureComponent {
           )
         }
         <ActionGroup>
-          <Button onClick={this.props.onPrevStep}>Ver paso anterior</Button>
+          <Button type="button" onClick={this.props.onPrevStep}>Ver paso anterior</Button>
           <Button type="submit" primary disabled={shippingForm === '0'}>Siguiente</Button>
         </ActionGroup>
       </Form>
