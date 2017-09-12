@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { lighten } from 'polished';
+import { FormattedNumber } from 'react-intl';
 import Paper from '../Paper';
 import Button from '../Button';
 import LinkCustom from '../Link';
@@ -101,7 +102,9 @@ const Card = ({ product, staticPath, onAddToCart }) => {
         <img src={path} alt={product.name} />
       </LinkImage>
       <Details>
-        <Price>${product.price}</Price>
+        <Price>
+          <FormattedNumber value={product.price} style="currency" currency="USD" />
+        </Price>
         <LinkName to={`/productos/${product.id}`}>{product.name}</LinkName>
         <Description>{product.description}</Description>
       </Details>
