@@ -5,7 +5,7 @@ import { darken } from 'polished';
 import { FormattedNumber } from 'react-intl';
 import StockLabel from '../../../../components/StockLabel';
 import Input from '../../../../components/Input';
-import Button from '../../../../components/Button';
+import ButtonCart from '../../../../components/ButtonCart';
 import Title from '../../../../components/Title';
 import Label from '../../../../components/Label';
 
@@ -56,13 +56,6 @@ const QuantityInput = styled(Input).attrs({
   color: ${({ theme }) => darken(0.5, theme.grayLighter)};
 `;
 
-const ShopIcon = styled.i.attrs({
-  className: 'fa fa-shopping-cart'
-}) `
-  margin: -1px 0.5rem 0 0;
-  font-size: 1rem;
-`;
-
 class AddToCartSection extends PureComponent {
   registerQuantityInputRef = ref => (this.quantityInput = ref);
   handleSubmit = (event) => {
@@ -83,7 +76,7 @@ class AddToCartSection extends PureComponent {
               <QuantityLabel>Cantidad:</QuantityLabel>
               <Quantity>
                 <QuantityInput innerRef={this.registerQuantityInputRef} />
-                <Button type="submit" primary><ShopIcon />Agregar al carrito</Button>
+                <ButtonCart productId={product.id} />
               </Quantity>
             </QuantityWrapper>
           </div>)
