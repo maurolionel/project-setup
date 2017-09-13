@@ -28,17 +28,17 @@ const formatShippingData = (data, state) => ({
 });
 
 const mapStateToProps = (state) => {
-  const { shippingForm } = state.purchase.shipping;
-  let shipping = [
+  const { shippingForm } = state.purchase.data;
+  let data = [
     ['Forma de entrega', getShippingFormName(shippingForm, state.shippings.forms)]
   ];
   if (shippingForm === SHIPPING_OPTION) {
-    const formattedData = formatShippingData(state.purchase.shipping, state);
-    shipping = Object.entries(formattedData);
+    const formattedData = formatShippingData(state.purchase.data, state);
+    data = Object.entries(formattedData);
   }
   return {
     products: state.shoppingCart.all,
-    shipping,
+    data,
     staticPath
   };
 };

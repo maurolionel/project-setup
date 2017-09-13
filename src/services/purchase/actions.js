@@ -1,13 +1,13 @@
 import { getJSON } from 'redux-api-middleware';
-import { SAVE_SHIPPING, ADD_PURCHASE, CREATE_PREFERENCE_REQUEST, CREATE_PREFERENCE_SUCCESS } from './actionTypes';
-
-export const saveShipping = payload => ({
-  type: SAVE_SHIPPING,
-  payload
-});
+import { ADD_PURCHASE, CREATE_PREFERENCE_REQUEST, CREATE_PREFERENCE_SUCCESS, SET_INPUT_VALUE } from './actionTypes';
 
 export const addPurchase = payload => ({
   type: ADD_PURCHASE,
+  payload
+});
+
+export const setInputValue = payload => ({
+  type: SET_INPUT_VALUE,
   payload
 });
 

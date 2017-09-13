@@ -2,20 +2,21 @@ import { connect } from 'react-redux';
 import ShippingSelection from './component';
 import { getProvinces, getLocations } from '../../../../services/places/actions';
 import { getShippingMethods } from '../../../../services/shippings/thunks';
-import { saveShipping } from '../../../../services/purchase/actions';
+import { setInputValue } from '../../../../services/purchase/actions';
 
-const mapStateToProps = ({ places: { provinces, locations }, shippings }) => ({
+const mapStateToProps = ({ places: { provinces, locations }, shippings, purchase }) => ({
   provinces,
   locations,
+  data: purchase.data,
   shippingForms: shippings.forms,
   shippingMethods: shippings.methods
 });
 
 const mapDispatchToProps = dispatch => ({
   onGetProvinces: () => dispatch(getProvinces()),
-  onGetLocations: () => dispatch(getLocations()),
+  onGetLocations: provinceId => dispatch(getLocations(provinceId)),
   onGetShippingMethods: locationId => dispatch(getShippingMethods(locationId)),
-  onSubmit: shipping => dispatch(saveShipping({ shipping }))
+  onInputChange: (type, value) => dispatch(setInputValue({ type, value }))
 });
 
 const ShippingSelectionContainer = connect(mapStateToProps, mapDispatchToProps)(ShippingSelection);

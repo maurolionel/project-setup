@@ -22,18 +22,12 @@ function placesReducer(state = initialState, action = {}) {
     case GET_PROVINCES:
       return {
         ...state,
-        provinces: [
-          ...state.provinces,
-          ...action.payload.result.map(mapProvincesFromApiToState)
-        ]
+        provinces: action.payload.result.map(mapProvincesFromApiToState)
       };
     case GET_LOCATIONS:
       return {
         ...state,
-        locations: [
-          ...state.locations,
-          ...action.payload.result.map(mapLocationsFromApiToState)
-        ]
+        locations: action.payload.result.map(mapLocationsFromApiToState)
       };
     default: {
       return state;

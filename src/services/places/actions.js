@@ -28,9 +28,9 @@ const saveLocationsInStore = {
       .then(json => json)
 };
 
-export const getLocations = () => ({
+export const getLocations = provinceId => ({
   [CALL_API]: {
-    endpoint: `${appConfig.api.path}places/locations/`,
+    endpoint: `${appConfig.api.path}places/provinces/${provinceId}/locations/`,
     method: 'GET',
     credentials: 'include',
     headers: {

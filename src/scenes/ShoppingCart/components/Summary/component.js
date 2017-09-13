@@ -26,7 +26,7 @@ const FlexRow = styled.div`
   }
 `;
 
-const Summary = ({ products, shipping, staticPath, onPrevStep, onPurchase }) => {
+const Summary = ({ products, data, staticPath, onPrevStep, onPurchase }) => {
   const renderShipping = (item, i) => (
     <tr key={i}>
       <td style={{ fontWeight: '700' }}>{item[0]}</td>
@@ -40,7 +40,7 @@ const Summary = ({ products, shipping, staticPath, onPrevStep, onPurchase }) => 
         <div>
           <Title>Envío</Title>
           <Table>
-            <tbody>{shipping.map(renderShipping)}</tbody>
+            <tbody>{data.map(renderShipping)}</tbody>
           </Table>
         </div>
         <div>
@@ -60,7 +60,7 @@ const Summary = ({ products, shipping, staticPath, onPrevStep, onPurchase }) => 
 
 Summary.propTypes = {
   products: PropTypes.array.isRequired,
-  shipping: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
   staticPath: PropTypes.string.isRequired,
   onPrevStep: PropTypes.func.isRequired,
   onPurchase: PropTypes.func.isRequired

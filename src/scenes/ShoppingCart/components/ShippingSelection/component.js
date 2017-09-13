@@ -77,65 +77,28 @@ const LocalInfo = () => (
 
 class ShippingSelection extends PureComponent {
   state = {
-    activeLocations: [],
-    shippingForm: '0',
-    name: '',
-    surname: '',
-    email: '',
-    tel: '',
-    province: '0',
-    location: '0',
-    calle: '',
-    altura: '',
-    piso: '',
-    departamento: '',
-    zipCode: '',
-    shippingMethod: '0'
+    activeLocations: []
   }
 
   componentDidMount() {
     if (!this.props.provinces.length) this.props.onGetProvinces();
-    if (!this.props.locations.length) this.props.onGetLocations();
   }
 
-  setActiveLocations = () => {
-    const { province } = this.state;
+  setActiveLocations = (provinceId) => {
     const { locations } = this.props;
-    const activeLocations = locations.filter(l => l.provinceId === parseInt(province, 10));
+    const activeLocations = locations.filter(l => l.provinceId === parseInt(provinceId, 10));
     this.setState({ activeLocations });
   }
 
-  selectProvince = ({ target: { value } }) => {
-    this.setState({ province: value }, () => this.setActiveLocations());
+  handleChange = ({ target: { name, value } }) => {
+    this.props.onInputChange(name, value);
+    if (name === 'province') this.props.onGetLocations(value);
+    if (name === 'location') this.props.onGetShippingMethods(value);
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const purchase = {
-      shippingForm: parseInt(this.state.shippingForm, 10),
-      name: this.state.name,
-      surname: this.state.surname,
-      email: this.state.email,
-      tel: this.state.tel,
-      province: parseInt(this.state.province, 10),
-      location: parseInt(this.state.location, 10),
-      calle: this.state.calle,
-      altura: this.state.altura,
-      piso: this.state.piso,
-      departamento: this.state.departamento,
-      zipCode: this.state.zipCode,
-      shippingMethod: parseInt(this.state.shippingMethod, 10)
-    };
-    this.props.onSubmit(purchase);
     this.props.onNextStep();
-  }
-
-  saveInputValue = ({ target: { name, value } }) => {
-    this.setState({ [name]: value });
-  }
-
-  handleLocationsChange = ({ target: { name, value } }) => {
-    this.setState({ [name]: value }, () => this.props.onGetShippingMethods(value));
   }
 
   renderProvinces = () => {
@@ -145,9 +108,9 @@ class ShippingSelection extends PureComponent {
   }
 
   renderLocations = () => {
-    const { activeLocations } = this.state;
-    if (!activeLocations.length) return null;
-    return activeLocations.map(this.renderOption);
+    const { locations } = this.props;
+    if (!locations.length) return null;
+    return locations.map(this.renderOption);
   }
 
   renderShippingForms = () => {
@@ -168,8 +131,6 @@ class ShippingSelection extends PureComponent {
 
   render() {
     const {
-      activeLocations,
-      shippingForm,
       name,
       surname,
       email,
@@ -181,8 +142,9 @@ class ShippingSelection extends PureComponent {
       piso,
       departamento,
       zipCode,
+      shippingForm,
       shippingMethod
-    } = this.state;
+    } = this.props.data;
     const deliveryForm = parseInt(shippingForm, 10);
     return (
       <Form onSubmit={this.handleSubmit}>
@@ -192,7 +154,7 @@ class ShippingSelection extends PureComponent {
           <Select
             name="shippingForm"
             value={shippingForm}
-            onChange={this.saveInputValue}
+            onChange={this.handleChange}
           >
             <option value="0">Seleccioná la forma de entrega</option>
             {this.renderShippingForms()}
@@ -207,19 +169,19 @@ class ShippingSelection extends PureComponent {
                 <InputGroup>
                   <div>
                     <Label>Nombre</Label>
-                    <Input name="name" type="text" value={name} onChange={this.saveInputValue} />
+                    <Input name="name" type="text" value={name} onChange={this.handleChange} />
                   </div>
                   <div>
                     <Label>Apellido</Label>
-                    <Input name="surname" type="text" value={surname} onChange={this.saveInputValue} />
+                    <Input name="surname" type="text" value={surname} onChange={this.handleChange} />
                   </div>
                   <div>
                     <Label>E-mail</Label>
-                    <Input name="email" type="text" value={email} onChange={this.saveInputValue} />
+                    <Input name="email" type="text" value={email} onChange={this.handleChange} />
                   </div>
                   <div>
                     <Label>Teléfono</Label>
-                    <Input name="tel" type="text" value={tel} onChange={this.saveInputValue} />
+                    <Input name="tel" type="text" value={tel} onChange={this.handleChange} />
                   </div>
                 </InputGroup>
               </FormGroup>
@@ -228,19 +190,14 @@ class ShippingSelection extends PureComponent {
                 <InputGroup>
                   <div>
                     <Label>Provincia</Label>
-                    <Select name="province" value={province} onChange={this.selectProvince}>
+                    <Select name="province" value={province} onChange={this.handleChange}>
                       <option value="0">Seleccionar provincia</option>
                       {this.renderProvinces()}
                     </Select>
                   </div>
                   <div>
                     <Label>Localidad</Label>
-                    <Select
-                      name="location"
-                      value={location}
-                      onChange={this.handleLocationsChange}
-                      disabled={!activeLocations.length}
-                    >
+                    <Select name="location" value={location} onChange={this.handleChange}>
                       <option value="0">Seleccionar localidad</option>
                       {this.renderLocations()}
                     </Select>
@@ -249,36 +206,32 @@ class ShippingSelection extends PureComponent {
                 <InputGroup>
                   <div>
                     <Label>Calle</Label>
-                    <Input name="calle" type="text" value={calle} onChange={this.saveInputValue} />
+                    <Input name="calle" type="text" value={calle} onChange={this.handleChange} />
                   </div>
                   <div>
                     <Label>Altura</Label>
-                    <Input name="altura" type="text" value={altura} onChange={this.saveInputValue} />
+                    <Input name="altura" type="text" value={altura} onChange={this.handleChange} />
                   </div>
                 </InputGroup>
                 <InputGroup>
                   <div>
                     <Label>Piso</Label>
-                    <Input name="piso" type="text" value={piso} onChange={this.saveInputValue} />
+                    <Input name="piso" type="text" value={piso} onChange={this.handleChange} />
                   </div>
                   <div>
                     <Label>Departamento</Label>
-                    <Input name="departamento" type="text" value={departamento} onChange={this.saveInputValue} />
+                    <Input name="departamento" type="text" value={departamento} onChange={this.handleChange} />
                   </div>
                   <div>
                     <Label>Código postal</Label>
-                    <Input name="zipCode" type="text" value={zipCode} onChange={this.saveInputValue} />
+                    <Input name="zipCode" type="text" value={zipCode} onChange={this.handleChange} />
                   </div>
                 </InputGroup>
               </FormGroup>
               <FormGroup>
                 <Title>Método de envío</Title>
                 <Label>Seleccioná un método de envío</Label>
-                <Select
-                  name="shippingMethod"
-                  value={shippingMethod}
-                  onChange={this.saveInputValue}
-                >
+                <Select name="shippingMethod" value={shippingMethod} onChange={this.handleChange}>
                   <option value="0">Seleccioná un método de envío</option>
                   {this.renderShippingMethods()}
                 </Select>
@@ -298,8 +251,10 @@ class ShippingSelection extends PureComponent {
 ShippingSelection.propTypes = {
   provinces: PropTypes.array.isRequired,
   locations: PropTypes.array.isRequired,
+  data: PropTypes.object.isRequired,
   shippingForms: PropTypes.array.isRequired,
   shippingMethods: PropTypes.array.isRequired,
+  onInputChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onPrevStep: PropTypes.func.isRequired,
   onNextStep: PropTypes.func.isRequired,

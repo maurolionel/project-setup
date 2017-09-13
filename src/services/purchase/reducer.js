@@ -1,7 +1,21 @@
-import { SAVE_SHIPPING, ADD_PURCHASE, CREATE_PREFERENCE_REQUEST, CREATE_PREFERENCE_SUCCESS } from './actionTypes';
+import { ADD_PURCHASE, CREATE_PREFERENCE_REQUEST, CREATE_PREFERENCE_SUCCESS, SET_INPUT_VALUE } from './actionTypes';
 
 const initialState = {
-  shipping: {},
+  data: {
+    name: '',
+    surname: '',
+    email: '',
+    tel: '',
+    province: 0,
+    location: 0,
+    calle: '',
+    altura: '',
+    piso: '',
+    departamento: '',
+    zipCode: '',
+    shippingForm: 0,
+    shippingMethod: 0
+  },
   paymentType: 0,
   url: '',
   isLoadingMP: false
@@ -9,11 +23,6 @@ const initialState = {
 
 function purchaseReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case SAVE_SHIPPING:
-      return {
-        ...state,
-        shipping: action.payload.shipping
-      };
     case ADD_PURCHASE:
       return {
         ...state,
@@ -29,6 +38,14 @@ function purchaseReducer(state = initialState, action = {}) {
         ...state,
         url: action.payload,
         isLoadingMP: false
+      };
+    case SET_INPUT_VALUE:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          [action.payload.type]: action.payload.value
+        }
       };
     default:
       return state;
