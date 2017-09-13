@@ -22,7 +22,7 @@ const Alert = styled.div.attrs({
     background-color: #fff3cd;
     border-color: #ffeeba;
   }
-  &.alert-error {
+  &.alert-danger {
     color: #721c24;
     background-color: #f8d7da;
     border-color: #f5c6cb;
