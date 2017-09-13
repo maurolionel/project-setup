@@ -2,11 +2,11 @@ import { connect } from 'react-redux';
 import ButtonCart from './component';
 
 const mapStateToProps = ({ shoppingCart: { all } }, ownProps) => {
-  const isInCart = all.some(p => ownProps.productId === p.id);
-  const quantity = isInCart ? all.find(p => ownProps.productId === p.id).quantity : 0;
+  const product = all.find(p => ownProps.productId === p.id);
+  const isInCart = Boolean(product);
   return {
     isNotInCart: !isInCart,
-    quantity
+    quantity: isInCart && product.quantity
   };
 };
 
