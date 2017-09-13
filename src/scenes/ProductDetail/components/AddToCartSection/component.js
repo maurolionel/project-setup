@@ -8,8 +8,9 @@ import Input from '../../../../components/Input';
 import ButtonCart from '../../../../components/ButtonCart';
 import Title from '../../../../components/Title';
 import Label from '../../../../components/Label';
+import Alert from '../../../../components/Alert';
 
-const Wrapper = styled.form`
+const Form = styled.form`
   flex: 1 1 40%;
   padding: 2rem;
   background-color: ${({ theme }) => theme.base};
@@ -45,7 +46,6 @@ const Quantity = styled.div`
 
 const QuantityInput = styled(Input).attrs({
   type: 'number',
-  defaultValue: 1,
   min: 1
 }) `
   width: 3.3rem;
@@ -57,15 +57,22 @@ const QuantityInput = styled(Input).attrs({
 `;
 
 class AddToCartSection extends PureComponent {
-  registerQuantityInputRef = ref => (this.quantityInput = ref);
+  defaultValue = 1;
+
+  registerQuantityInputRef = (ref) => { this.quantityInput = ref; };
+
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmitQuantity(this.props.product.id, this.quantityInput.value);
+    this.props.onSubmitQuantity(this.quantityInput.value);
+    this.resetQuantity();
   }
+
+  resetQuantity = () => { this.quantityInput.value = this.defaultValue; }
+
   render() {
     const { product } = this.props;
     return (
-      <Wrapper onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <StockLabel withStock={product.hasStock} />
         <Name>{product.name}</Name>
         <p>{product.description}</p>
@@ -75,14 +82,14 @@ class AddToCartSection extends PureComponent {
             <QuantityWrapper>
               <QuantityLabel>Cantidad:</QuantityLabel>
               <Quantity>
-                <QuantityInput innerRef={this.registerQuantityInputRef} />
-                <ButtonCart productId={product.id} />
+                <QuantityInput innerRef={this.registerQuantityInputRef} defaultValue={this.defaultValue} />
+                <ButtonCart type="submit" productId={product.id} />
               </Quantity>
             </QuantityWrapper>
           </div>)
-          : <p>Por el momento no contamos con stock de este producto.</p>
+          : <Alert kind="danger">Por el momento no contamos con stock de este producto.</Alert>
         }
-      </Wrapper>
+      </Form>
     );
   }
 }
