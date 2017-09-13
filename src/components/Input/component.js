@@ -13,6 +13,9 @@ const Input = styled(PaperInput)`
   &:active {
     background-color: ${({ primary, theme }) => (primary ? darken(0.05, theme.accent) : theme.base)};
   }
+  &[type="submit"] {
+    cursor: pointer;
+  }
 `;
 
 export default Input;
