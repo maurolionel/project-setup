@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
 import Summary from './component';
 import { createPreference } from '../../../../services/purchase/thunks';
-import { SHIPPING_OPTION, UNDEFINED_VALUE } from '../../../../services/shippings/constants';
+import { UNDEFINED_VALUE } from '../../../../services/shippings/constants';
 import config from '../../../../config';
 
 const staticPath = `${config.api.path}images/`;
 
-const getShippingFormName = (key, forms) => forms.find(f => f.id === key).name;
-const getShippingMethodName = (key, methods) => methods.find(m => m.id === key).name;
-const getProvinceName = (key, provinces) => provinces.find(p => p.id === key).name;
-const getLocationName = (key, locations) => locations.find(l => l.id === key).name;
+const getShippingFormName = (key, forms) => forms.find(f => f.id === parseInt(key, 10)).name;
+const getShippingMethodName = (key, methods) => methods.find(m => m.id === parseInt(key, 10)).name;
+const getProvinceName = (key, provinces) => provinces.find(p => p.id === parseInt(key, 10)).name;
+const getLocationName = (key, locations) => locations.find(l => l.id === parseInt(key, 10)).name;
 
 const formatShippingData = (data, state) => ({
   'Forma de entrega': getShippingFormName(data.shippingForm, state.shippings.forms),
@@ -32,7 +32,7 @@ const mapStateToProps = (state) => {
   let data = [
     ['Forma de entrega', getShippingFormName(shippingForm, state.shippings.forms)]
   ];
-  if (shippingForm === SHIPPING_OPTION) {
+  if (shippingForm === '2') {
     const formattedData = formatShippingData(state.purchase.data, state);
     data = Object.entries(formattedData);
   }
