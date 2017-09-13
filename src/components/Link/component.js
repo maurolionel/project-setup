@@ -7,7 +7,7 @@ const PaperLink = Paper.withComponent(Link);
 
 const LinkCustom = styled(PaperLink)`
   color: ${({ primary, theme }) => (primary ? theme.base : theme.gray)};
-  background-color: ${({ primary, theme }) => (primary ? theme.accent : theme.whiteGray)};
+  background-color: ${({ primary, theme }) => (primary ? theme.accent : theme.base)};
 
   &:active {
     color: ${({ primary, theme }) => darken(0.05, primary ? theme.base : theme.gray)};
