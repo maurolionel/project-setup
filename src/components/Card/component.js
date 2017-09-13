@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { lighten } from 'polished';
 import { FormattedNumber } from 'react-intl';
 import Paper from '../Paper';
-import Button from '../Button';
+import ButtonCart from '../ButtonCart';
 import LinkCustom from '../Link';
 
 const StyledCard = styled(Paper)`
@@ -63,7 +63,7 @@ const Price = styled.span`
   text-transform: uppercase;
 `;
 
-const ActionWrapper = styled.div`
+const ActionWrapper = styled.form`
   display: flex;
   align-items: center;
   padding: 0 1rem 1rem;
@@ -92,26 +92,27 @@ const OfferBadge = styled.span`
   transition: opacity 0.2s, background-color 0.2s;
 `;
 
-const Card = ({ product, staticPath, onAddToCart }) => {
-  const addToCart = () => onAddToCart(product.id);
-  const path = `${staticPath}${product.categoryId}/${product.id}.jpg`;
+const Card = ({ product, productUrl, imagePath, onAddToCart }) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onAddToCart();
+  };
   return (
     <StyledCard>
-      <LinkImage to={`/productos/${product.id}`}>
+      <LinkImage to={productUrl}>
         {product.isOfferMode && <OfferBadge className="offer-badge">¡oferta!</OfferBadge>}
-        <img src={path} alt={product.name} />
+        <img src={imagePath} alt={product.name} />
       </LinkImage>
       <Details>
         <Price>
           <FormattedNumber value={product.price} style="currency" currency="USD" />
         </Price>
-        <LinkName to={`/productos/${product.id}`}>{product.name}</LinkName>
+        <LinkName to={productUrl}>{product.name}</LinkName>
         <Description>{product.description}</Description>
       </Details>
-      <ActionWrapper>
-        {product.hasStock
-          && <Button onClick={addToCart} primary>Agregar al carrito</Button>}
-        <LinkCustom to={`/productos/${product.id}`}>Ver</LinkCustom>
+      <ActionWrapper onSubmit={handleSubmit}>
+        {product.hasStock && <ButtonCart type="submit" productId={product.id} />}
+        <LinkCustom to={productUrl}>Ver</LinkCustom>
         {!product.hasStock && <span>Sin stock</span>}
       </ActionWrapper>
     </StyledCard>
@@ -120,7 +121,8 @@ const Card = ({ product, staticPath, onAddToCart }) => {
 
 Card.propTypes = {
   product: PropTypes.object.isRequired,
-  staticPath: PropTypes.string.isRequired,
+  productUrl: PropTypes.string.isRequired,
+  imagePath: PropTypes.string.isRequired,
   onAddToCart: PropTypes.func.isRequired
 };
 
