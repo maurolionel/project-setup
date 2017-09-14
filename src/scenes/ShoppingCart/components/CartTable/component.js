@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { FormattedNumber } from 'react-intl';
 import Paper from '../../../../components/Paper';
 import Button from '../../../../components/Button';
-import Table from '../Table';
+import Table from './components/Table';
 
 const TableWrapper = styled(Paper) `
   width: 100%;
