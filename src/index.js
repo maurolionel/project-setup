@@ -10,6 +10,7 @@ import colors from './styles/Colors';
 import configureStore, { history } from './services/store';
 import ScrollToTop from './components/ScrollToTop';
 import App from './components/App';
+import { saveState } from './services/localStorage';
 import { getCategories } from './services/categories/actions';
 import { getProducts } from './services/products/actions';
 import { getBrands } from './services/brands/actions';
@@ -19,6 +20,11 @@ store.dispatch(getCategories());
 store.dispatch(getProducts());
 store.dispatch(getBrands());
 
+store.subscribe(() => {
+  saveState({
+    shoppingCart: store.getState().shoppingCart
+  });
+});
 // Now you can dispatch navigation actions from anywhere!
 // store.dispatch(push('/foo'))
 
