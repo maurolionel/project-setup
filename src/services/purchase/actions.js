@@ -1,11 +1,5 @@
 import { getJSON } from 'redux-api-middleware';
-import {
-  ADD_PURCHASE,
-  CREATE_PREFERENCE_REQUEST,
-  CREATE_PREFERENCE_SUCCESS,
-  SET_INPUT_VALUE,
-  SET_PAYMENT_TYPE
-} from './actionTypes';
+import { ADD_PURCHASE, CREATE_PREFERENCE_REQUEST, CREATE_PREFERENCE_SUCCESS, SET_INPUT_VALUE, SELECT_PAYMENT } from './actionTypes';
 
 export const addPurchase = payload => ({
   type: ADD_PURCHASE,
@@ -17,8 +11,8 @@ export const setInputValue = payload => ({
   payload
 });
 
-export const setPaymentType = payload => ({
-  type: SET_PAYMENT_TYPE,
+export const selectPayment = payload => ({
+  type: SELECT_PAYMENT,
   payload
 });
 

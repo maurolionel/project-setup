@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   ADD_PURCHASE,
   CREATE_PREFERENCE_REQUEST,
@@ -5,6 +6,9 @@ import {
   SET_INPUT_VALUE,
   SET_PAYMENT_TYPE
 } from './actionTypes';
+=======
+import { ADD_PURCHASE, CREATE_PREFERENCE_REQUEST, CREATE_PREFERENCE_SUCCESS, SET_INPUT_VALUE, SELECT_PAYMENT } from './actionTypes';
+>>>>>>> Persiste el payment type seleccionado en el store
 
 const initialState = {
   data: {
@@ -53,7 +57,7 @@ function purchaseReducer(state = initialState, action = {}) {
           [action.payload.type]: action.payload.value
         }
       };
-    case SET_PAYMENT_TYPE:
+    case SELECT_PAYMENT:
       return {
         ...state,
         paymentType: parseInt(action.payload.paymentType, 10)

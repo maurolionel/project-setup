@@ -4,8 +4,8 @@ import Title from '../../../../../../components/Title';
 import Label from '../../../../../../components/Label';
 import Select from '../../../../../../components/Select';
 
-const Payment = ({ paymentTypes, selectedPaymentType, onSelectPaymentType }) => {
-  const handleChange = ({ target: { value } }) => onSelectPaymentType(value);
+const Payment = ({ paymentTypes, selectedPaymentType, onSelectPayment }) => {
+  const handleChange = ({ target: { value } }) => onSelectPayment(value);
   const renderOption = p => <option key={p.id} value={p.id}>{p.name}</option>;
   return (
     <div>
@@ -21,8 +21,8 @@ const Payment = ({ paymentTypes, selectedPaymentType, onSelectPaymentType }) => 
 
 Payment.propTypes = {
   paymentTypes: PropTypes.array.isRequired,
-  selectedPaymentType: PropTypes.number.isRequired,
-  onSelectPaymentType: PropTypes.func.isRequired
+  selectedPaymentType: PropTypes.string.isRequired,
+  onSelectPayment: PropTypes.func.isRequired
 };
 
 export default Payment;
