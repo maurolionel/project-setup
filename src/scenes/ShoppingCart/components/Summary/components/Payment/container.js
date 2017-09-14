@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import Payment from './component';
 
-const getPaymentTypesAvailable = (state) => {
-  const isWithdrawForm = state.purchase.data.shippingForm === '1';
-  const isMotorbikeMethod = state.purchase.data.shippingMethod === '1';
-  if (isWithdrawForm || isMotorbikeMethod) return state.paymentTypes;
+const getPaymentTypesAvailable = ({ paymentTypes, purchase: { data: { shippingForm, shippingMethod } } }) => {
+  const isShippingFormAcceptingCash = shippingForm === '1';
+  const isShippingMethodAcceptingCash = shippingMethod === '1' || shippingMethod === '5' || shippingMethod === '6';
+  if (isShippingFormAcceptingCash || isShippingMethodAcceptingCash) return paymentTypes;
   const extractCashType = type => type.id !== 1;
-  return state.paymentTypes.filter(extractCashType);
+  return paymentTypes.filter(extractCashType);
 };
 
 const mapStateToProps = state => ({
