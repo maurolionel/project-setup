@@ -1,4 +1,10 @@
-import { ADD_PURCHASE, CREATE_PREFERENCE_REQUEST, CREATE_PREFERENCE_SUCCESS, SET_INPUT_VALUE } from './actionTypes';
+import {
+  ADD_PURCHASE,
+  CREATE_PREFERENCE_REQUEST,
+  CREATE_PREFERENCE_SUCCESS,
+  SET_INPUT_VALUE,
+  SET_PAYMENT_TYPE
+} from './actionTypes';
 
 const initialState = {
   data: {
@@ -46,6 +52,11 @@ function purchaseReducer(state = initialState, action = {}) {
           ...state.data,
           [action.payload.type]: action.payload.value
         }
+      };
+    case SET_PAYMENT_TYPE:
+      return {
+        ...state,
+        paymentType: parseInt(action.payload.paymentType, 10)
       };
     default:
       return state;

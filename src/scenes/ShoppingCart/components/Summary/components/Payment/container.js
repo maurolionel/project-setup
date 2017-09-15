@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Payment from './component';
+import { setPaymentType } from '../../../../../../services/purchase/actions';
 
 const getPaymentTypesAvailable = ({ paymentTypes, purchase: { data: { shippingForm, shippingMethod } } }) => {
   const isShippingFormAcceptingCash = shippingForm === '1';
@@ -10,9 +11,14 @@ const getPaymentTypesAvailable = ({ paymentTypes, purchase: { data: { shippingFo
 };
 
 const mapStateToProps = state => ({
-  paymentTypes: getPaymentTypesAvailable(state)
+  paymentTypes: getPaymentTypesAvailable(state),
+  selectedPaymentType: state.purchase.paymentType
 });
 
-const PaymentContainer = connect(mapStateToProps, null)(Payment);
+const mapDispatchToProps = dispatch => ({
+  onSelectPaymentType: paymentType => dispatch(setPaymentType({ paymentType }))
+});
+
+const PaymentContainer = connect(mapStateToProps, mapDispatchToProps)(Payment);
 
 export default PaymentContainer;
