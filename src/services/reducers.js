@@ -9,6 +9,7 @@ import products from './products/reducer';
 import purchase from './purchase/reducer';
 import shippings from './shippings/reducer';
 import shoppingCart from './shoppingCart/reducer';
+import support from './support/reducer';
 
 const rootReducer = combineReducers({
   routing,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   products,
   purchase,
   shippings,
-  shoppingCart
+  shoppingCart,
+  support
 });
 
 export default rootReducer;

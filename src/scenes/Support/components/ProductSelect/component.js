@@ -33,18 +33,19 @@ const renderBrandOption = aBrand => (
 class ProductSelect extends PureComponent {
   componentDidMount() {
     const { brands, onGetBrands } = this.props;
-    if (brands && brands.length > 0) {
-      onGetBrands();
-    }
+    if (!brands.length) onGetBrands();
   }
 
+  handleChange = ({ target: { value } }) => this.props.onSelectBrand(value);
+
   render() {
-    const { brands } = this.props;
+    const { brands, selectedBrand } = this.props;
     return (
       <Wrapper>
         <InputBlock>
           <Label htmlFor="brands">Seleccione la marca:</Label>
-          <Select id="brands">
+          <Select id="brands" value={selectedBrand} onChange={this.handleChange}>
+            <option value="0">Seleccione la marca</option>
             {brands && brands.map(renderBrandOption)}
           </Select>
         </InputBlock>
@@ -59,7 +60,9 @@ class ProductSelect extends PureComponent {
 
 ProductSelect.propTypes = {
   brands: PropTypes.array.isRequired,
-  onGetBrands: PropTypes.func.isRequired
+  selectedBrand: PropTypes.number.isRequired,
+  onGetBrands: PropTypes.func.isRequired,
+  onSelectBrand: PropTypes.func.isRequired
 };
 
 export default ProductSelect;

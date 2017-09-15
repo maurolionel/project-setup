@@ -2,7 +2,7 @@ import { GET_BRANDS } from './actionTypes';
 import { convertStringToNumber, replaceMiddleDashWithSpace } from '../utils';
 
 const initialState = {
-  all: null
+  all: []
 };
 
 const mapBrandFromApiToState = ({ id, name, is_active }) => ({
