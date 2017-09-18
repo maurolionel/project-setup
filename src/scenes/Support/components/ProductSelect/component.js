@@ -51,22 +51,23 @@ class ProductSelect extends PureComponent {
     return (
       <Wrapper>
         <InputBlock>
-          <Label htmlFor="brands">Seleccione la marca:</Label>
+          <Label htmlFor="brands">Marca de tu impresora:</Label>
           {brands.length > 0
             && (
               <Autocomplete
                 items={brands}
+                placeholder="Buscá la marca"
                 onChange={onSelectBrand}
               />
             )
           }
         </InputBlock>
         <FormBlock onSubmit={this.handleSubmit}>
-          <Label htmlFor="model">Busque y seleccione el modelo:</Label>
+          <Label htmlFor="model">Modelo de tu impresora:</Label>
           <Input
             id="model"
             type="search"
-            placeholder="Buscar y seleccionar modelo"
+            placeholder="Buscá el modelo"
             onChange={this.handleInputChange}
           />
         </FormBlock>

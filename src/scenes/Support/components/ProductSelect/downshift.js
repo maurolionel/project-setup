@@ -1,10 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Downshift from 'downshift';
 import Paper from '../../../../components/Paper';
 import Input from '../../../../components/Input';
 
-const Autocomplete = ({ items, onChange }) => (
+const ResultsWrapper = styled(Paper)`
+  width: 100%;
+  padding: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+`;
+
+const Result = styled.div`
+  padding: 0.6rem 1rem;
+  background-color: ${props => (props.isHighlighted ? props.theme.whiteGray : props.theme.base)};
+  color: ${props => (props.isHighlighted || props.isSelected ? props.theme.primary : 'inherit')};
+  font-weight: ${props => (props.isSelected ? '700' : '400')};
+  text-transform: capitalize;
+  cursor: pointer;
+`;
+
+const Autocomplete = ({ items, placeholder, onChange }) => (
   <Downshift onChange={onChange}>
     {({
       getInputProps,
@@ -15,29 +32,27 @@ const Autocomplete = ({ items, onChange }) => (
       highlightedIndex
     }) => (
       <div>
-        <Input {...getInputProps({ placeholder: 'Seleccione la marca' })} />
-        {isOpen ? (
-          <Paper withoutChangingStateStyle>
-            {items
-              .filter(
-                i =>
-                  !inputValue ||
-                  i.toLowerCase().includes(inputValue.toLowerCase()),
-              )
-              .map((item, index) => (
-                <div
-                  {...getItemProps({ item })}
-                  key={item}
-                  style={{
-                    color: highlightedIndex === index ? 'blue' : '#333',
-                    fontWeight: selectedItem === item ? 'bold' : 'normal',
-                  }}
-                >
-                  {item}
-                </div>
-              ))}
-          </Paper>
-        ) : null}
+        <Input style={{ textTransform: 'capitalize' }} {...getInputProps({ placeholder })} />
+        {isOpen
+          ? (
+            <ResultsWrapper withoutChangingStateStyle>
+              {items
+                .filter(i => !inputValue || i.toLowerCase().includes(inputValue.toLowerCase()))
+                .map((item, index) => (
+                  <Result
+                    {...getItemProps({ item })}
+                    key={item}
+                    isHighlighted={highlightedIndex === index}
+                    isSelected={selectedItem === item}
+                  >
+                    {item}
+                  </Result>
+                ))
+              }
+            </ResultsWrapper>
+          )
+          : null
+        }
       </div>
     )}
   </Downshift>
@@ -45,11 +60,13 @@ const Autocomplete = ({ items, onChange }) => (
 
 Autocomplete.propTypes = {
   items: PropTypes.array,
+  placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired
 };
 
 Autocomplete.defaultProps = {
-  items: []
+  items: [],
+  placeholder: ''
 };
 
 export default Autocomplete;
