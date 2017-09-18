@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Select from '../../../../components/Select';
 import Input from '../../../../components/Input';
 import Label from '../../../../components/Label';
+import Autocomplete from './downshift';
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,15 +21,17 @@ const Wrapper = styled.div`
   }
 `;
 
-const InputBlock = styled.div`
+const FormBlock = styled.form`
   display: flex;
   flex-direction: column;
   margin-bottom: 2.5rem;
 `;
 
-const renderBrandOption = aBrand => (
-  <option key={aBrand.id} value={aBrand.id}>{aBrand.name}</option>
-);
+const InputBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.5rem;
+`;
 
 class ProductSelect extends PureComponent {
   componentDidMount() {
@@ -36,23 +39,37 @@ class ProductSelect extends PureComponent {
     if (!brands.length) onGetBrands();
   }
 
-  handleChange = ({ target: { value } }) => this.props.onSelectBrand(value);
+  handleInputChange = ({ target: { value } }) => this.setState({ query: value });
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.onGetInstructives(this.state.query);
+  }
 
   render() {
-    const { brands, selectedBrand } = this.props;
+    const { brands, onSelectBrand } = this.props;
     return (
       <Wrapper>
         <InputBlock>
           <Label htmlFor="brands">Seleccione la marca:</Label>
-          <Select id="brands" value={selectedBrand} onChange={this.handleChange}>
-            <option value="0">Seleccione la marca</option>
-            {brands && brands.map(renderBrandOption)}
-          </Select>
+          {brands.length > 0
+            && (
+              <Autocomplete
+                items={brands}
+                onChange={onSelectBrand}
+              />
+            )
+          }
         </InputBlock>
-        <InputBlock>
+        <FormBlock onSubmit={this.handleSubmit}>
           <Label htmlFor="model">Busque y seleccione el modelo:</Label>
-          <Input id="model" type="search" placeholder="Buscar y seleccionar modelo" />
-        </InputBlock>
+          <Input
+            id="model"
+            type="search"
+            placeholder="Buscar y seleccionar modelo"
+            onChange={this.handleInputChange}
+          />
+        </FormBlock>
       </Wrapper>
     );
   }
@@ -60,9 +77,9 @@ class ProductSelect extends PureComponent {
 
 ProductSelect.propTypes = {
   brands: PropTypes.array.isRequired,
-  selectedBrand: PropTypes.number.isRequired,
   onGetBrands: PropTypes.func.isRequired,
-  onSelectBrand: PropTypes.func.isRequired
+  onSelectBrand: PropTypes.func.isRequired,
+  onGetInstructives: PropTypes.func.isRequired
 };
 
 export default ProductSelect;

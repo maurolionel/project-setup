@@ -1,14 +1,11 @@
 import { connect } from 'react-redux';
 import Support from './component';
 
-const mapStateToProps = ({ brands }) => ({
-  brands: brands.all
+const mapStateToProps = ({ support }) => ({
+  isShowingResults: Boolean(support.instructives.length)
 });
 
-const SupportContainer = connect(
-  mapStateToProps,
-  null
-)(Support);
+const SupportContainer = connect(mapStateToProps, null)(Support);
 
 export default SupportContainer;
 

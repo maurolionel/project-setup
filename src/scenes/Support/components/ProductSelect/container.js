@@ -1,16 +1,19 @@
 import { connect } from 'react-redux';
 import Support from './component';
 import { getBrands } from '../../../../services/brands/actions';
-import { setBrand } from '../../../../services/support/actions';
+import { setBrandWithName, getInstructives } from '../../../../services/support/thunks';
+
+const normalizeByName = (prev, next) => [...prev, next.name];
 
 const mapStateToProps = ({ brands, support }) => ({
-  brands: brands.all,
+  brands: brands.all.reduce(normalizeByName, []),
   selectedBrand: support.brandId
 });
 
 const mapDispatchToProps = dispatch => ({
   onGetBrands: () => dispatch(getBrands()),
-  onSelectBrand: brandId => dispatch(setBrand({ brandId }))
+  onSelectBrand: brandName => dispatch(setBrandWithName(brandName)),
+  onGetInstructives: query => dispatch(getInstructives(query))
 });
 
 const SupportContainer = connect(

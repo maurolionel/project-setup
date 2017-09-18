@@ -1,3 +1,3 @@
-import Support from './component';
+import Support from './container';
 
 export default Support;

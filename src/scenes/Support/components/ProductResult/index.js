@@ -1,3 +1,3 @@
-import ProductResult from './component';
+import ProductResult from './container';
 
 export default ProductResult;

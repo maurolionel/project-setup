@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { lighten } from 'polished';
 
@@ -61,34 +62,38 @@ const GuidesListItemLink = styled.a`
   background-color: ${({ theme }) => theme.primary};
   font-size: 1rem;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: capitalize;
   &:hover {
     background-color: ${({ theme }) => lighten(0.08, theme.primary)};
   }
 `;
 
-const renderGuideItemLink = (aGuide, index) => (
+const renderGuideItemLink = aGuide => (
   <GuidesListItem>
     <GuidesListItemLink
-      key={index}
+      key={aGuide.id}
       href={aGuide.url}
       title="Hacé click para ver/descargar el instructivo"
     >
-      {aGuide.label}
+      {`Instructivo de ${aGuide.type} para ${aGuide.brand} ${aGuide.product}`}
     </GuidesListItemLink>
   </GuidesListItem>
 );
 
-const ProductResult = () => (
+const ProductResult = ({ instructives }) => (
   <Wrapper>
     <ProductPicture />
     <ProductGuides>
       <ProductName>HP Officejet Pro 8610 e-All-in-One Printer</ProductName>
       <GuidesList>
-        {guides.map(renderGuideItemLink)}
+        {instructives.map(renderGuideItemLink)}
       </GuidesList>
     </ProductGuides>
   </Wrapper>
 );
+
+ProductResult.propTypes = {
+  instructives: PropTypes.array.isRequired
+};
 
 export default ProductResult;

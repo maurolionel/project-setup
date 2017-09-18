@@ -71,6 +71,7 @@
     "auto-breadcrumb": "^1.1.0",
     "babel-cli": "^6.24.1",
     "babel-polyfill": "^6.23.0",
+    "downshift": "^1.6.0",
     "history": "^4.6.1",
     "lodash": "^4.17.4",
     "polished": "^1.2.1",
