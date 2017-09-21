@@ -8,6 +8,7 @@ import Input from '../../../../components/Input';
 const ResultsWrapper = styled(Paper)`
   width: 100%;
   padding: 0;
+  margin-top: -1px;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 `;

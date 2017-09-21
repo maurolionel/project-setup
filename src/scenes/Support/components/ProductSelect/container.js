@@ -6,14 +6,15 @@ import { setBrandWithName, getInstructives } from '../../../../services/support/
 const normalizeByName = (prev, next) => [...prev, next.name];
 
 const mapStateToProps = ({ brands, support }) => ({
-  brands: brands.all.reduce(normalizeByName, []),
-  selectedBrand: support.brandId
+  brands: brands.all,
+  selectedBrand: support.brandId,
+  productResults: support.productResults
 });
 
 const mapDispatchToProps = dispatch => ({
   onGetBrands: () => dispatch(getBrands()),
   onSelectBrand: brandName => dispatch(setBrandWithName(brandName)),
-  onGetInstructives: query => dispatch(getInstructives(query))
+  onGetInstructives: brand => dispatch(getInstructives(brand.id))
 });
 
 const SupportContainer = connect(

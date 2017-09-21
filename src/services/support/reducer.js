@@ -2,8 +2,10 @@ import { SET_BRAND, GET_INSTRUCTIVES_SUCCESS } from './actionTypes';
 
 const initialState = {
   brandId: 0,
-  instructives: []
+  productResults: []
 };
+
+const mapProductResultsFromApi = (prev, next) => [...prev, next.name];
 
 function supportReducer(state = initialState, action = {}) {
   switch (action.type) {
@@ -15,7 +17,7 @@ function supportReducer(state = initialState, action = {}) {
     case GET_INSTRUCTIVES_SUCCESS:
       return {
         ...state,
-        instructives: action.payload.result
+        productResults: action.payload.result
       };
     default:
       return state;

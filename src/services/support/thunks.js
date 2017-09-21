@@ -8,17 +8,14 @@ export const setBrandWithName = brandName => (dispatch, getState) => {
   dispatch(setBrand({ brandId: brand.id }));
 };
 
-export const getInstructives = query => (dispatch, getState) => {
-  const { support: { brandId } } = getState();
-  dispatch({
-    [CALL_API]: {
-      endpoint: `${appConfig.api.path}instructives/brands/${brandId}/search/${query}`,
-      method: 'GET',
-      credentials: 'include',
-      headers: {
-        'content-type': 'application/json'
-      },
-      types: ['REQUEST', getInstructivesSuccess, 'FAILURE']
-    }
-  });
-};
+export const getInstructives = brandId => ({
+  [CALL_API]: {
+    endpoint: `${appConfig.api.path}instructives/brands/${brandId}`,
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+      'content-type': 'application/json'
+    },
+    types: ['REQUEST', getInstructivesSuccess, 'FAILURE']
+  }
+});

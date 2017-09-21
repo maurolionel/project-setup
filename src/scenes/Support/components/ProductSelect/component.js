@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import Select from '../../../../components/Select';
 import Input from '../../../../components/Input';
 import Label from '../../../../components/Label';
-import Autocomplete from './downshift';
+import BrandsAutocomplete from './BrandsAutocomplete';
+import ProductsAutocomplete from './ProductsAutocomplete';
+import Autocomplete from './Autocomplete';
 
 const Wrapper = styled.div`
   display: flex;
@@ -34,43 +36,40 @@ const InputBlock = styled.div`
 `;
 
 class ProductSelect extends PureComponent {
+  state = {
+    value: ''
+  }
+
   componentDidMount() {
     const { brands, onGetBrands } = this.props;
     if (!brands.length) onGetBrands();
   }
 
-  handleInputChange = ({ target: { value } }) => this.setState({ query: value });
+  handleChange = value => this.setState({ value });
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.props.onGetInstructives(this.state.query);
-  }
+  handle = e => console.log('EVENT', e);
 
   render() {
-    const { brands, onSelectBrand } = this.props;
+    const { brands, productResults, onGetInstructives } = this.props;
     return (
       <Wrapper>
         <InputBlock>
           <Label htmlFor="brands">Marca de tu impresora:</Label>
           {brands.length > 0
-            && (
-              <Autocomplete
-                items={brands}
-                placeholder="Buscá la marca"
-                onChange={onSelectBrand}
-              />
-            )
+            && <Autocomplete
+              items={brands}
+              placeholder="Buscá la marca"
+              onChange={this.handle}
+            />
           }
         </InputBlock>
-        <FormBlock onSubmit={this.handleSubmit}>
-          <Label htmlFor="model">Modelo de tu impresora:</Label>
-          <Input
-            id="model"
-            type="search"
-            placeholder="Buscá el modelo"
-            onChange={this.handleInputChange}
-          />
-        </FormBlock>
+        {productResults.length
+          ? <FormBlock onSubmit={this.handleSubmit}>
+            <Label htmlFor="model">Modelo de tu impresora:</Label>
+            <Autocomplete items={productResults} />
+          </FormBlock>
+          : null
+        }
       </Wrapper>
     );
   }
@@ -78,6 +77,7 @@ class ProductSelect extends PureComponent {
 
 ProductSelect.propTypes = {
   brands: PropTypes.array.isRequired,
+  productResults: PropTypes.array.isRequired,
   onGetBrands: PropTypes.func.isRequired,
   onSelectBrand: PropTypes.func.isRequired,
   onGetInstructives: PropTypes.func.isRequired
