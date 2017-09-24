@@ -1,88 +1,16 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Downshift from 'downshift';
 import List from 'react-virtualized/dist/commonjs/List';
-import matchSorter from 'match-sorter';
-import Paper from '../../../../components/Paper';
-import Input from '../../../../components/Input';
-
-const ControllerButton = styled.button`
-  background-color: transparent;
-  border: none;
-  position: absolute;
-  right: 0;
-  top: 0;
-  cursor: pointer;
-  width: 47px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-`;
-
-function ArrowIcon({ isOpen }) {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      preserveAspectRatio="none"
-      width={16}
-      fill="transparent"
-      stroke="#979797"
-      strokeWidth="1.1px"
-      transform={isOpen ? 'rotate(180)' : null}
-    >
-      <path d="M1,6 L10,15 L19,6" />
-    </svg>
-  );
-}
-
-function XIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      preserveAspectRatio="none"
-      width={12}
-      fill="transparent"
-      stroke="#979797"
-      strokeWidth="1.1px"
-    >
-      <path d="M1,1 L19,19" />
-      <path d="M19,1 L1,19" />
-    </svg>
-  );
-}
-
-const SearchInput = styled(Input)`
-  border-bottom-right-radius: ${props => (props.isOpen ? 0 : '3px')};
-  border-bottom-left-radius: ${props => (props.isOpen ? 0 : '3px')};
-  border-bottom: ${props => (props.isOpen ? '1px solid #e9e9e9' : 0)};
-`;
-
-const Menu = styled(Paper)`
-  width: 100%;
-  padding: 0;
-`;
-
-const Option = styled.div`
-  padding: 0.6rem 1rem;
-  background-color: ${props => (props.isHighlighted ? props.theme.whiteGray : props.theme.base)};
-  color: ${props => (props.isHighlighted || props.isSelected ? props.theme.primary : 'inherit')};
-  font-weight: ${props => (props.isSelected ? '700' : '400')};
-  text-transform: capitalize;
-  cursor: pointer;
-`;
-
-function advancedFilter(theItems, value) {
-  return value
-    ? matchSorter(
-      theItems,
-      value,
-      { keys: ['name'] }
-    )
-    : theItems;
-}
+import {
+  SearchInput,
+  ControllerButton,
+  XIcon,
+  ArrowIcon,
+  Menu,
+  Option,
+  advancedFilter
+} from '../Utils';
 
 class Autocomplete extends PureComponent {
   state = {
@@ -165,12 +93,14 @@ class Autocomplete extends PureComponent {
 
 Autocomplete.propTypes = {
   items: PropTypes.array,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func
 };
 
 Autocomplete.defaultProps = {
   items: [],
-  placeholder: 'Buscar...'
+  placeholder: 'Buscar...',
+  onChange: null
 };
 
 export default Autocomplete;

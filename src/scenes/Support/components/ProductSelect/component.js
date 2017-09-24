@@ -1,12 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Select from '../../../../components/Select';
-import Input from '../../../../components/Input';
+import Autocomplete from '../../../../components/Autocomplete';
 import Label from '../../../../components/Label';
-import BrandsAutocomplete from './BrandsAutocomplete';
-import ProductsAutocomplete from './ProductsAutocomplete';
-import Autocomplete from './Autocomplete';
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,46 +19,35 @@ const Wrapper = styled.div`
   }
 `;
 
-const FormBlock = styled.form`
+const Block = styled.form`
   display: flex;
   flex-direction: column;
+  position: relative;
   margin-bottom: 2.5rem;
 `;
 
-const InputBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 2.5rem;
-`;
+const FormBlock = Block.withComponent('form');
 
 class ProductSelect extends PureComponent {
-  state = {
-    value: ''
-  }
-
   componentDidMount() {
     const { brands, onGetBrands } = this.props;
     if (!brands.length) onGetBrands();
   }
 
-  handleChange = value => this.setState({ value });
-
-  handle = e => console.log('EVENT', e);
-
   render() {
     const { brands, productResults, onGetInstructives } = this.props;
     return (
       <Wrapper>
-        <InputBlock>
+        <Block>
           <Label htmlFor="brands">Marca de tu impresora:</Label>
           {brands.length > 0
             && <Autocomplete
               items={brands}
               placeholder="Buscá la marca"
-              onChange={this.handle}
+              onChange={onGetInstructives}
             />
           }
-        </InputBlock>
+        </Block>
         {productResults.length
           ? <FormBlock onSubmit={this.handleSubmit}>
             <Label htmlFor="model">Modelo de tu impresora:</Label>
