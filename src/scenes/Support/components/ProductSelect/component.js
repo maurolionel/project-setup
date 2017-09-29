@@ -35,7 +35,7 @@ class ProductSelect extends PureComponent {
   }
 
   render() {
-    const { brands, productResults, onGetInstructives } = this.props;
+    const { brands, guides, onGetGuides, onSelectGuideResult } = this.props;
     return (
       <Wrapper>
         <Block>
@@ -44,14 +44,19 @@ class ProductSelect extends PureComponent {
             && <Autocomplete
               items={brands}
               placeholder="Buscá la marca"
-              onChange={onGetInstructives}
+              onChange={onGetGuides}
             />
           }
         </Block>
-        {productResults.length
+        {guides.length
           ? <FormBlock onSubmit={this.handleSubmit}>
             <Label htmlFor="model">Modelo de tu impresora:</Label>
-            <Autocomplete items={productResults} />
+            <Autocomplete
+              items={guides}
+              placeholder="Buscá y seleccioná tu modelo de impresora"
+              withQuantity
+              onChange={onSelectGuideResult}
+            />
           </FormBlock>
           : null
         }
@@ -62,10 +67,10 @@ class ProductSelect extends PureComponent {
 
 ProductSelect.propTypes = {
   brands: PropTypes.array.isRequired,
-  productResults: PropTypes.array.isRequired,
+  guides: PropTypes.array.isRequired,
   onGetBrands: PropTypes.func.isRequired,
-  onSelectBrand: PropTypes.func.isRequired,
-  onGetInstructives: PropTypes.func.isRequired
+  onGetGuides: PropTypes.func.isRequired,
+  onSelectGuideResult: PropTypes.func.isRequired
 };
 
 export default ProductSelect;

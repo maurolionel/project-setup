@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Support from './component';
 
 const mapStateToProps = ({ support }) => ({
-  isShowingResults: false
+  isShowingResults: Boolean(support.selectedModelGuides.length)
 });
 
 const SupportContainer = connect(mapStateToProps, null)(Support);

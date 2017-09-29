@@ -33,12 +33,24 @@ export const Menu = styled(Paper)`
 `;
 
 export const Option = styled.div`
+  position: relative;
   padding: 0.6rem 1rem;
   background-color: ${props => (props.isHighlighted ? props.theme.whiteGray : props.theme.base)};
   color: ${props => (props.isHighlighted || props.isSelected ? props.theme.primary : 'inherit')};
   font-weight: ${props => (props.isSelected ? '700' : '400')};
   text-transform: capitalize;
   cursor: pointer;
+
+  > span {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+`;
+
+export const GuideQuantity = styled.span`
+  color: ${({ theme }) => theme.grayDark};
+  font-size: 0.8rem;
 `;
 
 export function ArrowIcon({ isOpen }) {

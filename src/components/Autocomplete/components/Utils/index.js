@@ -5,6 +5,7 @@ import {
   ArrowIcon,
   Menu,
   Option,
+  GuideQuantity,
   advancedFilter
 } from './component';
 
@@ -15,5 +16,6 @@ export {
   ArrowIcon,
   Menu,
   Option,
+  GuideQuantity,
   advancedFilter
 };

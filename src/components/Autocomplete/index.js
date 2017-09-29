@@ -1,4 +1,3 @@
-import Autocomplete from './components/Autocomplete';
-// import GuideAutocomplete from './components/GuideAutocomplete';
+import Autocomplete from './component';
 
 export default Autocomplete;

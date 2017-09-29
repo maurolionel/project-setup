@@ -8,6 +8,7 @@ const Support = ({ isShowingResults }) => (
   <section>
     <Title>Instructivos de instalación y soporte técnico</Title>
     <ProductSelect />
+    {isShowingResults && <ProductResult />}
   </section>
 );
 

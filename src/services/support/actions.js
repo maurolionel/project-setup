@@ -1,13 +1,15 @@
 import { getJSON } from 'redux-api-middleware';
-import { SET_BRAND, GET_INSTRUCTIVES_SUCCESS } from './actionTypes';
+import { SELECT_GUIDE_SUCCESS, GET_GUIDES_SUCCESS } from './actionTypes';
 
-export const setBrand = payload => ({
-  type: SET_BRAND,
-  payload
-});
+export const getGuidesSuccess = {
+  type: GET_GUIDES_SUCCESS,
+  payload: (action, state, rsp) =>
+    getJSON(rsp)
+      .then(json => json)
+};
 
-export const getInstructivesSuccess = {
-  type: GET_INSTRUCTIVES_SUCCESS,
+export const selectGuideSuccess = {
+  type: SELECT_GUIDE_SUCCESS,
   payload: (action, state, rsp) =>
     getJSON(rsp)
       .then(json => json)

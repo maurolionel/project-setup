@@ -3,33 +3,15 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { lighten } from 'polished';
 
-const guides = [
-  {
-    url: '#',
-    label: 'Guía de intalación de sistema continuo'
-  },
-  {
-    url: '#',
-    label: 'Manual de usuario'
-  },
-  {
-    url: '#',
-    label: 'Recomendaciones de uso'
-  },
-  {
-    url: '#',
-    label: 'Guía de purgado y mantenimiento de sistema continuo'
-  }
-];
-
 const Wrapper = styled.div`
   display: flex;
 `;
 
-const ProductPicture = styled.div`
+const ProductPicture = styled.img`
   flex: 1;
-  min-height: 350px;
-  background-color: #ddd;
+  max-height: 350px;
+  background-color: #fff;
+  object-fit: contain;
 `;
 
 const ProductGuides = styled.div`
@@ -75,25 +57,26 @@ const renderGuideItemLink = aGuide => (
       href={aGuide.url}
       title="Hacé click para ver/descargar el instructivo"
     >
-      {`Instructivo de ${aGuide.type} para ${aGuide.brand} ${aGuide.product}`}
+      {`Instructivo de ${aGuide.guideClass} de ${aGuide.category} de ${aGuide.guideType} para ${aGuide.brand} ${aGuide.model}`}
     </GuidesListItemLink>
   </GuidesListItem>
 );
 
-const ProductResult = ({ instructives }) => (
+const ProductResult = ({ staticPath, guides }) => (
   <Wrapper>
-    <ProductPicture />
+    <ProductPicture src={`${staticPath}2/${guides[0].productId}.jpg`} />
     <ProductGuides>
-      <ProductName>HP Officejet Pro 8610 e-All-in-One Printer</ProductName>
+      <ProductName>{guides[0].model}</ProductName>
       <GuidesList>
-        {instructives.map(renderGuideItemLink)}
+        {guides.map(renderGuideItemLink)}
       </GuidesList>
     </ProductGuides>
   </Wrapper>
 );
 
 ProductResult.propTypes = {
-  instructives: PropTypes.array.isRequired
+  staticPath: PropTypes.string.isRequired,
+  guides: PropTypes.array.isRequired
 };
 
 export default ProductResult;

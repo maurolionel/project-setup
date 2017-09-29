@@ -9,8 +9,9 @@ import {
   ArrowIcon,
   Menu,
   Option,
+  GuideQuantity,
   advancedFilter
-} from '../Utils';
+} from './components/Utils';
 
 class Autocomplete extends PureComponent {
   state = {
@@ -30,7 +31,7 @@ class Autocomplete extends PureComponent {
 
   render() {
     const { items, inputValue } = this.state;
-    const { onChange, placeholder } = this.props;
+    const { placeholder, withQuantity, onChange } = this.props;
     return (
       <Downshift
         inputValue={inputValue}
@@ -78,7 +79,18 @@ class Autocomplete extends PureComponent {
                       isSelected={selectedItem === items[index]}
                       {...getItemProps({ item: items[index], index, style })}
                     >
-                      {items[index].name}
+                      {!withQuantity
+                        ? items[index].name
+                        : <span>
+                          {items[index].name}
+                          <GuideQuantity>
+                            {items[index].quantity > 1
+                              ? `${items[index].quantity} instructivos`
+                              : `${items[index].quantity} instructivo`
+                            }
+                          </GuideQuantity>
+                        </span>
+                      }
                     </Option>
                   )}
                 />
@@ -94,12 +106,14 @@ class Autocomplete extends PureComponent {
 Autocomplete.propTypes = {
   items: PropTypes.array,
   placeholder: PropTypes.string,
+  withQuantity: PropTypes.bool,
   onChange: PropTypes.func
 };
 
 Autocomplete.defaultProps = {
   items: [],
   placeholder: 'Buscar...',
+  withQuantity: false,
   onChange: null
 };
 

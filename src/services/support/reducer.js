@@ -1,23 +1,17 @@
-import { SET_BRAND, GET_INSTRUCTIVES_SUCCESS } from './actionTypes';
-
-const initialState = {
-  brandId: 0,
-  productResults: []
-};
-
-const mapProductResultsFromApi = (prev, next) => [...prev, next.name];
+import { SELECT_GUIDE_SUCCESS, GET_GUIDES_SUCCESS } from './actionTypes';
+import { initialState, mapGuidesFromApi, mapModelGuidesFromApi } from './utils';
 
 function supportReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case SET_BRAND:
+    case GET_GUIDES_SUCCESS:
       return {
         ...state,
-        brandId: parseInt(action.payload.brandId, 10)
+        guides: action.payload.result.map(mapGuidesFromApi)
       };
-    case GET_INSTRUCTIVES_SUCCESS:
+    case SELECT_GUIDE_SUCCESS:
       return {
         ...state,
-        productResults: action.payload.result
+        selectedModelGuides: action.payload.result.map(mapModelGuidesFromApi)
       };
     default:
       return state;

@@ -1,18 +1,17 @@
 import { connect } from 'react-redux';
 import Support from './component';
 import { getBrands } from '../../../../services/brands/actions';
-import { setBrandWithName, getInstructives } from '../../../../services/support/thunks';
+import { getGuides, selectGuide } from '../../../../services/support/thunks';
 
 const mapStateToProps = ({ brands, support }) => ({
   brands: brands.all,
-  selectedBrand: support.brandId,
-  productResults: support.productResults
+  guides: support.guides
 });
 
 const mapDispatchToProps = dispatch => ({
   onGetBrands: () => dispatch(getBrands()),
-  onSelectBrand: brandName => dispatch(setBrandWithName(brandName)),
-  onGetInstructives: brand => dispatch(getInstructives(brand.id))
+  onGetGuides: brand => dispatch(getGuides(brand.id)),
+  onSelectGuideResult: result => dispatch(selectGuide(result.productId))
 });
 
 const SupportContainer = connect(
