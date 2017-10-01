@@ -13,6 +13,13 @@ const Button = styled(PaperButton)`
     color: ${({ primary, theme }) => darken(0.05, primary ? theme.base : theme.gray)};
     background-color: ${({ primary, theme }) => darken(0.05, primary ? theme.accent : theme.whiteGray)};
   }
+
+  &:disabled, &[disabled] {
+    color: ${({ theme }) => theme.grayLighter};
+    background-color: ${({ theme }) => theme.whiteGray};
+    cursor: default;
+    box-shadow: none;
+  }
 `;
 
 export default Button;

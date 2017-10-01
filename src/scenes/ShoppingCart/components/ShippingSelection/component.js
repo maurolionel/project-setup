@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { WITHDRAW_OPTION, SHIPPING_OPTION } from '../../../../services/shippings/constants';
+import { WITHOUT_SELECTION, WITHDRAW_OPTION, SHIPPING_OPTION } from '../../../../services/shippings/constants';
 import Title from '../../../../components/Title';
 import Label from '../../../../components/Label';
 import Input from '../../../../components/Input';
@@ -92,13 +92,36 @@ class ShippingSelection extends PureComponent {
 
   handleChange = ({ target: { name, value } }) => {
     this.props.onInputChange(name, value);
-    if (name === 'province') this.props.onGetLocations(value);
-    if (name === 'location') this.props.onGetShippingMethods(value);
+    if (name === 'province') {
+      this.props.onInputChange('location', '0');
+      this.props.onInputChange('shippingMethod', '0');
+      this.props.onGetLocations(value);
+    }
+    if (name === 'location') {
+      this.props.onInputChange('shippingMethod', '0');
+      this.props.onGetShippingMethods(value);
+    }
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.onNextStep();
+  }
+
+  isSubmitDisabled = () => {
+    const {
+      name, surname, email, tel, province, location, calle, altura, zipCode, shippingForm, shippingMethod
+    } = this.props.data;
+    const intShippingForm = parseInt(shippingForm, 10);
+    const intProvince = parseInt(province, 10);
+    const intLocation = parseInt(location, 10);
+    const intShippingMethod = parseInt(shippingMethod, 10);
+    if (intShippingForm === WITHOUT_SELECTION) return true;
+    if (intShippingForm === WITHDRAW_OPTION) return false;
+    if (
+      name && surname && email && tel && intProvince && intLocation && calle && altura && intShippingMethod && zipCode
+    ) { return false; }
+    return true;
   }
 
   renderProvinces = () => {
@@ -151,11 +174,7 @@ class ShippingSelection extends PureComponent {
         <FormGroup>
           <Title>Forma de entrega</Title>
           <Label>Seleccioná la forma de entrega</Label>
-          <Select
-            name="shippingForm"
-            value={shippingForm}
-            onChange={this.handleChange}
-          >
+          <Select name="shippingForm" value={shippingForm} onChange={this.handleChange} required>
             <option value="0">Seleccioná la forma de entrega</option>
             {this.renderShippingForms()}
           </Select>
@@ -168,20 +187,20 @@ class ShippingSelection extends PureComponent {
                 <Title>Datos de contacto</Title>
                 <InputGroup>
                   <div>
-                    <Label>Nombre</Label>
-                    <Input name="name" type="text" value={name} onChange={this.handleChange} />
+                    <Label>Nombre *</Label>
+                    <Input name="name" type="text" value={name} onChange={this.handleChange} required />
                   </div>
                   <div>
-                    <Label>Apellido</Label>
-                    <Input name="surname" type="text" value={surname} onChange={this.handleChange} />
+                    <Label>Apellido *</Label>
+                    <Input name="surname" type="text" value={surname} onChange={this.handleChange} required />
                   </div>
                   <div>
-                    <Label>E-mail</Label>
-                    <Input name="email" type="text" value={email} onChange={this.handleChange} />
+                    <Label>E-mail *</Label>
+                    <Input name="email" type="text" value={email} onChange={this.handleChange} required />
                   </div>
                   <div>
-                    <Label>Teléfono</Label>
-                    <Input name="tel" type="text" value={tel} onChange={this.handleChange} />
+                    <Label>Teléfono *</Label>
+                    <Input name="tel" type="text" value={tel} onChange={this.handleChange} required />
                   </div>
                 </InputGroup>
               </FormGroup>
@@ -189,15 +208,15 @@ class ShippingSelection extends PureComponent {
                 <Title>Dirección de destino</Title>
                 <InputGroup>
                   <div>
-                    <Label>Provincia</Label>
-                    <Select name="province" value={province} onChange={this.handleChange}>
+                    <Label>Provincia *</Label>
+                    <Select name="province" value={province} onChange={this.handleChange} required>
                       <option value="0">Seleccionar provincia</option>
                       {this.renderProvinces()}
                     </Select>
                   </div>
                   <div>
-                    <Label>Localidad</Label>
-                    <Select name="location" value={location} onChange={this.handleChange}>
+                    <Label>Localidad *</Label>
+                    <Select name="location" value={location} onChange={this.handleChange} required>
                       <option value="0">Seleccionar localidad</option>
                       {this.renderLocations()}
                     </Select>
@@ -205,12 +224,12 @@ class ShippingSelection extends PureComponent {
                 </InputGroup>
                 <InputGroup>
                   <div>
-                    <Label>Calle</Label>
-                    <Input name="calle" type="text" value={calle} onChange={this.handleChange} />
+                    <Label>Calle *</Label>
+                    <Input name="calle" type="text" value={calle} onChange={this.handleChange} required />
                   </div>
                   <div>
-                    <Label>Altura</Label>
-                    <Input name="altura" type="text" value={altura} onChange={this.handleChange} />
+                    <Label>Altura *</Label>
+                    <Input name="altura" type="text" value={altura} onChange={this.handleChange} required />
                   </div>
                 </InputGroup>
                 <InputGroup>
@@ -223,15 +242,15 @@ class ShippingSelection extends PureComponent {
                     <Input name="departamento" type="text" value={departamento} onChange={this.handleChange} />
                   </div>
                   <div>
-                    <Label>Código postal</Label>
-                    <Input name="zipCode" type="text" value={zipCode} onChange={this.handleChange} />
+                    <Label>Código postal *</Label>
+                    <Input name="zipCode" type="text" value={zipCode} onChange={this.handleChange} required />
                   </div>
                 </InputGroup>
               </FormGroup>
               <FormGroup>
                 <Title>Método de envío</Title>
-                <Label>Seleccioná un método de envío</Label>
-                <Select name="shippingMethod" value={shippingMethod} onChange={this.handleChange}>
+                <Label>Seleccioná un método de envío *</Label>
+                <Select name="shippingMethod" value={shippingMethod} onChange={this.handleChange} required>
                   <option value="0">Seleccioná un método de envío</option>
                   {this.renderShippingMethods()}
                 </Select>
@@ -241,7 +260,12 @@ class ShippingSelection extends PureComponent {
         }
         <ActionGroup>
           <Button type="button" onClick={this.props.onPrevStep}>Ver paso anterior</Button>
-          <Button type="submit" primary disabled={shippingForm === '0'}>Siguiente</Button>
+          <Button
+            type={this.isSubmitDisabled() ? 'button' : 'submit'}
+            primary
+            disabled={this.isSubmitDisabled()}
+            withoutChangingStateStyle={this.isSubmitDisabled()}
+          >Siguiente</Button>
         </ActionGroup>
       </Form>
     );
@@ -255,7 +279,6 @@ ShippingSelection.propTypes = {
   shippingForms: PropTypes.array.isRequired,
   shippingMethods: PropTypes.array.isRequired,
   onInputChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
   onPrevStep: PropTypes.func.isRequired,
   onNextStep: PropTypes.func.isRequired,
   onGetProvinces: PropTypes.func.isRequired,
