@@ -14,14 +14,11 @@ const Iframe = styled.iframe.attrs({
   border: 0;
 `;
 
-const ModalPayment = ({ url, isOpen, isLoading }) => (
-  isOpen
-    && (
-      <Modal className="mercadopago">
-        <Title>Datos para el pago</Title>
-        {isLoading ? <Preloader /> : <Iframe src={url} />}
-      </Modal>
-    )
+const ModalPayment = ({ url, isOpen, isLoading }) => isOpen && (
+  <Modal className="mercadopago" isDismissible={false}>
+    <Title>Datos para el pago</Title>
+    {isLoading ? <Preloader /> : <Iframe src={url} />}
+  </Modal>
 );
 
 ModalPayment.propTypes = {

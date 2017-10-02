@@ -60,11 +60,12 @@ const ButtonClose = styled.button`
 
 class Modal extends Component {
   static defaultProps = {
-    className: ''
+    className: '',
+    isDismissible: true
   }
 
   closeWhenEscape = (event) => {
-    if (event.keyCode === 27) {
+    if (this.props.isDismissible && event.keyCode === 27) {
       this.props.onCloseAll();
     }
   };
@@ -72,11 +73,12 @@ class Modal extends Component {
   render() {
     return (
       <Wrapper onKeyDown={this.closeWhenEscape} autoFocus>
-        <Overlay onClick={this.props.onCloseAll} />
+        <Overlay onClick={this.props.isDismissible && this.props.onCloseAll} />
         <Content className={this.props.className}>
-          <ButtonClose onClick={this.props.onCloseAll}>
-            <i className="fa fa-close" />
-          </ButtonClose>
+          {this.props.isDismissible &&
+            <ButtonClose onClick={this.props.onCloseAll}>
+              <i className="fa fa-close" />
+            </ButtonClose>}
           {this.props.children}
         </Content>
       </Wrapper>
@@ -87,6 +89,7 @@ class Modal extends Component {
 Modal.propTypes = {
   children: PropTypes.any.isRequired,
   className: PropTypes.string,
+  isDismissible: PropTypes.bool,
   onCloseAll: PropTypes.func.isRequired
 };
 
