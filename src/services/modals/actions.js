@@ -5,6 +5,8 @@ import {
   MODAL_SHIPPINGS_CLOSE,
   MODAL_PAYMENT_OPEN,
   MODAL_PAYMENT_CLOSE,
+  MODAL_PURCHASE_OPEN,
+  MODAL_PURCHASE_CLOSE,
   MODAL_CLOSE_ALL
 } from './actionTypes';
 
@@ -30,6 +32,14 @@ export const modalPaymentOpen = () => ({
 
 export const modalPaymentClose = () => ({
   type: MODAL_PAYMENT_CLOSE
+});
+
+export const modalPurchaseOpen = () => ({
+  type: MODAL_PURCHASE_OPEN
+});
+
+export const modalPurchaseClose = () => ({
+  type: MODAL_PURCHASE_CLOSE
 });
 
 export const modalCloseAll = () => ({

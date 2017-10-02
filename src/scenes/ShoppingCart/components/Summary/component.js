@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Alert from '../../../../components/Alert';
@@ -26,42 +26,44 @@ const FlexRow = styled.div`
   }
 `;
 
-const Summary = ({ products, data, staticPath, onPrevStep, onPurchase }) => {
-  const renderShipping = (item, i) => (
-    <tr key={i}>
-      <td style={{ fontWeight: '700' }}>{item[0]}</td>
-      <td>{item[1]}</td>
-    </tr>
-  );
-  return (
-    <div>
-      <CartTable products={products} staticPath={staticPath} />
-      <FlexRow>
-        <div>
-          <Title>Envío</Title>
-          <Table>
-            <tbody>{data.map(renderShipping)}</tbody>
-          </Table>
-        </div>
-        <div>
-          <Payment />
-          <Alert kind="info">
-            Luego de confirmar la compra te enviaremos un mail con todos los datos necesarios para coordinar la entrega del pedido.
-          </Alert>
-        </div>
-      </FlexRow>
-      <ActionGroup>
-        <Button type="button" onClick={onPrevStep}>Ver paso anterior</Button>
-        <Button primary onClick={onPurchase}>Confirmar compra</Button>
-      </ActionGroup>
-    </div>
-  );
-};
+const renderShipping = (item, i) => (
+  <tr key={i}>
+    <td style={{ fontWeight: '700' }}>{item[0]}</td>
+    <td>{item[1]}</td>
+  </tr>
+);
+
+const Summary = ({ products, data, staticPath, isSubmitEnabled, onPrevStep, onPurchase }) => (
+  <div>
+    <CartTable products={products} staticPath={staticPath} />
+    <FlexRow>
+      <div>
+        <Title>Envío</Title>
+        <Table>
+          <tbody>{data.map(renderShipping)}</tbody>
+        </Table>
+      </div>
+      <div>
+        <Payment />
+        <Alert kind="info">
+          Luego de confirmar la compra te enviaremos un mail con todos los datos necesarios para coordinar la entrega del pedido.
+        </Alert>
+      </div>
+    </FlexRow>
+    <ActionGroup>
+      <Button type="button" onClick={onPrevStep}>Ver paso anterior</Button>
+      <Button primary onClick={isSubmitEnabled && onPurchase} disabled={!isSubmitEnabled}>
+        Confirmar compra
+      </Button>
+    </ActionGroup>
+  </div>
+);
 
 Summary.propTypes = {
   products: PropTypes.array.isRequired,
   data: PropTypes.array.isRequired,
   staticPath: PropTypes.string.isRequired,
+  isSubmitEnabled: PropTypes.bool.isRequired,
   onPrevStep: PropTypes.func.isRequired,
   onPurchase: PropTypes.func.isRequired
 };

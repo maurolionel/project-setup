@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Summary from './component';
-import { createPreference } from '../../../../services/purchase/thunks';
+import { setPurchase } from '../../../../services/purchase/thunks';
 import { UNDEFINED_VALUE } from '../../../../services/shippings/constants';
 import config from '../../../../config';
 
@@ -39,12 +39,13 @@ const mapStateToProps = (state) => {
   return {
     products: state.shoppingCart.all,
     data,
-    staticPath
+    staticPath,
+    isSubmitEnabled: parseInt(state.purchase.paymentType, 10) > 0
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  onPurchase: () => dispatch(createPreference())
+  onPurchase: () => dispatch(setPurchase())
 });
 
 const SummaryContainer = connect(mapStateToProps, mapDispatchToProps)(Summary);
