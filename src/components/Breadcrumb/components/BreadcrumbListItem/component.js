@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { replaceMiddleDashWithSpace } from '../../../../services/utils';
 
-const StyledBreadcrumbListItem = styled.li`
+const Label = styled.li`
   display: flex;
   align-items: center;
   margin: 0 0.5rem 0 0;
@@ -22,11 +21,7 @@ const StyledBreadcrumbListItem = styled.li`
   }
 `;
 
-const BreadcrumbListItem = ({ children }) => {
-  let label = children;
-  if (typeof children === 'string') label = replaceMiddleDashWithSpace(children);
-  return <StyledBreadcrumbListItem>{label}</StyledBreadcrumbListItem>;
-};
+const BreadcrumbListItem = ({ children }) => <Label>{children}</Label>;
 
 BreadcrumbListItem.propTypes = {
   children: PropTypes.any.isRequired

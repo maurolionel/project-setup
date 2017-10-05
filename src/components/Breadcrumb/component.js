@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { lighten } from 'polished';
 import BreadcrumbListItem from './components/BreadcrumbListItem';
 import BreadcrumbAnchor from './components/BreadcrumbAnchor';
+import { replaceMiddleDashWithSpace } from '../../services/utils';
 
 const BreadcrumbList = styled.ul`
   display: flex;
@@ -18,7 +19,7 @@ const BreadcrumbList = styled.ul`
 const config = {
   staticRoutesMap: {
     '/': 'Inicio',
-    '/productos': 'Productos',
+    '/productos': 'Todos los productos',
     '/ofertas': 'Ofertas',
     '/soporte': 'Soporte Técnico',
     '/contacto': 'Contacto',
@@ -27,7 +28,8 @@ const config = {
     '/registrarse': 'Creá una cuenta'
   },
   dynamicRoutesMap: {
-    '/productos/:productId': '{{productId}}'
+    '/productos/:categoryName': match => replaceMiddleDashWithSpace(match.categoryName),
+    '/productos/:categoryName/:productId': 'N° {{productId}}'
   },
   notFound: 'La página no existe',
   Breadcrumb: BreadcrumbList,

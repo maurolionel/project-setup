@@ -3,8 +3,10 @@ import Card from './component';
 import { shoppingCartIncreaseThunk } from '../../services/shoppingCart/thunks';
 import config from '../../config';
 
+const getCategoryName = (categories, id) => categories.find(c => id === c.id).name;
+
 const mapStateToProps = (state, { product }) => ({
-  productUrl: `/productos/${product.id}`,
+  productUrl: `/productos/${getCategoryName(state.categories.all, product.categoryId)}/${product.id}`,
   imagePath: `${config.api.path}images/${product.categoryId}/${product.id}.jpg`
 });
 

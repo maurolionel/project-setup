@@ -10,6 +10,7 @@ import SceneWrapper from '../SceneWrapper';
 import Breadcrumb from '../Breadcrumb';
 
 // scenes
+import Categories from '../../scenes/Categories';
 import Contact from '../../scenes/Contact';
 import Home from '../../scenes/Home';
 import NotFound from '../../scenes/NotFound';
@@ -118,8 +119,9 @@ class App extends PureComponent {
               <Route exact path="/registrarse" component={SignUp} />
 
               {/* NavBar */}
-              <Route exact path="/productos" component={Products} />
-              <Route exact path="/productos/:productId" component={ProductDetail} />
+              <Route exact path="/productos" component={Categories} />
+              <Route exact path="/productos/:categoryName" component={Products} />
+              <Route exact path="/productos/:categoryName/:productId" component={ProductDetail} />
               <Route exact path="/ofertas" component={Products} />
               <Route exact path="/soporte" component={Support} />
               <Route exact path="/contacto" component={Contact} />
