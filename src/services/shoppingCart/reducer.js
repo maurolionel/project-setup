@@ -1,4 +1,10 @@
-import { SHOPPING_CART_INCREASE, SHOPPING_CART_ADD, SHOPPING_CART_DECREASE, SHOPPING_CART_REMOVE } from './actionTypes';
+import {
+  SHOPPING_CART_INCREASE,
+  SHOPPING_CART_ADD,
+  SHOPPING_CART_DECREASE,
+  SHOPPING_CART_REMOVE,
+  SHOPPING_CART_EMPTY
+} from './actionTypes';
 
 const initialState = {
   all: []
@@ -58,6 +64,8 @@ function shoppingCartReducer(state = initialState, action = {}) {
         all
       };
     }
+    case SHOPPING_CART_EMPTY:
+      return initialState;
     default:
       return state;
   }
