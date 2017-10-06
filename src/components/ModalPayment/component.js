@@ -19,7 +19,7 @@ const ModalPayment = ({ url, isOpen, isLoading, onPurchaseEnd }) => isOpen && (
   <Modal className="mercadopago" isDismissible={false}>
     <Title>Datos para el pago</Title>
     {isLoading ? <Preloader /> : <Iframe src={url} />}
-    <Button onClick={onPurchaseEnd} primary>Continuar</Button>
+    <Button onClick={onPurchaseEnd} primary>Finalizar</Button>
   </Modal>
 );
 

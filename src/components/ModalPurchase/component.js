@@ -8,7 +8,7 @@ const ModalPayment = ({ isOpen, onPurchaseEnd }) => isOpen && (
   <Modal isDismissible={false}>
     <Title>¡Gracias por su compra!</Title>
     <p>grax crack!</p>
-    <Button onClick={onPurchaseEnd} primary>Continuar</Button>
+    <Button onClick={onPurchaseEnd} primary>Finalizar</Button>
   </Modal>
 );
 
