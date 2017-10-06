@@ -18,7 +18,7 @@ class Categories extends PureComponent {
     if (!this.props.categories) this.props.getCategories();
   }
 
-  renderCards = aCategory => <CategoryCard key={aCategory.id} category={aCategory.name} />;
+  renderCards = aCategory => <CategoryCard key={aCategory.id} category={aCategory} />;
 
   render() {
     const { categories } = this.props;
