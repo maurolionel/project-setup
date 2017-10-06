@@ -1,3 +1,3 @@
-import ShoppingList from './container';
+import ShoppingList from './component';
 
 export default ShoppingList;

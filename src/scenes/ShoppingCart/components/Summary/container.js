@@ -2,9 +2,6 @@ import { connect } from 'react-redux';
 import Summary from './component';
 import { setPurchase } from '../../../../services/purchase/thunks';
 import { UNDEFINED_VALUE } from '../../../../services/shippings/constants';
-import config from '../../../../config';
-
-const staticPath = `${config.api.path}images/`;
 
 const getShippingFormName = (key, forms) => forms.find(f => f.id === parseInt(key, 10)).name;
 const getShippingMethodName = (key, methods) => methods.find(m => m.id === parseInt(key, 10)).name;
@@ -37,9 +34,7 @@ const mapStateToProps = (state) => {
     data = Object.entries(formattedData);
   }
   return {
-    products: state.shoppingCart.all,
     data,
-    staticPath,
     isSubmitEnabled: parseInt(state.purchase.paymentType, 10) > 0
   };
 };

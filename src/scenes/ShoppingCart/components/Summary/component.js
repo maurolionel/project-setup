@@ -33,9 +33,9 @@ const renderShipping = (item, i) => (
   </tr>
 );
 
-const Summary = ({ products, data, staticPath, isSubmitEnabled, onPrevStep, onPurchase }) => (
+const Summary = ({ data, isSubmitEnabled, onPrevStep, onPurchase }) => (
   <div>
-    <CartTable products={products} staticPath={staticPath} />
+    <CartTable />
     <FlexRow>
       <div>
         <Title>Envío</Title>
@@ -60,9 +60,7 @@ const Summary = ({ products, data, staticPath, isSubmitEnabled, onPrevStep, onPu
 );
 
 Summary.propTypes = {
-  products: PropTypes.array.isRequired,
   data: PropTypes.array.isRequired,
-  staticPath: PropTypes.string.isRequired,
   isSubmitEnabled: PropTypes.bool.isRequired,
   onPrevStep: PropTypes.func.isRequired,
   onPurchase: PropTypes.func.isRequired

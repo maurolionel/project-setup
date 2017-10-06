@@ -35,10 +35,19 @@ const FlexCenter = styled.div`
   align-items: center;
 `;
 
-const CartTable = ({ products, staticPath, isInteractive, onRemoveFromCart, onDecreaseQuantity, onIncreaseQuantity }) => {
+const CartTable = ({
+  products,
+  staticPath,
+  categories,
+  isInteractive,
+  onRemoveFromCart,
+  onDecreaseQuantity,
+  onIncreaseQuantity
+}) => {
   const getTotal = productsCollection => productsCollection
     .map(aProduct => aProduct.price * aProduct.quantity)
     .reduce((prevPrice, currentPrice) => prevPrice + currentPrice);
+  const getCategoryNameById = id => categories && categories.find(c => id === c.id).name;
   return (
     <TableWrapper withoutChangingStateStyle>
       <Table>
@@ -69,7 +78,7 @@ const CartTable = ({ products, staticPath, isInteractive, onRemoveFromCart, onDe
               )}
               <td>
                 <FlexCenter>
-                  <Link to={`productos/${aProduct.id}`} title="Ver producto">
+                  <Link to={`productos/${getCategoryNameById(aProduct.categoryId)}/${aProduct.id}`} title="Ver producto">
                     <ProductImage src={`${staticPath}${aProduct.categoryId}/${aProduct.id}.jpg`} />
                   </Link>
                   {aProduct.name}
@@ -114,17 +123,16 @@ const CartTable = ({ products, staticPath, isInteractive, onRemoveFromCart, onDe
 CartTable.propTypes = {
   products: PropTypes.func.isRequired,
   staticPath: PropTypes.string.isRequired,
+  categories: PropTypes.array,
   isInteractive: PropTypes.bool,
-  onRemoveFromCart: PropTypes.func,
-  onDecreaseQuantity: PropTypes.func,
-  onIncreaseQuantity: PropTypes.func
+  onRemoveFromCart: PropTypes.func.isRequired,
+  onDecreaseQuantity: PropTypes.func.isRequired,
+  onIncreaseQuantity: PropTypes.func.isRequired
 };
 
 CartTable.defaultProps = {
   isInteractive: false,
-  onRemoveFromCart: null,
-  onDecreaseQuantity: null,
-  onIncreaseQuantity: null
+  categories: []
 };
 
 export default CartTable;

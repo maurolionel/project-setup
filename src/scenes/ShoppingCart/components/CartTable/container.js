@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
-import ShoppingList from './component';
+import CartTable from './component';
 import { shoppingCartIncreaseThunk, shoppingCartDecreaseThunk } from '../../../../services/shoppingCart/thunks';
 import { shoppingCartRemove } from '../../../../services/shoppingCart/actions';
 import config from '../../../../config';
 
-const mapStateToProps = ({ shoppingCart }) => ({
-  listOfProducts: shoppingCart.all,
-  staticPath: `${config.api.path}images/`
+const mapStateToProps = ({ shoppingCart, categories }) => ({
+  products: shoppingCart.all,
+  staticPath: `${config.api.path}images/`,
+  categories: categories.all
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -15,9 +16,9 @@ const mapDispatchToProps = dispatch => ({
   onRemoveFromCart: productId => dispatch(shoppingCartRemove({ product: { id: productId } }))
 });
 
-const ShoppingListContainer = connect(
+const CartTableContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ShoppingList);
+)(CartTable);
 
-export default ShoppingListContainer;
+export default CartTableContainer;

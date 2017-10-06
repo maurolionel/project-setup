@@ -16,24 +16,12 @@ const NextStep = styled(Button)`
 
 const ShoppingList = props => (
   <Wrapper>
-    <CartTable
-      products={props.listOfProducts}
-      staticPath={props.staticPath}
-      onIncreaseQuantity={props.onIncreaseQuantity}
-      onDecreaseQuantity={props.onDecreaseQuantity}
-      onRemoveFromCart={props.onRemoveFromCart}
-      isInteractive
-    />
+    <CartTable isInteractive />
     <NextStep primary onClick={props.onNextStep}>Siguiente</NextStep>
   </Wrapper>
 );
 
 ShoppingList.propTypes = {
-  staticPath: PropTypes.string.isRequired,
-  listOfProducts: PropTypes.array.isRequired,
-  onIncreaseQuantity: PropTypes.func.isRequired,
-  onDecreaseQuantity: PropTypes.func.isRequired,
-  onRemoveFromCart: PropTypes.func.isRequired,
   onNextStep: PropTypes.func.isRequired
 };
 

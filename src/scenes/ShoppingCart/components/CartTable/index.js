@@ -1,3 +1,3 @@
-import CartTable from './component';
+import CartTable from './container';
 
 export default CartTable;
