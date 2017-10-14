@@ -12,7 +12,7 @@ import ScrollToTop from './components/ScrollToTop';
 import App from './components/App';
 import { saveState } from './services/localStorage';
 import { getCategories } from './services/categories/actions';
-import { getProducts } from './services/products/actions';
+import { getProducts } from './services/products/thunks';
 import { getBrands } from './services/brands/actions';
 
 const store = configureStore;
@@ -25,8 +25,6 @@ store.subscribe(() => {
     shoppingCart: store.getState().shoppingCart
   });
 });
-// Now you can dispatch navigation actions from anywhere!
-// store.dispatch(push('/foo'))
 
 ReactDOM.render(
   <ThemeProvider theme={colors}>

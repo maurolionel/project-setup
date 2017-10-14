@@ -1,2 +1,4 @@
-export const GET_PRODUCTS = 'imprek.GET_PRODUCTS';
+export const GET_PRODUCTS_REQUEST = 'imprek.GET_PRODUCTS_REQUEST';
+export const GET_PRODUCTS_SUCCESS = 'imprek.GET_PRODUCTS_SUCCESS';
+export const GET_PRODUCTS_ERROR = 'imprek.GET_PRODUCTS_ERROR';
 export const SET_VISIBILITY_FILTER = 'imprek.SET_VISIBILITY_FILTER';

@@ -33,12 +33,8 @@ const Filter = ({ type, values, visibilityFilter, onSelectVisibilityFilter }) =>
   const renderFilters = aFilter => (
     <StyledAnchor
       key={aFilter.id}
-      to="#"
+      to={`/productos/${aFilter.name}`}
       isSelected={visibilityFilter === aFilter.id}
-      onClick={(event) => {
-        event.preventDefault();
-        onSelectVisibilityFilter(aFilter.id);
-      }}
     >
       {aFilter.name.replace(/-/g, ' ')}
     </StyledAnchor>
@@ -48,15 +44,7 @@ const Filter = ({ type, values, visibilityFilter, onSelectVisibilityFilter }) =>
     <div>
       <Head>
         <Title>{type}</Title>
-        <ResetFilter
-          to="#"
-          onClick={(event) => {
-            event.preventDefault();
-            onSelectVisibilityFilter(0);
-          }}
-        >
-          Borrar filtro
-        </ResetFilter>
+        <ResetFilter to="/productos">Borrar filtro</ResetFilter>
       </Head>
       <div>{values.map(renderFilters)}</div>
     </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Aside from '../../components/Aside';
@@ -6,34 +6,47 @@ import SearchResult from '../../components/SearchResult';
 
 const Section = styled.section`
   display: flex;
+  position: relattive;
 `;
 
-const Products = ({ products, categories, match, visibilityFilter }) => {
-  if (!products || !categories) {
-    return null;
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  &.is-visible {
+    z-index: 100;
+    background-color: rgba(255,255,255,.5);
   }
+`;
 
-  const filteredByCategory = visibilityFilter === 0
-    ? products
-    : products.filter(aProduct => aProduct.categoryId === visibilityFilter);
-
-  const filteredByMode = match.url === '/ofertas'
-    ? filteredByCategory.filter(p => p.isOfferMode)
-    : filteredByCategory;
-
-  return (
-    <Section>
-      <Aside />
-      <SearchResult results={filteredByMode} categories={categories} />
-    </Section>
-  );
-};
+class Products extends PureComponent {
+  constructor(props) {
+    super(props);
+    if (this.props.categories && !this.props.categories.length) this.props.getCategories();
+  }
+  render() {
+    const { products, categories, isLoading } = this.props;
+    return (
+      <Section>
+        <Overlay className={isLoading ? 'is-visible' : ''} />
+        <Aside />
+        {(products && products.length)
+          ? <SearchResult results={products} categories={categories} />
+          : <p>No hay productos para esta categoría</p>
+        }
+      </Section>
+    );
+  }
+}
 
 Products.propTypes = {
   categories: PropTypes.array,
   products: PropTypes.array,
-  match: PropTypes.object.isRequired,
-  visibilityFilter: PropTypes.number.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  getCategories: PropTypes.func.isRequired
 };
 
 Products.defaultProps = {

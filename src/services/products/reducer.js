@@ -1,31 +1,25 @@
-import { GET_PRODUCTS, SET_VISIBILITY_FILTER } from './actionTypes';
-import { convertStringToNumber } from '../utils';
-
-const initialState = {
-  all: null,
-  visibilityFilter: 0
-};
-
-const mapProductFromApiToState = aProduct => ({
-  id: convertStringToNumber(aProduct.id),
-  mlId: convertStringToNumber(aProduct.mlId),
-  categoryId: convertStringToNumber(aProduct.category_id),
-  brandId: convertStringToNumber(aProduct.brand_id),
-  name: aProduct.name,
-  price: convertStringToNumber(aProduct.price),
-  date: aProduct.date,
-  description: aProduct.description || 'Sin descripción',
-  isActive: Boolean(convertStringToNumber(aProduct.is_active)),
-  isOfferMode: Boolean(convertStringToNumber(aProduct.is_offer_mode)),
-  hasStock: Boolean(convertStringToNumber(aProduct.has_stock))
-});
+import { GET_PRODUCTS_REQUEST, GET_PRODUCTS_SUCCESS, GET_PRODUCTS_ERROR, SET_VISIBILITY_FILTER } from './actionTypes';
+import { initialState, mapProductFromApiToState } from './utils';
 
 function productsReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_PRODUCTS:
+    case GET_PRODUCTS_REQUEST:
       return {
         ...state,
-        all: action.payload.result.map(mapProductFromApiToState)
+        isFetching: true
+      };
+    case GET_PRODUCTS_SUCCESS:
+      return {
+        ...state,
+        all: action.payload.result.map(mapProductFromApiToState),
+        isFetching: false,
+        isFetchingError: false
+      };
+    case GET_PRODUCTS_ERROR:
+      return {
+        ...state,
+        isFetchingError: true,
+        isFetching: false
       };
     case SET_VISIBILITY_FILTER:
       return {
