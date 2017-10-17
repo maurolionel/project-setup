@@ -21,7 +21,7 @@ const TopBarSection = styled.div`
 
 const TopBarLink = TopBarNavLink.withComponent(Link);
 
-const TopBar = ({ onOpenModalSchedules, onOpenModalShippings }) => {
+const TopBar = ({ totalProducts, onOpenModalSchedules, onOpenModalShippings }) => {
   const openModalSchedules = (event) => {
     event.preventDefault();
     onOpenModalSchedules();
@@ -48,14 +48,10 @@ const TopBar = ({ onOpenModalSchedules, onOpenModalShippings }) => {
         </TopBarLink>
       </TopBarSection>
       <TopBarSection>
-        <TopBarNavLink to="/ingresar" title="Ingresá a tu cuenta o creá una nueva">
-          Ingresar
-          <Icon className="fa fa-sign-in" placement="right" />
-        </TopBarNavLink>
         <TopBarNavLink to="/carrito" title="Tu carrito de compras">
+          <Icon className="fa fa-shopping-cart" placement="left" />
           Carrito
-          <Icon className="fa fa-shopping-cart" placement="right" />
-          <ShoppingCartBadge />
+          <ShoppingCartBadge quantity={totalProducts} />
         </TopBarNavLink>
       </TopBarSection>
     </StyledTopBar>
@@ -63,6 +59,7 @@ const TopBar = ({ onOpenModalSchedules, onOpenModalShippings }) => {
 };
 
 TopBar.propTypes = {
+  totalProducts: PropTypes.number.isRequired,
   onOpenModalSchedules: PropTypes.func.isRequired,
   onOpenModalShippings: PropTypes.func.isRequired
 };

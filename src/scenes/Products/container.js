@@ -9,7 +9,7 @@ const mapStateToProps = ({ products, categories }, ownProps) => {
   if (match.url === '/ofertas') {
     results = products.all.filter(p => p.isOfferMode);
   } else {
-    const categoryId = categories && categories.all.find(
+    const categoryId = categories.all && categories.all.find(
       c => match.params.categoryName === c.name).id;
     results = products.all.filter(p => p.categoryId === categoryId);
   }

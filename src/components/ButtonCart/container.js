@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
 import ButtonCart from './component';
+import { shoppingCartIncreaseThunk } from '../../services/shoppingCart/thunks';
+import { shoppingCartRemove } from '../../services/shoppingCart/actions';
 
 const mapStateToProps = ({ shoppingCart: { all } }, ownProps) => {
   const product = all.find(p => ownProps.productId === p.id);
@@ -10,6 +12,11 @@ const mapStateToProps = ({ shoppingCart: { all } }, ownProps) => {
   };
 };
 
-const ButtonCartContainer = connect(mapStateToProps, null)(ButtonCart);
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  addToCart: () => dispatch(shoppingCartIncreaseThunk(ownProps.productId, 1)),
+  removeFromCart: () => dispatch(shoppingCartRemove({ product: { id: ownProps.productId } }))
+});
+
+const ButtonCartContainer = connect(mapStateToProps, mapDispatchToProps)(ButtonCart);
 
 export default ButtonCartContainer;

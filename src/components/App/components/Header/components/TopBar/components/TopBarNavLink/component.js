@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 
 const TopBarNavLink = styled(NavLink)`
+  display: flex;
+  position: relative;
+  overflow: hidden;
   padding: 0.7rem 1rem;
   color: ${({ theme }) => theme.base};
   text-decoration: none;

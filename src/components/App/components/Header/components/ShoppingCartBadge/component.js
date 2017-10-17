@@ -3,26 +3,40 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Badge = styled.span`
-  opacity: ${({ children }) => (children > 0 ? '1' : '0')};
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  min-width: 13px;
-  padding: 0.1rem 0.23rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  width: 1.2rem;
+  margin-left: 5px;
+  margin-right: -1.5rem;
   border-radius: 1rem;
   color: ${({ theme }) => theme.base};
   background-color: ${({ theme }) => theme.danger};
-  font-size: 0.65rem;
-  transform: translateY(${({ children }) => (children > 0 ? '0' : '-50')}px);
-  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  font-size: 0.9rem;
+  text-align: center;
+  transform: translateX(50px);
+  transition-property: opacity, transform, margin-right;
+  transition-timig-function: ease;
+  transition-duration: 0.3s;
+  &.is-filled {
+    opacity: 1;
+    margin-right: 0;
+    transform: translateX(0px);
+  }
   &.is-fixed {
-    top: 10px;
-    right: 10px;
+    width: 1rem;
+    padding: 0.1rem 0.7rem 0rem;
+    margin: 0;
+    font-size: 1rem;
   }
 `;
 
-const ShoppingCartBadge = ({ quantity, className }) =>
-  <Badge className={className}>{quantity || ''}</Badge>;
+const ShoppingCartBadge = ({ quantity, className }) => (
+  <Badge className={`${className} ${quantity ? 'is-filled' : ''}`}>
+    {quantity || ''}
+  </Badge>
+);
 
 ShoppingCartBadge.propTypes = {
   quantity: PropTypes.number,

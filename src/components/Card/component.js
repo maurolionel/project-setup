@@ -63,7 +63,7 @@ const Price = styled.span`
   text-transform: uppercase;
 `;
 
-const ActionWrapper = styled.form`
+const ActionWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 0 1rem 1rem;
@@ -92,38 +92,31 @@ const OfferBadge = styled.span`
   transition: opacity 0.2s, background-color 0.2s;
 `;
 
-const Card = ({ product, productUrl, imagePath, onAddToCart }) => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onAddToCart();
-  };
-  return (
-    <StyledCard>
-      <LinkImage to={productUrl}>
-        {product.isOfferMode && <OfferBadge className="offer-badge">¡oferta!</OfferBadge>}
-        <img src={imagePath} alt={product.name} />
-      </LinkImage>
-      <Details>
-        <Price>
-          <FormattedNumber value={product.price} style="currency" currency="USD" />
-        </Price>
-        <LinkName to={productUrl}>{product.name}</LinkName>
-        <Description>{product.description}</Description>
-      </Details>
-      <ActionWrapper onSubmit={handleSubmit}>
-        {product.hasStock && <ButtonCart type="submit" productId={product.id} />}
-        <LinkCustom to={productUrl}>Ver</LinkCustom>
-        {!product.hasStock && <span>Sin stock</span>}
-      </ActionWrapper>
-    </StyledCard>
-  );
-};
+const Card = ({ product, productUrl, imagePath }) => (
+  <StyledCard>
+    <LinkImage to={productUrl}>
+      {product.isOfferMode && <OfferBadge className="offer-badge">¡oferta!</OfferBadge>}
+      <img src={imagePath} alt={product.name} />
+    </LinkImage>
+    <Details>
+      <Price>
+        <FormattedNumber value={product.price} style="currency" currency="USD" />
+      </Price>
+      <LinkName to={productUrl}>{product.name}</LinkName>
+      <Description>{product.description}</Description>
+    </Details>
+    <ActionWrapper>
+      {product.hasStock && <ButtonCart productId={product.id} />}
+      <LinkCustom to={productUrl}>Ver</LinkCustom>
+      {!product.hasStock && <span>Sin stock</span>}
+    </ActionWrapper>
+  </StyledCard>
+);
 
 Card.propTypes = {
   product: PropTypes.object.isRequired,
   productUrl: PropTypes.string.isRequired,
-  imagePath: PropTypes.string.isRequired,
-  onAddToCart: PropTypes.func.isRequired
+  imagePath: PropTypes.string.isRequired
 };
 
 export default Card;

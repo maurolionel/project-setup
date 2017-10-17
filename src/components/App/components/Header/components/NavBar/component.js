@@ -20,11 +20,13 @@ const StyledNavBar = styled.div`
 `;
 
 const SearchBarWrapper = styled.div`
+  opacity: 1;
   margin-left: auto;
   margin-right: 0.5rem;
-  transition: 0.25s transform ease;
+  transition: 0.25s transform ease, 0.25s opacity ease;
   &.is-fixed {
-    transform: translateX(-117px);
+    opacity: 0;
+    transform: translateX(300px);
   }
 `;
 
@@ -32,33 +34,36 @@ const AdditionalLinks = styled(Nav)`
   opacity: 0;
   position: absolute;
   top: 0;
-  right: 0.5rem;
+  right: 0;
   bottom: 0;
   transform: translateX(100%);
-  transition: 0.25s opacity ease, 0.25s transform ease;
+  transition: 0.3s opacity ease, 0.3s transform ease;
   &.is-fixed {
     opacity: 1;
     transform: translateX(0);
   }
 `;
 
-const FixedNav = ({ className }) => (
+const FixedNav = ({ className, totalProducts }) => (
   <AdditionalLinks className={className}>
-    <NavLink to="/ingresar" title="Ingresá a tu cuenta o creá una nueva">
-      <Icon className="fa fa-sign-in" bigSize />
+    <NavLink to="/ingresar" title="Buscá un producto">
+      <Icon style={{ margin: 0 }} className="fa fa-search" bigSize />
     </NavLink>
     <NavLink to="/carrito" title="Tu carrito de compras">
-      <Icon className="fa fa-shopping-cart" bigSize />
-      <ShoppingCartBadge className="is-fixed" />
+      {totalProducts
+        ? <ShoppingCartBadge className="is-fixed" quantity={totalProducts} />
+        : <Icon style={{ margin: 0 }} className="fa fa-shopping-cart" bigSize />
+      }
     </NavLink>
   </AdditionalLinks>
 );
 
 FixedNav.propTypes = {
-  className: PropTypes.string.isRequired
+  className: PropTypes.string.isRequired,
+  totalProducts: PropTypes.number.isRequired
 };
 
-const NavBar = ({ isFixed }) => (
+const NavBar = ({ totalProducts, isFixed }) => (
   <StyledNavBar>
     <Logo />
     <Nav>
@@ -70,11 +75,12 @@ const NavBar = ({ isFixed }) => (
     <SearchBarWrapper className={isFixed ? 'is-fixed' : ''}>
       <Input type="search" placeholder="Buscar..." />
     </SearchBarWrapper>
-    <FixedNav className={isFixed ? 'is-fixed' : ''} />
+    <FixedNav className={isFixed ? 'is-fixed' : ''} totalProducts={totalProducts} />
   </StyledNavBar>
 );
 
 NavBar.propTypes = {
+  totalProducts: PropTypes.number.isRequired,
   isFixed: PropTypes.bool.isRequired
 };
 
