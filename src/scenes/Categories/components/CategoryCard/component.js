@@ -14,6 +14,9 @@ const CardLink = styled(Link)`
     box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2), 0 -1px 3px 1px rgba(0,0,0,0.1);
     transform: translateY(-10px);
   }
+  &:focus {
+    background-color: ${({ theme }) => theme.base};
+  }
 `;
 
 const Picture = styled.img`
