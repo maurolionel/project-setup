@@ -63,7 +63,8 @@ class AddToCartSection extends PureComponent {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmitQuantity(this.quantityInput.value);
+    const offset = 1;
+    this.props.onSubmitQuantity(this.quantityInput.value - offset);
     this.resetQuantity();
   }
 
