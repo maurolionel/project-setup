@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import styled, { injectGlobal } from 'styled-components';
 import { normalize } from 'polished';
@@ -98,7 +98,7 @@ const Main = styled.main`
   background-color: ${({ theme }) => theme.whiteGray};
 `;
 
-class App extends PureComponent {
+class App extends Component {
   state = {
     headerHeight: 0
   }
