@@ -57,7 +57,7 @@ const renderGuideItemLink = aGuide => (
       href={aGuide.url}
       title="Hacé click para ver/descargar el instructivo"
     >
-      {`Instructivo de ${aGuide.guideClass} de ${aGuide.category} de ${aGuide.guideType} para ${aGuide.brand} ${aGuide.model}`}
+      {`Instructivo de ${aGuide.guideClass} de ${aGuide.category} de ${aGuide.guideType}`}
     </GuidesListItemLink>
   </GuidesListItem>
 );
