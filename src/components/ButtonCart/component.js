@@ -11,7 +11,8 @@ const Icon = styled.i.attrs({
 `;
 
 const Quantity = styled.span`
-  color: #9E9E9E;
+  margin-left: 5px;
+  color: ${({ theme }) => theme.primary};
   font-size: 0.9rem;
 `;
 
@@ -21,8 +22,8 @@ const ButtonRemove = styled(Button)`
   right: -5px;
   padding: 2px 4px;
   border-radius: 1em;
-  color: ${({ theme }) => theme.whiteGray};
-  background-color: ${({ theme }) => theme.grayDark};
+  color: ${({ theme }) => theme.gray};
+  background-color: ${({ theme }) => theme.whiteGray};
   font-size: 0.7rem;
 `;
 
