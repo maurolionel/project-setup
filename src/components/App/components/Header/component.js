@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { darken } from 'polished';
 import TopBar from './components/TopBar';
@@ -35,7 +36,7 @@ const NavBarWrapper = styled.div`
   ${({ isFixed }) => isFixed && navBarStyleWhenFixed};
 `;
 
-class Header extends Component {
+class Header extends PureComponent {
   state = {
     isNavBarFixed: false
   }
@@ -77,4 +78,4 @@ Header.propTypes = {
   onHeaderLayout: PropTypes.func.isRequired
 };
 
-export default Header;
+export default withRouter(Header);

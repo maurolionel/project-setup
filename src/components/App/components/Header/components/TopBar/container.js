@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import TopBar from './component';
 import { modalSchedulesOpen, modalShippingsOpen } from '../../../../../../services/modals/actions';
 
@@ -11,6 +12,6 @@ const mapDispatchToProps = dispatch => ({
   onOpenModalShippings: () => dispatch(modalShippingsOpen()),
 });
 
-const TopBarContainer = connect(mapStateToProps, mapDispatchToProps)(TopBar);
+const TopBarContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(TopBar));
 
 export default TopBarContainer;

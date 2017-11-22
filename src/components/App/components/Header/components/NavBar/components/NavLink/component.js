@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { darken } from 'polished';
 
-const StyledNavLink = styled(NavLink) `
+const StyledNavLink = styled(NavLink)`
   display: flex;
   align-items: center;
   padding: 0 1rem;
