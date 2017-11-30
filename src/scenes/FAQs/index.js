@@ -1,3 +1,3 @@
-import FAQs from './component';
+import FAQs from './container';
 
 export default FAQs;
