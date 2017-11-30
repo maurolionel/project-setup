@@ -12,6 +12,7 @@ import Breadcrumb from '../Breadcrumb';
 // scenes
 import Categories from '../../scenes/Categories';
 import Contact from '../../scenes/Contact';
+import FAQs from '../../scenes/FAQs';
 import Home from '../../scenes/Home';
 import NotFound from '../../scenes/NotFound';
 import Products from '../../scenes/Products';
@@ -80,6 +81,10 @@ injectGlobal`
     font-family: 'OpenSans', Arial, sans-serif;
     font-weight: 400;
   }
+  * {
+    min-height: 0;
+    min-width: 0;
+  }
 `;
 /* eslint-enable no-unused-expressions */
 
@@ -125,6 +130,8 @@ class App extends Component {
               <Route exact path="/ofertas" component={Products} />
               <Route exact path="/soporte" component={Support} />
               <Route exact path="/contacto" component={Contact} />
+
+              <Route exact path="/ayuda" component={FAQs} />
 
               <Route exact path="/" component={Home} />
               <Route component={NotFound} />
