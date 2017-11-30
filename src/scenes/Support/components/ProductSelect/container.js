@@ -5,7 +5,8 @@ import { getGuides, selectGuide } from '../../../../services/support/thunks';
 
 const mapStateToProps = ({ brands, support }) => ({
   brands: brands.all,
-  guides: support.guides
+  guides: support.guides,
+  isLoadingGuides: support.isLoadingGuides
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,2 +1,4 @@
+export const GET_GUIDES_REQUEST = 'imprek.GET_GUIDES_REQUEST';
 export const GET_GUIDES_SUCCESS = 'imprek.GET_GUIDES_SUCCESS';
+export const GET_GUIDES_ERROR = 'imprek.GET_GUIDES_ERROR';
 export const SELECT_GUIDE_SUCCESS = 'imprek.SELECT_GUIDE_SUCCESS';
