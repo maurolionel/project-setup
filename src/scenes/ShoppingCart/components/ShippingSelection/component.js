@@ -42,39 +42,6 @@ const ActionGroup = styled.div`
   margin-top: 2rem;
 `;
 
-const LocalInfo = () => (
-  <FlexRow>
-    <FormGroup>
-      <Title>Dirección de retiro</Title>
-      <p>Agüero 927 / 931, entre San Luis y Av. Córdoba, Ciudad Autónoma de Buenos Aires, Argentina.</p>
-      <Title>Horarios de atención</Title>
-      <p>
-        <span style={{ fontWeight: '700' }}>Lunes a viernes</span><br />
-        Ventas en general: 10 a 18 hs.<br />
-        Ventas de impresoras: 10 a 17 hs.<br />
-        Armado de sistemas continuos de 2 cartuchos: 10 a 17 hs.
-      </p>
-      <p>
-        <span style={{ fontWeight: '700' }}>Sábados</span><br />
-        Ventas en general: 9 a 13 hs.<br />
-        Ventas de impresoras: 9 a 11 hs.
-      </p>
-    </FormGroup>
-    <FormGroup>
-      <Title>¿Cómo llegar?</Title>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.205635894197!2d-58.412594885251885!3d-34.598961280460585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca8ec36e1f7b%3A0xd9de65f9f55b0c9f!2sSistemas+Imprek!5e0!3m2!1ses-419!2sar!4v1501033810010"
-        width="600"
-        height="450"
-        frameBorder="0"
-        style={{ border: 0 }}
-        title="Mapa"
-        allowFullScreen
-      />
-    </FormGroup>
-  </FlexRow>
-);
-
 class ShippingSelection extends PureComponent {
   state = {
     activeLocations: []
@@ -117,10 +84,10 @@ class ShippingSelection extends PureComponent {
     const intLocation = parseInt(location, 10);
     const intShippingMethod = parseInt(shippingMethod, 10);
     if (intShippingForm === WITHOUT_SELECTION) return true;
-    if (intShippingForm === WITHDRAW_OPTION) return false;
-    if (
-      name && surname && email && tel && intProvince && intLocation && calle && altura && intShippingMethod && zipCode
-    ) { return false; }
+    if (name && surname && email && tel) {
+      if (intShippingForm === WITHDRAW_OPTION) return false;
+      if (intProvince && intLocation && calle && altura && intShippingMethod && zipCode) return false;
+    }
     return true;
   }
 
@@ -150,14 +117,70 @@ class ShippingSelection extends PureComponent {
 
   renderOption = option => (
     <option key={option.id} value={option.id}>{option.name}</option>
-  )
+  );
+
+  renderMandatoryFields = () => (
+    <FormGroup>
+      <Title>Datos de contacto</Title>
+      <InputGroup>
+        <div>
+          <Label>Nombre *</Label>
+          <Input name="name" type="text" value={this.props.data.name} onChange={this.handleChange} required />
+        </div>
+        <div>
+          <Label>Apellido *</Label>
+          <Input name="surname" type="text" value={this.props.data.surname} onChange={this.handleChange} required />
+        </div>
+        <div>
+          <Label>E-mail *</Label>
+          <Input name="email" type="text" value={this.props.data.email} onChange={this.handleChange} required />
+        </div>
+        <div>
+          <Label>Teléfono *</Label>
+          <Input name="tel" type="text" value={this.props.data.tel} onChange={this.handleChange} required />
+        </div>
+      </InputGroup>
+    </FormGroup>
+  );
+
+  renderWithdrawOptionContent = () => (
+    <FormGroup>
+      {this.renderMandatoryFields()}
+      <FlexRow>
+        <FormGroup>
+          <Title>Dirección de retiro</Title>
+          <p>Agüero 927 / 931, entre San Luis y Av. Córdoba, Ciudad Autónoma de Buenos Aires, Argentina.</p>
+          <Title>Horarios de atención</Title>
+          <p>
+            <span style={{ fontWeight: '700' }}>Lunes a viernes</span><br />
+            Ventas en general: 10 a 18 hs.<br />
+            Ventas de impresoras: 10 a 17 hs.<br />
+            Armado de sistemas continuos de 2 cartuchos: 10 a 17 hs.
+        </p>
+          <p>
+            <span style={{ fontWeight: '700' }}>Sábados</span><br />
+            Ventas en general: 9 a 13 hs.<br />
+            Ventas de impresoras: 9 a 11 hs.
+        </p>
+        </FormGroup>
+        <FormGroup>
+          <Title>¿Cómo llegar?</Title>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.205635894197!2d-58.412594885251885!3d-34.598961280460585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca8ec36e1f7b%3A0xd9de65f9f55b0c9f!2sSistemas+Imprek!5e0!3m2!1ses-419!2sar!4v1501033810010"
+            width="600"
+            height="450"
+            frameBorder="0"
+            style={{ border: 0 }}
+            title="Mapa"
+            allowFullScreen
+          />
+        </FormGroup>
+      </FlexRow>
+    </FormGroup>
+  );
 
   render() {
     const {
-      name,
-      surname,
-      email,
-      tel,
       province,
       location,
       calle,
@@ -179,31 +202,11 @@ class ShippingSelection extends PureComponent {
             {this.renderShippingForms()}
           </Select>
         </FormGroup>
-        {deliveryForm === WITHDRAW_OPTION && <LocalInfo />}
+        {deliveryForm === WITHDRAW_OPTION && this.renderWithdrawOptionContent()}
         {deliveryForm === SHIPPING_OPTION
           && (
             <div>
-              <FormGroup>
-                <Title>Datos de contacto</Title>
-                <InputGroup>
-                  <div>
-                    <Label>Nombre *</Label>
-                    <Input name="name" type="text" value={name} onChange={this.handleChange} required />
-                  </div>
-                  <div>
-                    <Label>Apellido *</Label>
-                    <Input name="surname" type="text" value={surname} onChange={this.handleChange} required />
-                  </div>
-                  <div>
-                    <Label>E-mail *</Label>
-                    <Input name="email" type="text" value={email} onChange={this.handleChange} required />
-                  </div>
-                  <div>
-                    <Label>Teléfono *</Label>
-                    <Input name="tel" type="text" value={tel} onChange={this.handleChange} required />
-                  </div>
-                </InputGroup>
-              </FormGroup>
+              {this.renderMandatoryFields()}
               <FormGroup>
                 <Title>Dirección de destino</Title>
                 <InputGroup>
