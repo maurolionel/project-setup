@@ -4,7 +4,6 @@ import breadcrumbConfig from 'auto-breadcrumb';
 import styled from 'styled-components';
 import { lighten } from 'polished';
 import BreadcrumbListItem from './components/BreadcrumbListItem';
-import BreadcrumbAnchor from './components/BreadcrumbAnchor';
 import { replaceMiddleDashWithSpace } from '../../services/utils';
 
 const BreadcrumbList = styled.ul`
@@ -25,7 +24,8 @@ const config = {
     '/contacto': 'Contacto',
     '/carrito': 'Tu carrito de compras',
     '/ingresar': 'Ingresá a tu cuenta',
-    '/registrarse': 'Creá una cuenta'
+    '/registrarse': 'Creá una cuenta',
+    '/ayuda': 'Preguntas frecuentes'
   },
   dynamicRoutesMap: {
     '/productos/:categoryName': match => replaceMiddleDashWithSpace(match.categoryName),
@@ -33,8 +33,7 @@ const config = {
   },
   notFound: 'La página no existe',
   Breadcrumb: BreadcrumbList,
-  BreadcrumbItem: BreadcrumbListItem,
-  LinkComponent: BreadcrumbAnchor
+  BreadcrumbItem: BreadcrumbListItem
 };
 
 const AutoBreadcrumb = breadcrumbConfig(config);

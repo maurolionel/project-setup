@@ -1,0 +1,4 @@
+export const SUBMIT_FORM_REQUEST = 'imprek.SUBMIT_FORM_REQUEST';
+export const SUBMIT_FORM_SUCCESS = 'imprek.SUBMIT_FORM_SUCCESS';
+export const SUBMIT_FORM_ERROR = 'imprek.SUBMIT_FORM_ERROR';
+export const UPDATE_INPUT_VALUE = 'imprek.UPDATE_INPUT_VALUE';

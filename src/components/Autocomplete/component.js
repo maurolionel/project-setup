@@ -29,9 +29,14 @@ class Autocomplete extends PureComponent {
     }
   }
 
+  handleClearSelection = (clearSelection) => {
+    clearSelection();
+    //this.props.onClearSelection();
+  }
+
   render() {
     const { items, inputValue } = this.state;
-    const { placeholder, withQuantity, onChange } = this.props;
+    const { placeholder, withQuantity, disabled, onChange } = this.props;
     return (
       <Downshift
         inputValue={inputValue}
@@ -51,14 +56,16 @@ class Autocomplete extends PureComponent {
         }) => (
           <div>
             <div style={{ position: 'relative' }}>
-              <SearchInput {...getInputProps({ isOpen, placeholder })} />
-              {selectedItem
-                ? <ControllerButton onClick={clearSelection} aria-label="clear selection">
-                  <XIcon />
-                </ControllerButton>
-                : <ControllerButton {...getButtonProps()}>
-                  <ArrowIcon isOpen={isOpen} />
-                </ControllerButton>
+              <SearchInput {...getInputProps({ isOpen, placeholder })} disabled={disabled} />
+              {!disabled
+                ? selectedItem
+                  ? <ControllerButton onClick={clearSelection} aria-label="clear selection">
+                    <XIcon />
+                  </ControllerButton>
+                  : <ControllerButton {...getButtonProps()}>
+                    <ArrowIcon isOpen={isOpen} />
+                  </ControllerButton>
+                : null
               }
             </div>
             {!isOpen

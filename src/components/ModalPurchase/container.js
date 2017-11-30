@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import ModalPurchase from './component';
 import { purchaseEnd } from '../../services/thunks';
 
-const mapStateToProps = ({ modals }) => ({
+const mapStateToProps = ({ modals, purchase }) => ({
+  email: purchase.data.email,
   isOpen: modals.purchase.isOpen
 });
 

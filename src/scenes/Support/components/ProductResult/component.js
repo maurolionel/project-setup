@@ -50,6 +50,13 @@ const GuidesListItemLink = styled.a`
   }
 `;
 
+const Icon = styled.i.attrs({
+  className: 'fa fa-file-pdf-o'
+})`
+  margin-right: 0.7rem;
+  transform: scale(1.3);
+`;
+
 const renderGuideItemLink = aGuide => (
   <GuidesListItem>
     <GuidesListItemLink
@@ -57,6 +64,7 @@ const renderGuideItemLink = aGuide => (
       href={aGuide.url}
       title="Hacé click para ver/descargar el instructivo"
     >
+      <Icon />
       {`Instructivo de ${aGuide.guideClass} de ${aGuide.category} de ${aGuide.guideType}`}
     </GuidesListItemLink>
   </GuidesListItem>

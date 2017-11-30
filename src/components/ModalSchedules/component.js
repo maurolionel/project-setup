@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../Modal';
-import Title from '../Title';
 
 const ModalSchedules = ({ isOpen }) => (
   isOpen
     ? (
-      <Modal>
-        <Title>Horarios de atención</Title>
+      <Modal title="Horarios de atención">
         <img src="http://www.imprek.com.ar/Horario.jpg" alt="Horarios" />
       </Modal>
     )

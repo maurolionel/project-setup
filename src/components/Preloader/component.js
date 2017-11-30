@@ -8,7 +8,7 @@ const loading = keyframes`
 const Spinner = styled.i.attrs({
   className: 'fa fa-circle-o-notch'
 })`
-  animation: ${loading} 2s infinite linear;
+  animation: ${loading} 1s infinite linear;
 `;
 
 const Preloader = () => (

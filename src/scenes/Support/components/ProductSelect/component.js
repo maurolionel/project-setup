@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Autocomplete from '../../../../components/Autocomplete';
 import Label from '../../../../components/Label';
+import Preloader from '../../../../components/Preloader';
 
 const Wrapper = styled.div`
   display: flex;
@@ -29,36 +30,42 @@ const Block = styled.form`
 const FormBlock = Block.withComponent('form');
 
 class ProductSelect extends PureComponent {
+  state = {
+
+  }
+
   componentDidMount() {
     const { brands, onGetBrands } = this.props;
     if (!brands.length) onGetBrands();
   }
 
   render() {
-    const { brands, guides, onGetGuides, onSelectGuideResult } = this.props;
+    const { brands, guides, isLoadingGuides, onGetGuides, onSelectGuideResult } = this.props;
     return (
       <Wrapper>
         <Block>
           <Label htmlFor="brands">Marca de tu impresora:</Label>
           {brands.length > 0
-            && <Autocomplete
+            ? <Autocomplete
               items={brands}
               placeholder="Buscá la marca"
               onChange={onGetGuides}
             />
+            : <Preloader />
           }
         </Block>
-        {guides.length
+        {!isLoadingGuides
           ? <FormBlock onSubmit={this.handleSubmit}>
             <Label htmlFor="model">Modelo de tu impresora:</Label>
             <Autocomplete
               items={guides}
               placeholder="Buscá y seleccioná tu modelo de impresora"
               withQuantity
+              disabled={!guides.length}
               onChange={onSelectGuideResult}
             />
           </FormBlock>
-          : null
+          : <Preloader />
         }
       </Wrapper>
     );
@@ -68,6 +75,7 @@ class ProductSelect extends PureComponent {
 ProductSelect.propTypes = {
   brands: PropTypes.array.isRequired,
   guides: PropTypes.array.isRequired,
+  isLoadingGuides: PropTypes.bool.isRequired,
   onGetBrands: PropTypes.func.isRequired,
   onGetGuides: PropTypes.func.isRequired,
   onSelectGuideResult: PropTypes.func.isRequired
