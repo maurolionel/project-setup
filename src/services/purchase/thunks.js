@@ -1,17 +1,21 @@
 import { CALL_API } from 'redux-api-middleware';
-import { createPreferenceRequest, createPreferenceSuccess } from './actions';
+import {
+  createPreferenceRequest,
+  createPreferenceSuccess,
+  getPreferenceRequest,
+  getPreferenceSuccess
+} from './actions';
 import { MERCADO_PAGO } from './constants';
 import { modalPaymentOpen, modalPurchaseOpen } from '../modals/actions';
 import appConfig from '../../config';
 
-/* eslint-disable import/prefer-default-export */
 export const setPurchase = () => (dispatch, getState) => {
   const { purchase: { paymentType }, shoppingCart: { all: items } } = getState();
   if (paymentType === MERCADO_PAGO) {
     dispatch(modalPaymentOpen());
     dispatch({
       [CALL_API]: {
-        endpoint: `${appConfig.api.path}payments/create-preference/`,
+        endpoint: `${appConfig.api.path}payments/preferences/create`,
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -23,6 +27,20 @@ export const setPurchase = () => (dispatch, getState) => {
     });
   } else {
     dispatch(modalPurchaseOpen());
-    console.log('metodo de pago', paymentType);
   }
+};
+
+export const getPreference = () => (dispatch, getState) => {
+  const { id } = getState().purchase.preference;
+  dispatch({
+    [CALL_API]: {
+      endpoint: `${appConfig.api.path}payments/preferences/${id}`,
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      },
+      types: [getPreferenceRequest, getPreferenceSuccess, 'FAILURE']
+    }
+  });
 };

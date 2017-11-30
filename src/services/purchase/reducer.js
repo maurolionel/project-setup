@@ -3,6 +3,8 @@ import {
   DELETE_PURCHASE,
   CREATE_PREFERENCE_REQUEST,
   CREATE_PREFERENCE_SUCCESS,
+  GET_PREFERENCE_REQUEST,
+  GET_PREFERENCE_SUCCESS,
   SET_INPUT_VALUE,
   SELECT_PAYMENT
 } from './actionTypes';
@@ -24,7 +26,10 @@ const initialState = {
     shippingMethod: 0
   },
   paymentType: 0,
-  url: '',
+  preference: {
+    id: '',
+    url: ''
+  },
   isLoadingMP: false
 };
 
@@ -35,6 +40,7 @@ function purchaseReducer(state = initialState, action = {}) {
         ...state,
         paymentType: action.payload.paymentType
       };
+    case GET_PREFERENCE_REQUEST:
     case CREATE_PREFERENCE_REQUEST:
       return {
         ...state,
@@ -43,9 +49,16 @@ function purchaseReducer(state = initialState, action = {}) {
     case CREATE_PREFERENCE_SUCCESS:
       return {
         ...state,
-        url: action.payload,
+        preference: {
+          ...state.preference,
+          id: action.payload.id,
+          url: action.payload.url
+        },
         isLoadingMP: false
       };
+    case GET_PREFERENCE_SUCCESS:
+      console.log('GET_PREFERENCE_SUCCESS', action.payload);
+      return state;
     case SET_INPUT_VALUE:
       return {
         ...state,

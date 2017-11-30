@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Modal from '../Modal';
-import Title from '../Title';
 import Preloader from '../Preloader';
 import Button from '../Button';
 
@@ -16,10 +15,14 @@ const Iframe = styled.iframe.attrs({
 `;
 
 const ModalPayment = ({ url, isOpen, isLoading, onPurchaseEnd }) => isOpen && (
-  <Modal className="mercadopago" isDismissible={false}>
-    <Title>Datos para el pago</Title>
-    {isLoading ? <Preloader /> : <Iframe src={url} />}
-    <Button onClick={onPurchaseEnd} primary>Finalizar</Button>
+  <Modal className="mercadopago" title="Datos para el pago" isDismissible={false}>
+    {isLoading
+      ? <Preloader />
+      : <div>
+        <Iframe src={url} />
+        <Button onClick={onPurchaseEnd} primary>Finalizar compra</Button>
+      </div>
+    }
   </Modal>
 );
 

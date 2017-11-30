@@ -4,6 +4,8 @@ import {
   DELETE_PURCHASE,
   CREATE_PREFERENCE_REQUEST,
   CREATE_PREFERENCE_SUCCESS,
+  GET_PREFERENCE_REQUEST,
+  GET_PREFERENCE_SUCCESS,
   SET_INPUT_VALUE,
   SELECT_PAYMENT
 } from './actionTypes';
@@ -36,5 +38,19 @@ export const createPreferenceSuccess = {
   type: CREATE_PREFERENCE_SUCCESS,
   payload: (action, state, response) =>
     getJSON(response)
-      .then(json => json.response.init_point)
+      .then(json => ({
+        id: json.response.id,
+        url: json.response.init_point
+      }))
+};
+
+export const getPreferenceRequest = {
+  type: GET_PREFERENCE_REQUEST
+};
+
+export const getPreferenceSuccess = {
+  type: GET_PREFERENCE_SUCCESS,
+  payload: (action, state, response) =>
+    getJSON(response)
+      .then(json => json)
 };
