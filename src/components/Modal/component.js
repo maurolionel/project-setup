@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { darken } from 'polished';
 import Paper from '../Paper';
+import Title from '../Title';
 
 const Wrapper = styled.button`
   position: fixed;
@@ -61,6 +62,7 @@ const ButtonClose = styled.button`
 class Modal extends Component {
   static defaultProps = {
     className: '',
+    title: '',
     isDismissible: true
   }
 
@@ -79,6 +81,7 @@ class Modal extends Component {
             <ButtonClose onClick={this.props.onCloseAll}>
               <i className="fa fa-close" />
             </ButtonClose>}
+          {this.props.title && <Title>{this.props.title}</Title>}
           {this.props.children}
         </Content>
       </Wrapper>
@@ -89,6 +92,7 @@ class Modal extends Component {
 Modal.propTypes = {
   children: PropTypes.any.isRequired,
   className: PropTypes.string,
+  title: PropTypes.string,
   isDismissible: PropTypes.bool,
   onCloseAll: PropTypes.func.isRequired
 };
