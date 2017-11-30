@@ -11,7 +11,7 @@ const Feature = styled.div`
   padding: 0.5rem 1.5rem;
   border-right: 1px solid ${({ theme }) => theme.grayLighter};
   color: ${({ theme }) => theme.gray};
-  text-align: justify;
+  text-align: left;
   &:last-child {
     border-right: 0;
   }
@@ -37,8 +37,9 @@ const Title = styled.h3`
   text-transform: uppercase;
 `;
 
-const Description = styled.p`
+const Text = styled.p`
   font-size: 0.9rem;
+  line-height: 1.5;
 `;
 
 const Features = () => (
@@ -48,33 +49,31 @@ const Features = () => (
         <Icon className="feature--shipping fa fa-truck" />
         <Title>Envíos y entregas</Title>
       </Heading>
-      <Description>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </Description>
+      <Text>
+        Sistemas Imprek cuenta con servicio de envíos a todo el territorio nacional con el mejor tiempo de entrega y con las mejores tarifas del mercado.
+      </Text>
     </Feature>
     <Feature>
       <Heading>
         <Icon className="feature--payment fa fa-money" />
         <Title>Medios de pago</Title>
       </Heading>
-      <Description>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </Description>
+      <Text>
+        Contamos con gran variedad de medios y tipos de pago que le permiten seleccionar el de su preferencia.
+      </Text>
+      <Text>
+        Aceptamos tarjeta de crédito, débito, transferencia Bancaria, Mercado Pago y Efectivo.
+      </Text>
     </Feature>
     <Feature>
       <Heading>
         <Icon className="feature--service fa fa-comments-o" />
         <Title>Atención especializada</Title>
       </Heading>
-      <Description>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </Description>
+      <Text>
+        Con más de 20 años de experiencia en el rubro somos la única empresa que brinda atención especializada en sistemas continuos.
+        Nuestro plantel de técnicos en constante capacitación, hace posible brindar el servicio más completo, rápido y eficiente que existe en el mercado.
+      </Text>
     </Feature>
   </StyledFeatures>
 );
