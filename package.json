@@ -87,6 +87,7 @@
     "redux": "^3.6.0",
     "redux-api-middleware": "^1.0.3",
     "redux-logger": "^3.0.6",
+    "react-slick": "^0.15.4",
     "redux-thunk": "^2.2.0",
     "store": "^2.0.12",
     "styled-components": "^2.0.1",
