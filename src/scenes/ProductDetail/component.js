@@ -45,17 +45,22 @@ class ProductDetail extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { match: { params } } = this.props;
-    if (nextProps.products) {
-      const product = nextProps.products.find(aProduct =>
+    this.setProduct(nextProps);
+  }
+
+  setProduct = (props) => {
+    const { match: { params } } = props;
+    if (props.products) {
+      const product = props.products.find(aProduct =>
         convertStringToNumber(params.productId) === aProduct.id
       );
       this.setState({ product });
     }
-  }
+  };
 
   render() {
     const { product } = this.state;
+    if (!product) return null;
     const imagePath = `${this.props.staticPath}${product.categoryId}/${product.id}.jpg`;
     return (
       <Wrapper withoutChangingStateStyle>
