@@ -8,9 +8,9 @@ import Anchor from '../../../../components/Anchor';
 
 const Wrapper = styled.div`
   display: flex;
-  padding-bottom: 1.5rem;
-  margin-bottom: 2.5rem;
-  border-bottom: 1px solid ${({ theme }) => theme.grayLighter};
+  padding-top: 1.5rem;
+  margin-top: 2.5rem;
+  border-top: 1px solid ${({ theme }) => theme.grayLighter};
 `;
 
 const InfoBox = styled.div`
