@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Nav from './components/Nav';
 import NavLink from './components/NavLink';
 import Logo from '../../../../../../components/Logo';
-import Input from '../../../../../../components/Input';
+import Explorer from '../../../../../../components/Explorer';
 import ShoppingCartBadge from '../ShoppingCartBadge';
 import Icon from '../../../../../../components/Icon';
 
@@ -73,7 +73,7 @@ const NavBar = ({ totalProducts, isFixed }) => (
       <NavLink to="/contacto">Contacto</NavLink>
     </Nav>
     <SearchBarWrapper className={isFixed ? 'is-fixed' : ''}>
-      <Input type="search" placeholder="Buscar..." />
+      <Explorer />
     </SearchBarWrapper>
     <FixedNav className={isFixed ? 'is-fixed' : ''} totalProducts={totalProducts} />
   </StyledNavBar>
