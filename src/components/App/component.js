@@ -29,6 +29,10 @@ import ModalPayment from '../ModalPayment';
 import ModalPurchase from '../ModalPurchase';
 
 // assets
+import '../../assets/images/apple-icon-180x180.png';
+import '../../assets/images/favicon-16x16.png';
+import '../../assets/images/favicon-32x32.png';
+import '../../assets/images/favicon-96x96.png';
 import '../../assets/fonts/arial_rounded.ttf';
 import '../../assets/fonts/OpenSans-Light.ttf';
 import '../../assets/fonts/OpenSans-Regular.ttf';

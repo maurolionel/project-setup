@@ -59,7 +59,7 @@ export default new WebpackConfig()
           loader: 'file-loader?name=[path][name].[ext]&limit=1000'
         },
         {
-          test: /\.(jpe?g|png|gif|svg)$/i,
+          test: /\.(jpe?g|png|gif|svg|ico)$/i,
           exclude: [/node_modules/, 'src/assets/fonts'],
           loader: 'file-loader?name=[path][name].[ext]'
         }
