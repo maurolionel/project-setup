@@ -37,7 +37,7 @@ const Carousel = ({ slides }) => (
       slidesToShow={1}
       slidesToScroll={1}
     >
-      {slides.map(url => <img src={url} alt="imprek" />)}
+      {slides.map(url => <img key={url} src={url} alt="imprek" />)}
     </Slider>
   </Wrapper>
 );
