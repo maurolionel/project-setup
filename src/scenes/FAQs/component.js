@@ -6,7 +6,7 @@ import Collapsible from '../../components/Collapsible';
 const FAQs = ({ faqs }) => (
   <div>
     <Title>Preguntas Frecuentes</Title>
-    {!faqs.length
+    {faqs.length
       ? faqs.map(faq => <Collapsible key={faq.id} title={faq.question} content={faq.answer} />)
       : <p>No hay preguntas frecuentes.</p>
     }
