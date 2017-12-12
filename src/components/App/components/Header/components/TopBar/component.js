@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import TopBarNavLink from './components/TopBarNavLink';
 import ShoppingCartBadge from '../ShoppingCartBadge';
 import Icon from '../../../../../../components/Icon';
+import CartPopover from '../../../../../../components/CartPopover';
 
 const StyledTopBar = styled.div`
   position: relative;
@@ -21,42 +22,58 @@ const TopBarSection = styled.div`
 
 const TopBarLink = TopBarNavLink.withComponent(Link);
 
-const TopBar = ({ totalProducts, onOpenModalSchedules, onOpenModalShippings }) => {
-  const openModalSchedules = (event) => {
-    event.preventDefault();
-    onOpenModalSchedules();
-  };
-  const openModalShippings = (event) => {
-    event.preventDefault();
-    onOpenModalShippings();
+class TopBar extends PureComponent {
+  state = {
+    isCartPopooverVisible: false
   };
 
-  return (
-    <StyledTopBar>
-      <TopBarSection>
-        <TopBarLink to="#" onClick={openModalSchedules} title="Conocé nuestros horarios de atención">
-          <Icon className="fa fa-clock-o" />
-          Horarios
-        </TopBarLink>
-        <TopBarLink to="#" onClick={openModalShippings} title="Conocé nuestros métodos de envío">
-          <Icon className="fa fa-truck" />
-          Métodos de envío
-        </TopBarLink>
-        <TopBarLink to="/contacto" title="Llamanos, ¡tu consulta no molesta!">
-          <Icon className="fa fa-phone" />
-          Teléfono: (011) 3220.0500
-        </TopBarLink>
-      </TopBarSection>
-      <TopBarSection>
-        <TopBarNavLink to="/carrito" title="Tu carrito de compras">
-          <Icon className="fa fa-shopping-cart" placement="left" />
-          Carrito
-          <ShoppingCartBadge quantity={totalProducts} />
-        </TopBarNavLink>
-      </TopBarSection>
-    </StyledTopBar>
-  );
-};
+  openModalSchedules = (event) => {
+    event.preventDefault();
+    this.props.onOpenModalSchedules();
+  };
+
+  openModalShippings = (event) => {
+    event.preventDefault();
+    this.props.onOpenModalShippings();
+  };
+
+  showCartPopover = () => {
+    this.setState({ isCartPopooverVisible: true });
+  }
+
+  hideCartPopover = () => {
+    this.setState({ isCartPopooverVisible: false });
+  }
+
+  render() {
+    return (
+      <StyledTopBar>
+        <TopBarSection>
+          <TopBarLink to="#" onClick={this.openModalSchedules} title="Conocé nuestros horarios de atención">
+            <Icon className="fa fa-clock-o" />
+            Horarios
+          </TopBarLink>
+          <TopBarLink to="#" onClick={this.openModalShippings} title="Conocé nuestros métodos de envío">
+            <Icon className="fa fa-truck" />
+            Métodos de envío
+          </TopBarLink>
+          <TopBarLink to="/contacto" title="Llamanos, ¡tu consulta no molesta!">
+            <Icon className="fa fa-phone" />
+            Teléfono: (011) 3220.0500
+          </TopBarLink>
+        </TopBarSection>
+        <TopBarSection onMouseLeave={this.hideCartPopover} onMouseEnter={this.showCartPopover}>
+          <TopBarNavLink to="/carrito" title="Tu carrito de compras">
+            <Icon className="fa fa-shopping-cart" placement="left" />
+            Carrito
+            <ShoppingCartBadge quantity={this.props.totalProducts} />
+          </TopBarNavLink>
+          <CartPopover isVisible={this.state.isCartPopooverVisible} />
+        </TopBarSection>
+      </StyledTopBar>
+    );
+  }
+}
 
 TopBar.propTypes = {
   totalProducts: PropTypes.number.isRequired,
