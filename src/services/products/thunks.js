@@ -4,7 +4,7 @@ import appConfig from '../../config';
 
 export const getProducts = () => ({
   [CALL_API]: {
-    endpoint: `${appConfig.api.imprek}products`,
+    endpoint: `${appConfig.api.imprek}product/`,
     method: 'GET',
     credentials: 'include',
     headers: {

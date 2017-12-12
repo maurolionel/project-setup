@@ -11,7 +11,7 @@ function productsReducer(state = initialState, action) {
     case GET_PRODUCTS_SUCCESS:
       return {
         ...state,
-        all: action.payload.map(mapProductFromApiToState),
+        all: action.payload.result.map(mapProductFromApiToState),
         isFetching: false,
         isFetchingError: false
       };
