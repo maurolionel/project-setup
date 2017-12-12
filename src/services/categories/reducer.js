@@ -1,14 +1,13 @@
 import { GET_CATEGORIES } from './actionTypes';
-import { convertStringToNumber } from '../utils';
+import { convertStringToNumber, replaceSpaceWithMiddleDash } from '../utils';
 
 const initialState = {
   all: null
 };
 
-const mapCategoryFromApiToState = ({ id, name, is_active }) => ({
+const mapCategoryFromApiToState = ({ id, name }) => ({
   id: convertStringToNumber(id),
-  name,
-  isActive: Boolean(convertStringToNumber(is_active))
+  name: replaceSpaceWithMiddleDash(name).toLowerCase()
 });
 
 function categoriesReducer(state = initialState, action = {}) {
@@ -16,7 +15,7 @@ function categoriesReducer(state = initialState, action = {}) {
     case GET_CATEGORIES: {
       return {
         ...state,
-        all: action.payload.result.map(mapCategoryFromApiToState)
+        all: action.payload.map(mapCategoryFromApiToState)
       };
     }
     default: {

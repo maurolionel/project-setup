@@ -12,7 +12,7 @@ const saveCategoriesInStore = {
 /* eslint-disable import/prefer-default-export */
 export const getCategories = () => ({
   [CALL_API]: {
-    endpoint: `${appConfig.api.path}categories/`,
+    endpoint: `${appConfig.api.imprek}venta/categories`,
     method: 'GET',
     credentials: 'include',
     headers: {
