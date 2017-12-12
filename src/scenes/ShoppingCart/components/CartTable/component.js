@@ -79,7 +79,7 @@ const CartTable = ({
               <td>
                 <FlexCenter>
                   <Link to={`productos/${getCategoryNameById(aProduct.categoryId)}/${aProduct.id}`} title="Ver producto">
-                    <ProductImage src={`${staticPath}${aProduct.categoryId}/${aProduct.id}.jpg`} />
+                    <ProductImage src={aProduct.images[0]} />
                   </Link>
                   {aProduct.name}
                 </FlexCenter>

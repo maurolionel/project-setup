@@ -92,15 +92,15 @@ const OfferBadge = styled.span`
   transition: opacity 0.2s, background-color 0.2s;
 `;
 
-const Card = ({ product, productUrl, imagePath }) => (
+const Card = ({ product, productUrl }) => (
   <StyledCard>
     <LinkImage to={productUrl}>
       {product.isOfferMode && <OfferBadge className="offer-badge">¡oferta!</OfferBadge>}
-      <img src={imagePath} alt={product.name} />
+      <img src={product.images[0]} alt={product.name} />
     </LinkImage>
     <Details>
       <Price>
-        <FormattedNumber value={product.price} style="currency" currency="USD" />
+        <FormattedNumber value={product.prices[0]['Mayorista'].tax} style="currency" currency="USD" />
       </Price>
       <LinkName to={productUrl}>{product.name}</LinkName>
       <Description>{product.description}</Description>
@@ -115,8 +115,7 @@ const Card = ({ product, productUrl, imagePath }) => (
 
 Card.propTypes = {
   product: PropTypes.object.isRequired,
-  productUrl: PropTypes.string.isRequired,
-  imagePath: PropTypes.string.isRequired
+  productUrl: PropTypes.string.isRequired
 };
 
 export default Card;

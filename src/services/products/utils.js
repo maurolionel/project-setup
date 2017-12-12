@@ -9,14 +9,11 @@ export const initialState = {
 
 export const mapProductFromApiToState = aProduct => ({
   id: convertStringToNumber(aProduct.id),
-  mlId: convertStringToNumber(aProduct.mlId),
-  categoryId: convertStringToNumber(aProduct.category_id),
-  brandId: convertStringToNumber(aProduct.brand_id),
+  categoryId: convertStringToNumber(aProduct.categoryId),
+  brandId: convertStringToNumber(aProduct.brandId),
   name: aProduct.name,
-  price: convertStringToNumber(aProduct.price),
-  date: aProduct.date,
+  prices: aProduct.prices,
+  images: aProduct.images,
   description: aProduct.description || 'Sin descripción',
-  isActive: Boolean(convertStringToNumber(aProduct.is_active)),
-  isOfferMode: Boolean(convertStringToNumber(aProduct.is_offer_mode)),
-  hasStock: Boolean(convertStringToNumber(aProduct.has_stock))
+  hasStock: Boolean(convertStringToNumber(aProduct.hasStock))
 });

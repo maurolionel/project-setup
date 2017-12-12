@@ -2,11 +2,9 @@ import { connect } from 'react-redux';
 import CartTable from './component';
 import { shoppingCartIncreaseThunk, shoppingCartDecreaseThunk } from '../../../../services/shoppingCart/thunks';
 import { shoppingCartRemove } from '../../../../services/shoppingCart/actions';
-import config from '../../../../config';
 
 const mapStateToProps = ({ shoppingCart, categories }) => ({
   products: shoppingCart.all,
-  staticPath: `${config.api.path}images/`,
   categories: categories.all
 });
 
@@ -16,9 +14,6 @@ const mapDispatchToProps = dispatch => ({
   onRemoveFromCart: productId => dispatch(shoppingCartRemove({ product: { id: productId } }))
 });
 
-const CartTableContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CartTable);
+const CartTableContainer = connect(mapStateToProps, mapDispatchToProps)(CartTable);
 
 export default CartTableContainer;

@@ -6,7 +6,7 @@ import SearchResult from '../../components/SearchResult';
 
 const Section = styled.section`
   display: flex;
-  position: relattive;
+  position: relative;
 `;
 
 const Overlay = styled.div`
