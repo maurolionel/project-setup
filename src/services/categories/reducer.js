@@ -5,9 +5,11 @@ const initialState = {
   all: null
 };
 
-const mapCategoryFromApiToState = ({ id, name }) => ({
+const mapCategoryFromApiToState = ({ id, name, cover, priority }) => ({
   id: convertStringToNumber(id),
-  name: replaceSpaceWithMiddleDash(name).toLowerCase()
+  cover,
+  name: replaceSpaceWithMiddleDash(name).toLowerCase(),
+  priority: convertStringToNumber(priority)
 });
 
 function categoriesReducer(state = initialState, action = {}) {
@@ -15,7 +17,7 @@ function categoriesReducer(state = initialState, action = {}) {
     case GET_CATEGORIES: {
       return {
         ...state,
-        all: action.payload.map(mapCategoryFromApiToState)
+        all: action.payload.result.map(mapCategoryFromApiToState)
       };
     }
     default: {

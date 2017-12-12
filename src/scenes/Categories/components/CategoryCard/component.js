@@ -31,7 +31,7 @@ const Name = styled(Title)`
 
 const CategoryCard = ({ category }) => (
   <CardLink to={`/productos/${category.name}`}>
-    <Picture src={`${config.api.path}images/${category.id}/cover.jpg`} />
+    <Picture src={category.cover} />
     <Name>{replaceMiddleDashWithSpace(category.name)}</Name>
   </CardLink>
 );
