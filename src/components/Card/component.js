@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { lighten } from 'polished';
 import { FormattedNumber } from 'react-intl';
+import isEmpty from 'lodash.isempty';
 import Paper from '../Paper';
 import ButtonCart from '../ButtonCart';
 import LinkCustom from '../Link';
@@ -100,7 +101,7 @@ const Card = ({ product, productUrl }) => (
     </LinkImage>
     <Details>
       <Price>
-        <FormattedNumber value={product.prices[0]['Mayorista'].tax} style="currency" currency="USD" />
+        <FormattedNumber value={!isEmpty(product.prices) && product.prices.Minorista.tax} style="currency" currency="USD" />
       </Price>
       <LinkName to={productUrl}>{product.name}</LinkName>
       <Description>{product.description}</Description>
