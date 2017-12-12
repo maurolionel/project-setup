@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Information from './components/Information';
 import InfoTitle from './components/InfoTitle';
-import Label from '../../components/Label';
+import Alert from '../../components/Alert';
 import Input from '../../components/Input';
+import Label from '../../components/Label';
 import Select from '../../components/Select';
 import Textarea from '../../components/Textarea';
 
 const Wrapper = styled.div`
   display: flex;
-  padding: 0 1.3rem;
 `;
 
 const Form = styled.form`
@@ -38,6 +38,10 @@ const Map = styled.div`
 `;
 
 class Contact extends PureComponent {
+  state = {
+    isValidEmail: true
+  };
+
   handleInputChange = ({ target }) => {
     this.props.onInputValueChange({
       name: target.name,
@@ -47,10 +51,28 @@ class Contact extends PureComponent {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmitForm();
+    if (this.isFormReadyToSubmit()) this.props.onSubmitForm();
+  };
+
+  isFormReadyToSubmit = () => {
+    const { email, message, name, surname, isLoading } = this.props;
+    return email && this.state.isValidEmail && message && name && surname && !isLoading;
+  }
+
+  isValidEmail = () => {
+    const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    this.setState({ isValidEmail: reg.test(this.props.email) });
+  }
+
+  shouldShowAlert = () => {
+    if (this.props.isError) return 'alert-danger';
+    if (this.props.isSuccess) return 'alert-success';
+    return false;
   };
 
   render() {
+    const { alertMessage, email, message, name, surname, reason, isLoading } = this.props;
+    const alertClassName = this.shouldShowAlert();
     return (
       <div>
         <Wrapper>
@@ -58,32 +80,43 @@ class Contact extends PureComponent {
             <InfoTitle>Envianos tu consulta</InfoTitle>
             <InputColumn>
               <InputRow>
-                <Label htmlFor="name">Nombre:</Label>
-                <Input name="name" id="name" type="text" onChange={this.handleInputChange} />
+                <Label htmlFor="name">Nombre *</Label>
+                <Input value={name} name="name" id="name" type="text" onChange={this.handleInputChange} />
               </InputRow>
               <InputRow>
-                <Label htmlFor="surname">Apellido:</Label>
-                <Input name="surname" id="surname" type="text" onChange={this.handleInputChange} />
+                <Label htmlFor="surname">Apellido *</Label>
+                <Input value={surname} name="surname" id="surname" type="text" onChange={this.handleInputChange} />
               </InputRow>
             </InputColumn>
             <InputRow>
-              <Label htmlFor="email">E-mail:</Label>
-              <Input name="email" id="email" type="text" onChange={this.handleInputChange} />
+              <Label htmlFor="email">E-mail *</Label>
+              <Input value={email} name="email" id="email" type="email" onChange={this.handleInputChange} onBlur={this.isValidEmail} />
+              {!this.state.isValidEmail && 'E-mail inválido'}
             </InputRow>
             <InputRow>
-              <Label htmlFor="reason">Seleccioná el motivo de tu consulta:</Label>
-              <Select name="reason" id="reason" onChange={this.handleInputChange}>
+              <Label htmlFor="reason">Seleccioná el motivo de tu consulta *</Label>
+              <Select value={reason} name="reason" id="reason" onChange={this.handleInputChange}>
                 <option value="0">Ventas</option>
                 <option value="1">Soporte técnico</option>
               </Select>
             </InputRow>
             <InputRow>
-              <Label htmlFor="message">Mensaje:</Label>
-              <Textarea name="message" id="message" onChange={this.handleInputChange} />
+              <Label htmlFor="message">Mensaje *</Label>
+              <Textarea value={message} name="message" id="message" onChange={this.handleInputChange} />
             </InputRow>
             <InputRow>
-              <Input type="submit" value="Enviar consulta" primary />
+              <Input
+                type="submit"
+                value={isLoading ? 'Enviando' : 'Enviar consulta'}
+                primary
+                disabled={isLoading || !this.state.isValidEmail || !this.isFormReadyToSubmit()}
+              />
             </InputRow>
+            {alertClassName &&
+              <InputRow>
+                <Alert className={alertClassName}>{alertMessage}</Alert>
+              </InputRow>
+            }
           </Form>
           <Map>
             <InfoTitle>¿Cómo llegar?</InfoTitle>
@@ -92,7 +125,7 @@ class Contact extends PureComponent {
               width="600"
               height="450"
               frameBorder="0"
-              style={{ border: 0 }}
+              style={{ width: '100%', border: 0 }}
               title="Mapa"
               allowFullScreen
             />
@@ -105,6 +138,15 @@ class Contact extends PureComponent {
 }
 
 Contact.propTypes = {
+  alertMessage: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  reason: PropTypes.string.isRequired,
+  surname: PropTypes.string.isRequired,
+  isError: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isSuccess: PropTypes.bool.isRequired,
   onInputValueChange: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired
 };

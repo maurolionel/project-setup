@@ -14,6 +14,7 @@ const Wrapper = styled.div`
 `;
 
 const InfoBox = styled.div`
+  display: ${props => (props.hidden ? 'none' : 'block')};
   flex: 1;
   padding: 0.5rem 1rem;
   margin: 0.3rem;
@@ -102,7 +103,7 @@ const Information = ({ onOpenModalSchedules, onOpenModalShippings }) => {
         </InfoList>
       </InfoBox>
 
-      <InfoBox>
+      <InfoBox hidden>
         <InfoTitle>¡Quiero que me llamen!</InfoTitle>
         <CustomInfoList>
           <InfoListItem>

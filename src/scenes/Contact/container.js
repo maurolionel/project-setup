@@ -2,14 +2,24 @@ import { connect } from 'react-redux';
 import Contact from './component';
 import { updateInputValue } from '../../services/contact/actions';
 import { submitForm } from '../../services/contact/thunks';
+import { MESSAGE_ERROR, MESSAGE_SUCCESS } from '../../services/contact/constants';
 
-const mapStateToProps = ({ contact: { data } }) => ({
-  name: data.name,
-  surname: data.surname,
-  email: data.email,
-  reason: data.reason,
-  message: data.message
-});
+const mapStateToProps = ({ contact }) => {
+  const { name, surname, email, reason, message } = contact.data;
+  const { isError, isLoading, isSuccess } = contact;
+  const alertMessage = (isError && MESSAGE_ERROR) || (isSuccess && MESSAGE_SUCCESS);
+  return {
+    alertMessage,
+    email,
+    message,
+    name,
+    reason,
+    surname,
+    isError,
+    isLoading,
+    isSuccess
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   onInputValueChange: data => dispatch(updateInputValue(data)),

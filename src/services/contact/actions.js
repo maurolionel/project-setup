@@ -8,8 +8,8 @@ export const submitFormRequest = {
 export const submitFormSuccess = {
   type: SUBMIT_FORM_SUCCESS,
   payload: (action, state, response) =>
-  getJSON(response)
-  .then(json => json)
+    getJSON(response)
+      .then(json => json)
 };
 
 export const submitFormError = {
