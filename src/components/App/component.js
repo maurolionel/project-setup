@@ -12,6 +12,7 @@ import Breadcrumb from '../Breadcrumb';
 // scenes
 import Categories from '../../scenes/Categories';
 import Contact from '../../scenes/Contact';
+import ExploreResult from '../../scenes/ExploreResult';
 import FAQs from '../../scenes/FAQs';
 import Home from '../../scenes/Home';
 import NotFound from '../../scenes/NotFound';
@@ -135,6 +136,7 @@ class App extends Component {
               <Route exact path="/soporte" component={Support} />
               <Route exact path="/contacto" component={Contact} />
 
+              <Route exact path="/buscar/:query" component={ExploreResult} />
               <Route exact path="/ayuda" component={FAQs} />
 
               <Route exact path="/" component={Home} />

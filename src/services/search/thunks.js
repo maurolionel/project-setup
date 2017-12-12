@@ -1,4 +1,9 @@
+import { push } from 'react-router-redux';
+import { searchQuerySuccess } from './actions';
+import { replaceSpaceWithMiddleDash } from '../utils';
+
 export const searchQuery = query => (dispatch, getState) => {
-  console.log('query', query);
-  console.log('state', getState());
+  const trimmedQuery = replaceSpaceWithMiddleDash(query);
+  dispatch(searchQuerySuccess({ query: trimmedQuery }));
+  dispatch(push(`/buscar/${trimmedQuery}`));
 };

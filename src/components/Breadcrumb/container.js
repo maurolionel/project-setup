@@ -5,9 +5,6 @@ const mapStateToProps = ({ routing: { location: { pathname } } }) => ({
   pathname
 });
 
-const BreadcrumbContainer = connect(
-  mapStateToProps,
-  null
-)(Breadcrumb);
+const BreadcrumbContainer = connect(mapStateToProps, null)(Breadcrumb);
 
 export default BreadcrumbContainer;

@@ -10,7 +10,7 @@ const BreadcrumbList = styled.ul`
   display: flex;
   list-style: none;
   padding: 0;
-  margin: 0 0 1.5rem;
+  margin: 0 0 2.3rem;
   color: ${({ theme }) => lighten(0.2, theme.gray)};
   font-size: 0.9rem;
 `;
@@ -25,11 +25,13 @@ const config = {
     '/carrito': 'Tu carrito de compras',
     '/ingresar': 'Ingresá a tu cuenta',
     '/registrarse': 'Creá una cuenta',
-    '/ayuda': 'Preguntas frecuentes'
+    '/ayuda': 'Preguntas frecuentes',
+    '/buscar': 'Búsqueda'
   },
   dynamicRoutesMap: {
     '/productos/:categoryName': match => replaceMiddleDashWithSpace(match.categoryName),
-    '/productos/:categoryName/:productId': 'N° {{productId}}'
+    '/productos/:categoryName/:productId': 'N° {{productId}}',
+    '/buscar/:query': '{{query}}'
   },
   notFound: 'La página no existe',
   Breadcrumb: BreadcrumbList,
