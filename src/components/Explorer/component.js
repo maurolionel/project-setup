@@ -6,7 +6,10 @@ class Explorer extends PureComponent {
   handleSubmit = (event) => {
     event.preventDefault();
     const trimmedValue = event.target.search.value.trim();
-    if (trimmedValue) this.props.onSubmit(trimmedValue);
+    if (trimmedValue) {
+      this.props.onSubmit(trimmedValue);
+      event.target.search.value = '';
+    }
   };
 
   render() {
