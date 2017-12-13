@@ -31,7 +31,7 @@ const config = {
   dynamicRoutesMap: {
     '/productos/:categoryName': match => replaceMiddleDashWithSpace(match.categoryName),
     '/productos/:categoryName/:productId': 'N° {{productId}}',
-    '/buscar/:query': '{{query}}'
+    '/buscar/:query': 'Resultado'
   },
   notFound: 'La página no existe',
   Breadcrumb: BreadcrumbList,

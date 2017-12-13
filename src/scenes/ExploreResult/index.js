@@ -1,3 +1,3 @@
-import ExploreResult from './component';
+import ExploreResult from './container';
 
 export default ExploreResult;

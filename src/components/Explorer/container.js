@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import Explorer from './component';
-import { searchQuery } from '../../services/search/thunks';
+import { replaceSpaceWithMiddleDash } from '../../services/utils';
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: query => dispatch(searchQuery(query))
+  onSubmit: query => dispatch(push(`/buscar/${replaceSpaceWithMiddleDash(query)}`))
 });
 
 const ExplorerContainer = connect(null, mapDispatchToProps)(Explorer);

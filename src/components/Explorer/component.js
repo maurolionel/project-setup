@@ -5,8 +5,8 @@ import Input from '../../components/Input';
 class Explorer extends PureComponent {
   handleSubmit = (event) => {
     event.preventDefault();
-    const { value } = event.target.search;
-    if (value) this.props.onSubmit(value);
+    const trimmedValue = event.target.search.value.trim();
+    if (trimmedValue) this.props.onSubmit(trimmedValue);
   };
 
   render() {
