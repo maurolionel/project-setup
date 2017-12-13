@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import brands from './brands/reducer';
+import cartPopover from '../components/CartPopover/reducer';
 import categories from './categories/reducer';
 import contact from './contact/reducer';
 import faqs from './faqs/reducer';
@@ -13,6 +14,10 @@ import search from './search/reducer';
 import shippings from './shippings/reducer';
 import shoppingCart from './shoppingCart/reducer';
 import support from './support/reducer';
+
+const ui = combineReducers({
+  cartPopover
+});
 
 const rootReducer = combineReducers({
   routing,
@@ -28,7 +33,8 @@ const rootReducer = combineReducers({
   search,
   shippings,
   shoppingCart,
-  support
+  support,
+  ui
 });
 
 export default rootReducer;

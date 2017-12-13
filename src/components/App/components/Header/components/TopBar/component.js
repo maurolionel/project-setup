@@ -23,10 +23,6 @@ const TopBarSection = styled.div`
 const TopBarLink = TopBarNavLink.withComponent(Link);
 
 class TopBar extends PureComponent {
-  state = {
-    isCartPopooverVisible: false
-  };
-
   openModalSchedules = (event) => {
     event.preventDefault();
     this.props.onOpenModalSchedules();
@@ -38,11 +34,11 @@ class TopBar extends PureComponent {
   };
 
   showCartPopover = () => {
-    this.setState({ isCartPopooverVisible: true });
+    this.props.onShowCartPopover();
   }
 
   hideCartPopover = () => {
-    this.setState({ isCartPopooverVisible: false });
+    this.props.onHideCartPopover();
   }
 
   render() {
@@ -68,7 +64,7 @@ class TopBar extends PureComponent {
             Carrito
             <ShoppingCartBadge quantity={this.props.totalProducts} />
           </TopBarNavLink>
-          <CartPopover isVisible={this.state.isCartPopooverVisible} />
+          <CartPopover />
         </TopBarSection>
       </StyledTopBar>
     );
@@ -77,8 +73,10 @@ class TopBar extends PureComponent {
 
 TopBar.propTypes = {
   totalProducts: PropTypes.number.isRequired,
+  onHideCartPopover: PropTypes.func.isRequired,
   onOpenModalSchedules: PropTypes.func.isRequired,
-  onOpenModalShippings: PropTypes.func.isRequired
+  onOpenModalShippings: PropTypes.func.isRequired,
+  onShowCartPopover: PropTypes.func.isRequired
 };
 
 export default TopBar;

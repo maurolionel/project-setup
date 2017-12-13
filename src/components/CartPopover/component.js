@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import CartList from './components/CartList';
 import Paper from '../Paper';
-import Button from '../Button';
 
 const Popover = styled.div`
   position: absolute;
@@ -23,61 +23,21 @@ const Popover = styled.div`
   }
 `;
 
-const Table = ({ products, onIncreaseQuantity, onDecreaseQuantity, onRemoveProduct }) => (
-  <table>
-    <thead>
-      <tr>
-        <th colSpan="2">Producto</th>
-        <th>Cantidad</th>
-        <th />
-      </tr>
-    </thead>
-    <tbody>
-      {products.map(aProduct => (
-        <tr key={aProduct.id}>
-          <td><img src={aProduct.images[0]} alt={aProduct.name} /></td>
-          <td>{aProduct.name}</td>
-          <td>
-            <div style={{ display: 'flex' }}>
-              <Button onClick={onDecreaseQuantity}>-</Button>
-              {aProduct.quantity}
-              <Button onClick={onIncreaseQuantity}>+</Button>
-            </div>
-          </td>
-          <td>
-            <Button onClick={onRemoveProduct}>X</Button>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-);
 
-Table.propTypes = {
-  products: PropTypes.array.isRequired,
-  onIncreaseQuantity: PropTypes.func,
-  onDecreaseQuantity: PropTypes.func,
-  onRemoveProduct: PropTypes.func
+const CartPopover = ({ canMount, isCartEmpty, isVisible }) => {
+  if (!canMount) return null;
+  return (
+    <Popover className={isVisible ? 'is-visible' : ''}>
+      <Paper>
+        {isCartEmpty ? <CartList /> : <p>Tu carrito está vacío.</p>}
+      </Paper>
+    </Popover>
+  );
 };
-
-Table.defaultProps = {
-  onIncreaseQuantity: () => console.log('SUMA 1'),
-  onDecreaseQuantity: () => console.log('RESTA 1'),
-  onRemoveProduct: () => console.log('ELIMINA')
-};
-
-const CartPopover = ({ products, isVisible }) => (
-  <Popover className={isVisible ? 'is-visible' : ''}>
-    <Paper>
-      {products.length
-        ? <Table products={products} />
-        : <p>Tu carrito está vacío.</p>}
-    </Paper>
-  </Popover>
-);
 
 CartPopover.propTypes = {
-  products: PropTypes.array.isRequired,
+  canMount: PropTypes.bool.isRequired,
+  isCartEmpty: PropTypes.bool.isRequired,
   isVisible: PropTypes.bool.isRequired
 };
 

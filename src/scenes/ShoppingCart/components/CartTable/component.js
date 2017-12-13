@@ -37,7 +37,6 @@ const FlexCenter = styled.div`
 
 const CartTable = ({
   products,
-  staticPath,
   categories,
   isInteractive,
   onRemoveFromCart,
@@ -122,7 +121,6 @@ const CartTable = ({
 
 CartTable.propTypes = {
   products: PropTypes.func.isRequired,
-  staticPath: PropTypes.string.isRequired,
   categories: PropTypes.array,
   isInteractive: PropTypes.bool,
   onRemoveFromCart: PropTypes.func.isRequired,
