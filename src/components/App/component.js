@@ -135,8 +135,9 @@ class App extends Component {
               <Route exact path="/ofertas" component={Products} />
               <Route exact path="/soporte" component={Support} />
               <Route exact path="/contacto" component={Contact} />
-
+              <Route exact path="/buscar" component={ExploreResult} />
               <Route exact path="/buscar/:query" component={ExploreResult} />
+
               <Route exact path="/ayuda" component={FAQs} />
 
               <Route exact path="/" component={Home} />

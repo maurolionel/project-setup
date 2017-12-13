@@ -9,6 +9,7 @@ import faqs from './faqs/reducer';
 import modals from './modals/reducer';
 import paymentTypes from './paymentTypes/reducer';
 import places from './places/reducer';
+import productDetail from '../scenes/ProductDetail/reducer';
 import products from './products/reducer';
 import purchase from './purchase/reducer';
 import shippings from './shippings/reducer';
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   modals,
   paymentTypes,
   places,
+  productDetail,
   products,
   purchase,
   shippings,

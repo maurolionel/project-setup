@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { convertStringToNumber } from '../../services/utils';
 import Pictures from './components/Pictures';
 import AddToCartSection from './components/AddToCartSection';
 import AdditionalInfoSection from './components/AdditionalInfoSection';
 import TechnicalDetails from './components/TechnicalDetails';
 import BoxContent from './components/BoxContent';
 import Paper from '../../components/Paper';
+import Preloader from '../../components/Preloader';
 
 const technicalDetailsData = [
   'Simple setup — 1.44" color LCD.',
@@ -35,32 +35,20 @@ const MainInfo = styled.div`
 `;
 
 class ProductDetail extends PureComponent {
-  constructor(props) {
-    super(props);
-    const { products, match: { params } } = this.props;
-    const product = products
-      ? products.find(aProduct => convertStringToNumber(params.productId) === aProduct.id)
-      : {};
-    this.state = { product };
+  componentDidMount() {
+    this.props.getProductDetail();
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setProduct(nextProps);
+    if (nextProps.match.params.productId !== this.props.match.params.productId) {
+      this.props.getProductDetail();
+    }
   }
 
-  setProduct = (props) => {
-    const { match: { params } } = props;
-    if (props.products) {
-      const product = props.products.find(aProduct =>
-        convertStringToNumber(params.productId) === aProduct.id
-      );
-      this.setState({ product });
-    }
-  };
-
   render() {
-    const { product } = this.state;
+    const { product, isLoading } = this.props;
     if (!product) return null;
+    if (isLoading) return <Preloader />;
     return (
       <Wrapper withoutChangingStateStyle>
         <MainInfo>
@@ -82,12 +70,14 @@ class ProductDetail extends PureComponent {
 }
 
 ProductDetail.propTypes = {
-  products: PropTypes.array,
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
+  product: PropTypes.object,
+  isLoading: PropTypes.bool.isRequired,
+  getProductDetail: PropTypes.func.isRequired
 };
 
 ProductDetail.defaultProps = {
-  products: []
+  product: {}
 };
 
 export default ProductDetail;
