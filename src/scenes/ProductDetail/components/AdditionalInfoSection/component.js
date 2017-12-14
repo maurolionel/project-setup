@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import Title from '../../../../components/Title';
 
 const Wrapper = styled.div`
-  padding: 2rem;
+  display: flex;
+  align-items: baseline;
+  padding: 1.5rem 2rem;
   border-top: 1px solid ${({ theme }) => theme.whiteGray};
   color: ${({ theme }) => theme.gray};
   background-color: ${({ theme }) => theme.base};
@@ -12,7 +14,9 @@ const Wrapper = styled.div`
   line-height: 1.5;
 
   > * {
+    flex: 3;
     margin: 0;
+    text-transform: capitalize;
   }
 
   ul {
@@ -27,7 +31,11 @@ const Wrapper = styled.div`
 `;
 
 const InfoTitle = styled(Title)`
-  margin: 0 0 1rem;
+  flex: 1;
+  overflow: hidden;
+  margin: 0 1rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const AdditionalInfoSection = ({ title, children }) => (
