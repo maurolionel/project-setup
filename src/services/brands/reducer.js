@@ -1,14 +1,14 @@
 import { GET_BRANDS } from './actionTypes';
-import { convertStringToNumber, replaceMiddleDashWithSpace } from '../utils';
+import { convertStringToNumber } from '../utils';
 
 const initialState = {
   all: []
 };
 
-const mapBrandFromApiToState = ({ id, name, is_active }) => ({
-  id: convertStringToNumber(id),
-  name: replaceMiddleDashWithSpace(name),
-  isActive: Boolean(convertStringToNumber(is_active))
+const mapBrandFromApiToState = brand => ({
+  ...brand,
+  id: convertStringToNumber(brand.id),
+  order: convertStringToNumber(brand.order)
 });
 
 function brandsReducer(state = initialState, action = {}) {

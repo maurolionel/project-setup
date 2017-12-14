@@ -11,7 +11,7 @@ function supportReducer(state = initialState, action = {}) {
     case GET_GUIDES_SUCCESS:
       return {
         ...state,
-        guides: action.payload.result.map(mapGuidesFromApi),
+        guides: action.payload,
         isLoadingGuides: false
       };
     case GET_GUIDES_ERROR:

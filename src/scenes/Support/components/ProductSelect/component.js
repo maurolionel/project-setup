@@ -57,7 +57,6 @@ class ProductSelect extends PureComponent {
               items={guides}
               placeholder="Buscá y seleccioná tu modelo de impresora"
               withQuantity
-              disabled={!guides.length}
               onChange={onSelectGuideResult}
             />
           </FormBlock>

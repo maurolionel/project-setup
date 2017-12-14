@@ -4,7 +4,7 @@ import appConfig from '../../config';
 
 export const getGuides = brandId => ({
   [CALL_API]: {
-    endpoint: `${appConfig.api.path}guides/brands/${brandId}`,
+    endpoint: `${appConfig.api.imprek}product/model/brand/${brandId}`,
     method: 'GET',
     credentials: 'include',
     headers: {
