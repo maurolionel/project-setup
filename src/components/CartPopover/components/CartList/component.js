@@ -7,14 +7,25 @@ import Link from '../../../Link';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+`;
+
+const ScrollableTable = styled.div`
+  overflow: auto;
+  max-height: 350px;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid ${({ theme }) => theme.grayLighter};
 `;
 
 const Table = styled.table.attrs({
   cellSpacing: 0
 })`
-  margin-bottom: 0.5rem;
+  width: 100%;
   tbody tr:hover {
     background-color: ${({ theme }) => theme.whiteGray};
+  }
+  tr:last-child td {
+    border: none;
   }
   td, th {
     overflow: hidden;
@@ -40,35 +51,37 @@ const StyledLink = styled(Link)`
 
 const CartList = ({ products, onIncreaseQuantity, onDecreaseQuantity, onRemoveFromCart }) => (
   <Wrapper>
-    <Table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th colSpan="2">Producto</th>
-          <th>Cantidad</th>
-          <th />
-        </tr>
-      </thead>
-      <tbody>
-        {products.map((aProduct, index) => (
-          <tr key={aProduct.id} title={aProduct.name}>
-            <td>{index + 1}</td>
-            <td><img width="60" src={aProduct.images[0]} alt={aProduct.name} /></td>
-            <td>{aProduct.name}</td>
-            <td>
-              <div style={{ display: 'flex' }}>
-                <Button onClick={() => onDecreaseQuantity(aProduct.id)} disabled={aProduct.quantity <= 1}>-</Button>
-                <Quantity>{aProduct.quantity}</Quantity>
-                <Button onClick={() => onIncreaseQuantity(aProduct.id)}>+</Button>
-              </div>
-            </td>
-            <td>
-              <Button onClick={() => onRemoveFromCart(aProduct.id)}>X</Button>
-            </td>
+    <ScrollableTable>
+      <Table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th colSpan="2">Producto</th>
+            <th>Cantidad</th>
+            <th />
           </tr>
-        ))}
-      </tbody>
-    </Table>
+        </thead>
+        <tbody>
+          {products.map((aProduct, index) => (
+            <tr key={aProduct.id} title={aProduct.name}>
+              <td>{index + 1}</td>
+              <td><img width="60" src={aProduct.images[0]} alt={aProduct.name} /></td>
+              <td>{aProduct.name}</td>
+              <td>
+                <div style={{ display: 'flex' }}>
+                  <Button onClick={() => onDecreaseQuantity(aProduct.id)} disabled={aProduct.quantity <= 1}>-</Button>
+                  <Quantity>{aProduct.quantity}</Quantity>
+                  <Button onClick={() => onIncreaseQuantity(aProduct.id)}>+</Button>
+                </div>
+              </td>
+              <td>
+                <Button onClick={() => onRemoveFromCart(aProduct.id)}>X</Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </ScrollableTable>
     <StyledLink to="/carrito" primary>Comprar</StyledLink>
   </Wrapper>
 );

@@ -77,7 +77,7 @@ class AddToCartSection extends PureComponent {
         <StockLabel withStock={product.hasStock} />
         <Name>{product.name}</Name>
         <p>{product.description}</p>
-        <Price><FormattedNumber value={product.price} style="currency" currency="USD" /></Price>
+        <Price><FormattedNumber value={product.prices.Mayorista.tax} style="currency" currency="USD" /></Price>
         {product.hasStock
           ? (<div>
             <QuantityWrapper>

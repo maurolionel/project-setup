@@ -44,7 +44,7 @@ const CartTable = ({
   onIncreaseQuantity
 }) => {
   const getTotal = productsCollection => productsCollection
-    .map(aProduct => aProduct.price * aProduct.quantity)
+    .map(aProduct => aProduct.prices.Mayorista.tax * aProduct.quantity)
     .reduce((prevPrice, currentPrice) => prevPrice + currentPrice);
   const getCategoryNameById = id => categories && categories.find(c => id === c.id).name;
   return (
@@ -84,7 +84,7 @@ const CartTable = ({
                 </FlexCenter>
               </td>
               <td className="text-right">
-                <FormattedNumber value={aProduct.price} style="currency" currency="USD" />
+                <FormattedNumber value={aProduct.prices.Mayorista.tax} style="currency" currency="USD" />
               </td>
               <td className={isInteractive ? 'product-quantity' : 'text-center'}>
                 <span>{aProduct.quantity}</span>
@@ -100,7 +100,7 @@ const CartTable = ({
                 )}
               </td>
               <td className="text-right">
-                <FormattedNumber value={aProduct.price * aProduct.quantity} style="currency" currency="USD" />
+                <FormattedNumber value={aProduct.prices.Mayorista.tax * aProduct.quantity} style="currency" currency="USD" />
               </td>
             </tr>
           ))}

@@ -1,4 +1,4 @@
-import { CALL_API } from 'redux-api-middleware';
+import { RSAA } from 'redux-api-middleware';
 import {
   createPreferenceRequest,
   createPreferenceSuccess,
@@ -14,7 +14,7 @@ export const setPurchase = () => (dispatch, getState) => {
   if (paymentType === MERCADO_PAGO) {
     dispatch(modalPaymentOpen());
     dispatch({
-      [CALL_API]: {
+      [RSAA]: {
         endpoint: `${appConfig.api.path}payments/preferences/create`,
         method: 'POST',
         credentials: 'include',
@@ -33,7 +33,7 @@ export const setPurchase = () => (dispatch, getState) => {
 export const getPreference = () => (dispatch, getState) => {
   const { id } = getState().purchase.preference;
   dispatch({
-    [CALL_API]: {
+    [RSAA]: {
       endpoint: `${appConfig.api.path}payments/preferences/${id}`,
       method: 'GET',
       credentials: 'include',

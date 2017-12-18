@@ -1,4 +1,4 @@
-import { CALL_API, getJSON } from 'redux-api-middleware';
+import { RSAA, getJSON } from 'redux-api-middleware';
 import { GET_PROVINCES, GET_LOCATIONS } from './actionTypes';
 import appConfig from '../../config';
 
@@ -10,7 +10,7 @@ const saveProvincesInStore = {
 };
 
 export const getProvinces = () => ({
-  [CALL_API]: {
+  [RSAA]: {
     endpoint: `${appConfig.api.path}places/provinces/`,
     method: 'GET',
     credentials: 'include',
@@ -29,7 +29,7 @@ const saveLocationsInStore = {
 };
 
 export const getLocations = provinceId => ({
-  [CALL_API]: {
+  [RSAA]: {
     endpoint: `${appConfig.api.path}places/provinces/${provinceId}/locations/`,
     method: 'GET',
     credentials: 'include',

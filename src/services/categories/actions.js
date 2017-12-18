@@ -1,4 +1,4 @@
-import { CALL_API, getJSON } from 'redux-api-middleware';
+import { RSAA, getJSON } from 'redux-api-middleware';
 import { GET_CATEGORIES } from './actionTypes';
 import appConfig from '../../config';
 
@@ -11,7 +11,7 @@ const saveCategoriesInStore = {
 
 /* eslint-disable import/prefer-default-export */
 export const getCategories = () => ({
-  [CALL_API]: {
+  [RSAA]: {
     endpoint: `${appConfig.api.imprek}product/category`,
     method: 'GET',
     credentials: 'include',

@@ -8,8 +8,9 @@ const mapStateToProps = ({ productDetail }) => ({
   isLoading: productDetail.isLoading
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  getProductDetail: () => dispatch(getProductDetail(convertStringToNumber(ownProps.match.params.productId)))
+const mapDispatchToProps = dispatch => ({
+  getProductDetail: productId => dispatch(getProductDetail(productId)),
+  deleteProductDetail: () => dispatch({ type: 'DELETE' })
 });
 
 const ProductDetailsContainer = connect(mapStateToProps, mapDispatchToProps)(ProductDetails);

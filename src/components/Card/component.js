@@ -101,7 +101,7 @@ const Card = ({ product, productUrl }) => (
     </LinkImage>
     <Details>
       <Price>
-        <FormattedNumber value={!isEmpty(product.prices) && product.prices.Minorista.tax} style="currency" currency="USD" />
+        <FormattedNumber value={!isEmpty(product.prices) && product.prices.Mayorista.tax} style="currency" currency="USD" />
       </Price>
       <LinkName to={productUrl}>{product.name}</LinkName>
       <Description>{product.description}</Description>

@@ -1,5 +1,5 @@
 import { GET_PRODUCT_DETAILS_FAILURE, GET_PRODUCT_DETAILS_SUCCESS } from './actionTypes';
-import { convertStringToNumber } from '../../services/utils';
+import { convertStringToNumber, normalizePrices } from '../../services/utils';
 
 const initialState = {
   data: {},
@@ -10,7 +10,8 @@ const mapProductDetailResponse = product => ({
   ...product,
   id: convertStringToNumber(product.id),
   hasStock: Boolean(convertStringToNumber(product.hasStock)),
-  inOffer: Boolean(convertStringToNumber(product.inOffer))
+  inOffer: Boolean(convertStringToNumber(product.inOffer)),
+  prices: product.prices.reduce(normalizePrices, {})
 });
 
 export default function productDetail(state = initialState, action = {}) {
@@ -24,6 +25,11 @@ export default function productDetail(state = initialState, action = {}) {
       return {
         ...state,
         data: mapProductDetailResponse(action.payload.result[0]),
+        isLoading: false
+      };
+    case 'DELETE':
+      return {
+        ...initialState,
         isLoading: false
       };
     default:

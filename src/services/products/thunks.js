@@ -1,9 +1,9 @@
-import { CALL_API } from 'redux-api-middleware';
+import { RSAA } from 'redux-api-middleware';
 import { getProductsRequest, getProductsSuccess, getProductsError } from './actions';
 import appConfig from '../../config';
 
 export const getProducts = () => ({
-  [CALL_API]: {
+  [RSAA]: {
     endpoint: `${appConfig.api.imprek}product/`,
     method: 'GET',
     credentials: 'include',
@@ -18,7 +18,7 @@ export const getProductsOfCategory = categoryName => (dispatch, getState) => {
   const { categories } = getState();
   const categoryId = categories.all.find(c => categoryName === c.name).id;
   dispatch({
-    [CALL_API]: {
+    [RSAA]: {
       endpoint: `${appConfig.api.path}products/categories/${categoryId}`,
       method: 'GET',
       credentials: 'include',

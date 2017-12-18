@@ -1,11 +1,14 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
+import isEmpty from 'lodash.isempty';
 import Pictures from './components/Pictures';
 import AddToCartSection from './components/AddToCartSection';
 import AdditionalInfoSection from './components/AdditionalInfoSection';
 import Paper from '../../components/Paper';
 import Preloader from '../../components/Preloader';
+import { convertStringToNumber } from '../../services/utils';
 
 const Wrapper = styled(Paper)`
   flex-direction: column;
@@ -18,21 +21,19 @@ const MainInfo = styled.div`
   height: 500px;
 `;
 
-class ProductDetail extends PureComponent {
+class ProductDetail extends Component {
   componentDidMount() {
-    this.props.getProductDetail();
+    this.props.getProductDetail(convertStringToNumber(this.props.match.params.productId));
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.match.params.productId !== this.props.match.params.productId) {
-      this.props.getProductDetail();
-    }
+  componentWillUnmount() {
+    this.props.deleteProductDetail();
   }
 
   render() {
     const { product, isLoading } = this.props;
-    if (!product) return null;
     if (isLoading) return <Preloader />;
+    if (isEmpty(product)) return <p>El producto no existe</p>;
     return (
       <Wrapper withoutChangingStateStyle>
         <MainInfo>
@@ -63,4 +64,4 @@ ProductDetail.defaultProps = {
   product: {}
 };
 
-export default ProductDetail;
+export default withRouter(ProductDetail);

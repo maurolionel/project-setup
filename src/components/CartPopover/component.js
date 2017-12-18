@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import CartList from './components/CartList';
+import Anchor from '../Anchor';
 import Paper from '../Paper';
+import Preloader from '../Preloader';
 
 const Popover = styled.div`
   position: absolute;
@@ -21,23 +23,41 @@ const Popover = styled.div`
     opacity: 1;
     transform: translateY(0);
   }
+
+  > * {
+    width: 380px;
+  }
 `;
 
+const StyledPaper = styled(Paper)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 380px;
+  min-height: 60px;
+  text-align: center;
+`;
 
-const CartPopover = ({ canMount, isCartEmpty, isVisible }) => {
+const CartPopover = ({ canMount, isCartFullfilled, isLoadingProducts, isVisible }) => {
   if (!canMount) return null;
   return (
     <Popover className={isVisible ? 'is-visible' : ''}>
-      <Paper>
-        {isCartEmpty ? <CartList /> : <p>Tu carrito está vacío.</p>}
-      </Paper>
+      <StyledPaper>
+        {isCartFullfilled
+          ? isLoadingProducts
+            ? <Preloader />
+            : <CartList />
+          : <p>Tu carrito está vacío. <Anchor to="/productos">Ver productos</Anchor>.</p>
+        }
+      </StyledPaper>
     </Popover>
   );
 };
 
 CartPopover.propTypes = {
   canMount: PropTypes.bool.isRequired,
-  isCartEmpty: PropTypes.bool.isRequired,
+  isCartFullfilled: PropTypes.bool.isRequired,
+  isLoadingProducts: PropTypes.bool.isRequired,
   isVisible: PropTypes.bool.isRequired
 };
 

@@ -1,9 +1,4 @@
-const convertStringToNumber = string => parseInt(string, 10);
-const replaceMiddleDashWithSpace = string => string.replace(/-/g, ' ');
-const replaceSpaceWithMiddleDash = string => string.replace(/\s+/g, '-');
-
-export {
-  convertStringToNumber,
-  replaceMiddleDashWithSpace,
-  replaceSpaceWithMiddleDash
-};
+export const convertStringToNumber = string => parseInt(string, 10);
+export const replaceMiddleDashWithSpace = string => string.replace(/-/g, ' ');
+export const replaceSpaceWithMiddleDash = string => string.replace(/\s+/g, '-');
+export const normalizePrices = (accumulator, nextValue) => ({ ...accumulator, ...nextValue });

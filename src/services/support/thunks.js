@@ -1,9 +1,9 @@
-import { CALL_API } from 'redux-api-middleware';
+import { RSAA } from 'redux-api-middleware';
 import { getGuidesRequest, getGuidesSuccess, getGuidesError, selectGuideSuccess } from './actions';
 import appConfig from '../../config';
 
 export const getGuides = brandId => ({
-  [CALL_API]: {
+  [RSAA]: {
     endpoint: `${appConfig.api.imprek}product/model/brand/${brandId}`,
     method: 'GET',
     credentials: 'include',
@@ -15,7 +15,7 @@ export const getGuides = brandId => ({
 });
 
 export const selectGuide = productId => ({
-  [CALL_API]: {
+  [RSAA]: {
     endpoint: `${appConfig.api.path}guides/products/${productId}`,
     method: 'GET',
     credentials: 'include',
