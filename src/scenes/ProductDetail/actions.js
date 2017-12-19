@@ -6,11 +6,11 @@ export const getProductDetailsFailure = {
 };
 
 export const getProductDetailsStarted = {
-  type: GET_PRODUCT_DETAILS_STARTED,
-  payload: (action, state, rsp) =>
-    getJSON(rsp).then(json => json)
+  type: GET_PRODUCT_DETAILS_STARTED
 };
 
 export const getProductDetailsSuccess = {
-  type: GET_PRODUCT_DETAILS_SUCCESS
+  type: GET_PRODUCT_DETAILS_SUCCESS,
+  payload: (action, state, rsp) =>
+    getJSON(rsp).then(json => json)
 };

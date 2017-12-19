@@ -11,7 +11,7 @@ function supportReducer(state = initialState, action = {}) {
     case GET_GUIDES_SUCCESS:
       return {
         ...state,
-        guides: action.payload,
+        guides: action.payload.map(mapGuidesFromApi),
         isLoadingGuides: false
       };
     case GET_GUIDES_ERROR:
@@ -22,7 +22,7 @@ function supportReducer(state = initialState, action = {}) {
     case SELECT_GUIDE_SUCCESS:
       return {
         ...state,
-        selectedModelGuides: action.payload.result.map(mapModelGuidesFromApi)
+        selectedModelGuides: action.payload.map(mapModelGuidesFromApi)
       };
     default:
       return state;

@@ -16,7 +16,7 @@ export const getGuides = brandId => ({
 
 export const selectGuide = productId => ({
   [RSAA]: {
-    endpoint: `${appConfig.api.path}guides/products/${productId}`,
+    endpoint: `${appConfig.api.imprek}product/instructive/model/${productId}`,
     method: 'GET',
     credentials: 'include',
     headers: {

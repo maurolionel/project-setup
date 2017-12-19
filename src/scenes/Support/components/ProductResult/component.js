@@ -60,8 +60,9 @@ const Icon = styled.i.attrs({
 const renderGuideItemLink = aGuide => (
   <GuidesListItem>
     <GuidesListItemLink
-      key={aGuide.id}
+      key={aGuide.idInstructive}
       href={aGuide.url}
+      target="_blank"
       title="Hacé click para ver/descargar el instructivo"
     >
       <Icon />
@@ -70,9 +71,9 @@ const renderGuideItemLink = aGuide => (
   </GuidesListItem>
 );
 
-const ProductResult = ({ staticPath, guides }) => (
+const ProductResult = ({ guides }) => (
   <Wrapper>
-    <ProductPicture src={`${staticPath}2/${guides[0].productId}.jpg`} />
+    <ProductPicture src={guides[0].modelImage} />
     <ProductGuides>
       <ProductName>{guides[0].model}</ProductName>
       <GuidesList>
@@ -83,7 +84,6 @@ const ProductResult = ({ staticPath, guides }) => (
 );
 
 ProductResult.propTypes = {
-  staticPath: PropTypes.string.isRequired,
   guides: PropTypes.array.isRequired
 };
 

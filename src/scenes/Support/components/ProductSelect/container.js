@@ -12,7 +12,7 @@ const mapStateToProps = ({ brands, support }) => ({
 const mapDispatchToProps = dispatch => ({
   onGetBrands: () => dispatch(getBrands()),
   onGetGuides: brand => dispatch(getGuides(brand.id)),
-  onSelectGuideResult: result => dispatch(selectGuide(result.productId))
+  onSelectGuideResult: result => dispatch(selectGuide(result.id))
 });
 
 const SupportContainer = connect(

@@ -17,7 +17,13 @@ class Autocomplete extends PureComponent {
   state = {
     items: this.props.items,
     inputValue: ''
-  }
+  };
+
+  getQuantityLabel = (quantity) => {
+    if (quantity === 1) return `${quantity} instructivo`;
+    if (quantity > 1) return `${quantity} instructivos`;
+    return 'Sin instructivos';
+  };
 
   handleStateChange = (changes) => {
     if (changes.hasOwnProperty('inputValue')) {
@@ -27,11 +33,11 @@ class Autocomplete extends PureComponent {
         items: advancedFilter(this.props.items, inputValue)
       });
     }
-  }
+  };
 
   handleClearSelection = (clearSelection) => {
     clearSelection();
-  }
+  };
 
   render() {
     const { items, inputValue } = this.state;
@@ -88,10 +94,7 @@ class Autocomplete extends PureComponent {
                         : <span>
                           {items[index].name}
                           <GuideQuantity>
-                            {items[index].quantity > 1
-                              ? `${items[index].quantity} instructivos`
-                              : `${items[index].quantity} instructivo`
-                            }
+                            {this.getQuantityLabel(items[index].quantity)}
                           </GuideQuantity>
                         </span>
                       }
