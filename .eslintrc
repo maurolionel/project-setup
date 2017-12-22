@@ -22,7 +22,6 @@
   },
   "rules": {
     "strict": 2,
-    "linebreak-style": ["error", "windows"],
     "max-len": [
       "error",
       150
