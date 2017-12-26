@@ -23,11 +23,11 @@ const MainInfo = styled.div`
 
 class ProductDetail extends Component {
   componentDidMount() {
-    this.props.getProductDetail(convertStringToNumber(this.props.match.params.productId));
+    this.props.getProductDetail();
   }
 
   componentWillUnmount() {
-    this.props.deleteProductDetail();
+    this.props.resetProductDetail();
   }
 
   render() {
@@ -57,7 +57,8 @@ ProductDetail.propTypes = {
   match: PropTypes.object.isRequired,
   product: PropTypes.object,
   isLoading: PropTypes.bool.isRequired,
-  getProductDetail: PropTypes.func.isRequired
+  getProductDetail: PropTypes.func.isRequired,
+  resetProductDetail: PropTypes.func.isRequired
 };
 
 ProductDetail.defaultProps = {

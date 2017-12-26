@@ -1,6 +1,6 @@
 import { RSAA } from 'redux-api-middleware';
 import appConfig from '../../config';
-import { getProductDetailsFailure, getProductDetailsStarted, getProductDetailsSuccess } from './actions';
+import { getProductDetailFailure, getProductDetailStarted, getProductDetailSuccess } from './actions';
 
 /* eslint-disable import/prefer-default-export */
 export const getProductDetail = productId => ({
@@ -11,6 +11,6 @@ export const getProductDetail = productId => ({
     headers: {
       'content-type': 'application/json'
     },
-    types: [getProductDetailsStarted, getProductDetailsSuccess, getProductDetailsFailure]
+    types: [getProductDetailStarted, getProductDetailSuccess, getProductDetailFailure]
   }
 });

@@ -1,16 +1,20 @@
 import { getJSON } from 'redux-api-middleware';
-import { GET_PRODUCT_DETAILS_FAILURE, GET_PRODUCT_DETAILS_STARTED, GET_PRODUCT_DETAILS_SUCCESS } from './actionTypes';
+import { GET_PRODUCT_DETAIL_FAILURE, GET_PRODUCT_DETAIL_STARTED, GET_PRODUCT_DETAIL_SUCCESS, RESET_PRODUCT_DETAIL } from './actionTypes';
 
-export const getProductDetailsFailure = {
-  type: GET_PRODUCT_DETAILS_FAILURE
+export const getProductDetailFailure = {
+  type: GET_PRODUCT_DETAIL_FAILURE
 };
 
-export const getProductDetailsStarted = {
-  type: GET_PRODUCT_DETAILS_STARTED
+export const getProductDetailStarted = {
+  type: GET_PRODUCT_DETAIL_STARTED
 };
 
-export const getProductDetailsSuccess = {
-  type: GET_PRODUCT_DETAILS_SUCCESS,
+export const getProductDetailSuccess = {
+  type: GET_PRODUCT_DETAIL_SUCCESS,
   payload: (action, state, rsp) =>
     getJSON(rsp).then(json => json)
 };
+
+export const resetProductDetail = () => ({
+  type: RESET_PRODUCT_DETAIL
+});
