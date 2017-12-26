@@ -77,17 +77,15 @@ class ShippingSelection extends PureComponent {
 
   isSubmitDisabled = () => {
     const {
-      name, surname, email, tel, province, location, calle, altura, zipCode, shippingForm, shippingMethod
+      province, location, calle, altura, zipCode, shippingForm, shippingMethod
     } = this.props.data;
     const intShippingForm = parseInt(shippingForm, 10);
     const intProvince = parseInt(province, 10);
     const intLocation = parseInt(location, 10);
     const intShippingMethod = parseInt(shippingMethod, 10);
     if (intShippingForm === WITHOUT_SELECTION) return true;
-    if (name && surname && email && tel) {
-      if (intShippingForm === WITHDRAW_OPTION) return false;
-      if (intProvince && intLocation && calle && altura && intShippingMethod && zipCode) return false;
-    }
+    if (intShippingForm === WITHDRAW_OPTION) return false;
+    if (intProvince && intLocation && calle && altura && intShippingMethod && zipCode) return false;
     return true;
   }
 
@@ -106,7 +104,7 @@ class ShippingSelection extends PureComponent {
   renderShippingForms = () => {
     const { shippingForms } = this.props;
     if (!shippingForms.length) return null;
-    return shippingForms.map(this.renderOption);
+    return shippingForms.map(this.renderRadioOption);
   }
 
   renderShippingMethods = () => {
@@ -119,33 +117,15 @@ class ShippingSelection extends PureComponent {
     <option key={option.id} value={option.id}>{option.name}</option>
   );
 
-  renderMandatoryFields = () => (
-    <FormGroup>
-      <Title>Datos de contacto</Title>
-      <InputGroup>
-        <div>
-          <Label>Nombre *</Label>
-          <Input name="name" type="text" value={this.props.data.name} onChange={this.handleChange} required />
-        </div>
-        <div>
-          <Label>Apellido *</Label>
-          <Input name="surname" type="text" value={this.props.data.surname} onChange={this.handleChange} required />
-        </div>
-        <div>
-          <Label>E-mail *</Label>
-          <Input name="email" type="text" value={this.props.data.email} onChange={this.handleChange} required />
-        </div>
-        <div>
-          <Label>Teléfono *</Label>
-          <Input name="tel" type="text" value={this.props.data.tel} onChange={this.handleChange} required />
-        </div>
-      </InputGroup>
-    </FormGroup>
+  renderRadioOption = option => (
+    <label key={option.id} htmlFor={option.id}>
+      <input type="radio" value={option.id} name="shippingForm" id={option.id} checked={option.id == this.props.data.shippingForm} onChange={this.handleChange} />
+      {option.name}
+    </label>
   );
 
   renderWithdrawOptionContent = () => (
     <FormGroup>
-      {this.renderMandatoryFields()}
       <FlexRow>
         <FormGroup>
           <Title>Dirección de retiro</Title>
@@ -156,12 +136,12 @@ class ShippingSelection extends PureComponent {
             Ventas en general: 10 a 18 hs.<br />
             Ventas de impresoras: 10 a 17 hs.<br />
             Armado de sistemas continuos de 2 cartuchos: 10 a 17 hs.
-        </p>
+          </p>
           <p>
             <span style={{ fontWeight: '700' }}>Sábados</span><br />
             Ventas en general: 9 a 13 hs.<br />
             Ventas de impresoras: 9 a 11 hs.
-        </p>
+          </p>
         </FormGroup>
         <FormGroup>
           <Title>¿Cómo llegar?</Title>
@@ -197,16 +177,12 @@ class ShippingSelection extends PureComponent {
         <FormGroup>
           <Title>Forma de entrega</Title>
           <Label>Seleccioná la forma de entrega</Label>
-          <Select name="shippingForm" value={shippingForm} onChange={this.handleChange} required>
-            <option value="0">Seleccioná la forma de entrega</option>
-            {this.renderShippingForms()}
-          </Select>
+          {this.renderShippingForms()}
         </FormGroup>
         {deliveryForm === WITHDRAW_OPTION && this.renderWithdrawOptionContent()}
         {deliveryForm === SHIPPING_OPTION
           && (
             <div>
-              {this.renderMandatoryFields()}
               <FormGroup>
                 <Title>Dirección de destino</Title>
                 <InputGroup>

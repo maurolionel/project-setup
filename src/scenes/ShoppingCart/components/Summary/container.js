@@ -12,6 +12,7 @@ const formatShippingData = (data, state) => ({
   'Forma de entrega': getShippingFormName(data.shippingForm, state.shippings.forms),
   Nombre: data.name,
   Apellido: data.surname,
+  DNI: data.dni,
   Email: data.email,
   Teléfono: data.tel,
   Provincia: getProvinceName(data.province, state.places.provinces),
@@ -30,6 +31,7 @@ const mapStateToProps = (state) => {
     ['Forma de entrega', getShippingFormName(shippingForm, state.shippings.forms)],
     ['Nombre', state.purchase.data.name],
     ['Apellido', state.purchase.data.surname],
+    ['DNI', state.purchase.data.dni],
     ['Email', state.purchase.data.email],
     ['Teléfono', state.purchase.data.tel]
   ];

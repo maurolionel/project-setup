@@ -13,6 +13,7 @@ const initialState = {
   data: {
     name: '',
     surname: '',
+    dni: '',
     email: '',
     tel: '',
     province: 0,

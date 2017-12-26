@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ShoppingList from '../ShoppingList';
 import ShippingSelection from '../ShippingSelection';
+import UserInformation from '../UserInformation';
 import Summary from '../Summary';
 
 const StepIndicator = styled.div`
@@ -31,6 +32,7 @@ Pane.propTypes = {
 const BuyingSteps = () => (
   <Tabs>
     <Pane label="Carrito de compras" />
+    <Pane label="Datos de contacto" />
     <Pane label="Método de envío" />
     <Pane label="Confirmación de compra" />
   </Tabs>
@@ -92,6 +94,22 @@ class Tabs extends Component {
       );
     }
     if (this.state.selected === 1) {
+      return (
+        <Pane>
+          <UserInformation
+            onPrevStep={() => {
+              window.scrollTo(0, 0);
+              this.handleClick(this.state.selected - 1);
+            }}
+            onNextStep={() => {
+              window.scrollTo(0, 0);
+              this.handleClick(this.state.selected + 1);
+            }}
+          />
+        </Pane>
+      );
+    }
+    if (this.state.selected === 2) {
       return (
         <Pane>
           <ShippingSelection
