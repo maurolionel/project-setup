@@ -11,9 +11,13 @@ const Icon = styled.i.attrs({
 `;
 
 const Quantity = styled.span`
-  margin-left: 5px;
-  color: ${({ theme }) => theme.primary};
-  font-size: 0.9rem;
+  font-size: 1rem;
+  margin: 0 0.5rem 0 0;
+  color: #8a8a8a;
+  background-color: #e2e2e2;
+  padding: 2px 5px;
+  font-size: 1rem;
+  border-radius: 2px;
 `;
 
 const ButtonRemove = styled(Button)`
@@ -40,8 +44,8 @@ const ButtonCart = ({ style, className, type, quantity, isNotInCart, addToCart, 
         ? <div><Icon kind="shopping-cart" />Agregar al carrito</div>
         : (
           <div>
-            <Icon kind="check" />Agregado
-            <Quantity style={{ fontStyle: 'normal' }}>{quantity}</Quantity>
+            <Quantity>{quantity}</Quantity>
+            Agregado
           </div>
         )
       }

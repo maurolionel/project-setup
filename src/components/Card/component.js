@@ -72,10 +72,6 @@ const ActionWrapper = styled.div`
     width: auto;
     margin-right: 0.5rem;
   }
-  span {
-    margin-left: 0.5rem;
-    font-style: italic;
-  }
 `;
 
 const OfferBadge = styled.span`
