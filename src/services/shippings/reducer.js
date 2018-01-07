@@ -10,7 +10,7 @@ const initialState = {
     },
     {
       id: SHIPPING_OPTION,
-      name: 'Envío a domicilio'
+      name: 'Quiero que me lo envíen'
     }
   ],
   methods: []
