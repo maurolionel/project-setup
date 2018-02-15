@@ -5,10 +5,18 @@ const initialState = [
   },
   {
     id: 2,
-    name: 'Depósito / Transferencia'
+    name: 'Contrareembolso (efectivo)'
   },
   {
     id: 3,
+    name: 'Depósito'
+  },
+  {
+    id: 4,
+    name: 'Transferencia'
+  },
+  {
+    id: 5,
     name: 'MercadoPago'
   }
 ];

@@ -66,7 +66,7 @@ function search(state = initialState, action = {}) {
         ...state,
         products: {
           ...state.products,
-          all: action.payload.products,
+          all: action.payload.result,
           isLoading: false
         }
       };

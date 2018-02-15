@@ -13,7 +13,13 @@ const initialState = {
       name: 'Quiero que me lo envíen'
     }
   ],
-  methods: []
+  methods: [],
+  options: [
+    { id: 1, title: 'Moto', delay: '24hs aprox.' },
+    { id: 2, title: 'Micro', delay: '48hs aprox.' },
+    { id: 3, title: 'Correo Argentino (a domicilio)', delay: '3 a 5 días aprox.' },
+    { id: 4, title: 'Correo Argentino (a sucursal)', delay: '3 a 5 días aprox.' }
+  ]
 };
 
 const mapMethodsFromApiToState = ({ id, name }) => ({

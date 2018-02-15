@@ -43,30 +43,24 @@ const ActionGroup = styled.div`
 `;
 
 class ShippingSelection extends PureComponent {
-  state = {
-    activeLocations: []
-  }
-
-  componentDidMount() {
-    if (!this.props.provinces.length) this.props.onGetProvinces();
-  }
-
-  setActiveLocations = (provinceId) => {
-    const { locations } = this.props;
-    const activeLocations = locations.filter(l => l.provinceId === parseInt(provinceId, 10));
-    this.setState({ activeLocations });
-  }
-
   handleChange = ({ target: { name, value } }) => {
     this.props.onInputChange(name, value);
     if (name === 'province') {
       this.props.onInputChange('location', '0');
-      this.props.onInputChange('shippingMethod', '0');
-      this.props.onGetLocations(value);
+      if (this.props.data.shippingOption === '4') {
+        this.props.getLocationsForProvince(value);
+        this.props.getCorreoBranchOffices(value);
+      }
     }
-    if (name === 'location') {
-      this.props.onInputChange('shippingMethod', '0');
-      this.props.onGetShippingMethods(value);
+    if (name === 'shippingOption') {
+      this.props.onInputChange('location', '0');
+      this.props.onInputChange('province', '0');
+      this.props.onInputChange('correoBranchOffices', '0');
+      if (value === '1') {
+        this.props.getProvincesForMoto();
+      } else {
+        this.props.getAllProvinces();
+      }
     }
   }
 
@@ -76,27 +70,24 @@ class ShippingSelection extends PureComponent {
   }
 
   isSubmitDisabled = () => {
-    const {
-      province, location, calle, altura, zipCode, shippingForm, shippingMethod
-    } = this.props.data;
-    const intShippingForm = parseInt(shippingForm, 10);
-    const intProvince = parseInt(province, 10);
-    const intLocation = parseInt(location, 10);
-    const intShippingMethod = parseInt(shippingMethod, 10);
-    if (intShippingForm === WITHOUT_SELECTION) return true;
-    if (intShippingForm === WITHDRAW_OPTION) return false;
-    if (intProvince && intLocation && calle && altura && intShippingMethod && zipCode) return false;
+    const { data } = this.props;
+    const { calle, altura, zipCode } = data;
+    const shippingForm = parseInt(data.shippingForm, 10);
+    const province = parseInt(data.province, 10);
+    const location = parseInt(data.location, 10);
+    const shippingMethod = parseInt(data.shippingMethod, 10);
+    if (shippingForm === WITHOUT_SELECTION) return true;
+    if (shippingForm === WITHDRAW_OPTION) return false;
+    if (province && location && calle && altura && shippingMethod && zipCode) return false;
     return true;
   }
 
-  renderProvinces = () => {
-    const { provinces } = this.props;
+  renderProvinces = (provinces) => {
     if (!provinces.length) return null;
     return provinces.map(this.renderOption);
   }
 
-  renderLocations = () => {
-    const { locations } = this.props;
+  renderLocations = (locations) => {
     if (!locations.length) return null;
     return locations.map(this.renderOption);
   }
@@ -104,7 +95,13 @@ class ShippingSelection extends PureComponent {
   renderShippingForms = () => {
     const { shippingForms } = this.props;
     if (!shippingForms.length) return null;
-    return shippingForms.map(this.renderRadioOption);
+    return shippingForms.map(this.renderShippingFormRadioInput);
+  }
+
+  renderShippingOptions = () => {
+    const { shippingOptions } = this.props;
+    if (!shippingOptions.length) return null;
+    return shippingOptions.map(this.renderShippingOptionRadioInput);
   }
 
   renderShippingMethods = () => {
@@ -114,13 +111,20 @@ class ShippingSelection extends PureComponent {
   }
 
   renderOption = option => (
-    <option key={option.id} value={option.id}>{option.name}</option>
+    <option key={`${option.id}-${option.name}`} value={option.id}>{option.name}</option>
   );
 
-  renderRadioOption = option => (
-    <label key={option.id} htmlFor={option.id}>
-      <input type="radio" value={option.id} name="shippingForm" id={option.id} checked={option.id == this.props.data.shippingForm} onChange={this.handleChange} />
-      {option.name}
+  renderShippingFormRadioInput = shippingForm => (
+    <label key={`${shippingForm.id}-${shippingForm.title}`} htmlFor={shippingForm.title}>
+      <input type="radio" value={shippingForm.id} name="shippingForm" id={shippingForm.title} checked={shippingForm.id == this.props.data.shippingForm} onChange={this.handleChange} />
+      {shippingForm.name}
+    </label>
+  );
+
+  renderShippingOptionRadioInput = shippingOption => (
+    <label key={`${shippingOption.id}-${shippingOption.title}`} htmlFor={shippingOption.title}>
+      <input type="radio" value={shippingOption.id} name="shippingOption" id={shippingOption.title} checked={shippingOption.id == this.props.data.shippingOption} onChange={this.handleChange} />
+      {`${shippingOption.title} (${shippingOption.delay})`}
     </label>
   );
 
@@ -159,19 +163,102 @@ class ShippingSelection extends PureComponent {
     </FormGroup>
   );
 
+  selectShippingOptionContent = () => {
+    const shippingForm = parseInt(this.props.data.shippingForm, 10);
+    const shippingOption = parseInt(this.props.data.shippingOption, 10);
+    if (shippingForm === SHIPPING_OPTION) {
+      if (shippingOption === 1) return this.renderMotoDataRequirements();
+      if (shippingOption === 2 || shippingOption === 3) return this.renderDataRequirements();
+      if (shippingOption === 4) return this.renderCorreoDataRequirements();
+    }
+    return null;
+  };
+
+  renderMotoDataRequirements = () => this.renderDataRequirements()
+
+  renderCorreoDataRequirements = () => (
+    <FormGroup>
+      <Title>Dirección de destino</Title>
+      <InputGroup>
+        {this.renderLocationAndProvinceRequirements()}
+        <div>
+          <Label>Sucursal de Correo Argentino *</Label>
+          <Select name="correoBranchOffice" value={this.props.data.correoBranchOffice} onChange={this.handleChange} required>
+            <option value="0">Seleccionar sucursal</option>
+            {this.props.correoBranchOffices && this.props.correoBranchOffices.map(this.renderOption)}
+          </Select>
+        </div>
+      </InputGroup>
+    </FormGroup>
+  );
+
+  renderDataRequirements = () => (
+    <FormGroup>
+      <Title>Dirección de destino</Title>
+      {this.renderLocationAndProvinceRequirements()}
+      {this.renderPersonalDataRequirements()}
+    </FormGroup>
+  );
+
+  renderLocationAndProvinceRequirements = () => {
+    const { location, province } = this.props.data;
+    return (
+      <div>
+        <InputGroup>
+          <div>
+            <Label>Provincia *</Label>
+            <Select name="province" value={province} onChange={this.handleChange} required>
+              <option value="0">Seleccionar provincia</option>
+              {!this.props.isLoadingProvinces && this.renderProvinces(this.props.provinces)}
+            </Select>
+          </div>
+          <div>
+            <Label>Localidad *</Label>
+            <Select name="location" value={location} onChange={this.handleChange} required>
+              <option value="0">Seleccionar localidad</option>
+              {!this.props.isLoadingLocations && this.renderLocations(this.props.locations)}
+            </Select>
+          </div>
+        </InputGroup>
+      </div>
+    );
+  };
+
+  renderPersonalDataRequirements = () => {
+    const { calle, altura, piso, departamento, zipCode } = this.props.data;
+    return (
+      <div>
+        <InputGroup>
+          <div>
+            <Label>Calle *</Label>
+            <Input name="calle" type="text" value={calle} onChange={this.handleChange} required />
+          </div>
+          <div>
+            <Label>Altura *</Label>
+            <Input name="altura" type="text" value={altura} onChange={this.handleChange} required />
+          </div>
+        </InputGroup>
+        <InputGroup>
+          <div>
+            <Label>Piso</Label>
+            <Input name="piso" type="text" value={piso} onChange={this.handleChange} />
+          </div>
+          <div>
+            <Label>Departamento</Label>
+            <Input name="departamento" type="text" value={departamento} onChange={this.handleChange} />
+          </div>
+          <div>
+            <Label>Código postal *</Label>
+            <Input name="zipCode" type="text" value={zipCode} onChange={this.handleChange} required />
+          </div>
+        </InputGroup>
+      </div>
+    );
+  };
+
   render() {
-    const {
-      province,
-      location,
-      calle,
-      altura,
-      piso,
-      departamento,
-      zipCode,
-      shippingForm,
-      shippingMethod
-    } = this.props.data;
-    const deliveryForm = parseInt(shippingForm, 10);
+    const { shippingForm } = this.props.data;
+    const shippingFormNumber = parseInt(shippingForm, 10);
     return (
       <Form onSubmit={this.handleSubmit}>
         <FormGroup>
@@ -179,64 +266,9 @@ class ShippingSelection extends PureComponent {
           <Label>Seleccioná la forma de entrega</Label>
           {this.renderShippingForms()}
         </FormGroup>
-        {deliveryForm === WITHDRAW_OPTION && this.renderWithdrawOptionContent()}
-        {deliveryForm === SHIPPING_OPTION
-          && (
-            <div>
-              <FormGroup>
-                <Title>Dirección de destino</Title>
-                <InputGroup>
-                  <div>
-                    <Label>Provincia *</Label>
-                    <Select name="province" value={province} onChange={this.handleChange} required>
-                      <option value="0">Seleccionar provincia</option>
-                      {this.renderProvinces()}
-                    </Select>
-                  </div>
-                  <div>
-                    <Label>Localidad *</Label>
-                    <Select name="location" value={location} onChange={this.handleChange} required>
-                      <option value="0">Seleccionar localidad</option>
-                      {this.renderLocations()}
-                    </Select>
-                  </div>
-                </InputGroup>
-                <InputGroup>
-                  <div>
-                    <Label>Calle *</Label>
-                    <Input name="calle" type="text" value={calle} onChange={this.handleChange} required />
-                  </div>
-                  <div>
-                    <Label>Altura *</Label>
-                    <Input name="altura" type="text" value={altura} onChange={this.handleChange} required />
-                  </div>
-                </InputGroup>
-                <InputGroup>
-                  <div>
-                    <Label>Piso</Label>
-                    <Input name="piso" type="text" value={piso} onChange={this.handleChange} />
-                  </div>
-                  <div>
-                    <Label>Departamento</Label>
-                    <Input name="departamento" type="text" value={departamento} onChange={this.handleChange} />
-                  </div>
-                  <div>
-                    <Label>Código postal *</Label>
-                    <Input name="zipCode" type="text" value={zipCode} onChange={this.handleChange} required />
-                  </div>
-                </InputGroup>
-              </FormGroup>
-              <FormGroup>
-                <Title>Método de envío</Title>
-                <Label>Seleccioná un método de envío *</Label>
-                <Select name="shippingMethod" value={shippingMethod} onChange={this.handleChange} required>
-                  <option value="0">Seleccioná un método de envío</option>
-                  {this.renderShippingMethods()}
-                </Select>
-              </FormGroup>
-            </div>
-          )
-        }
+        {shippingFormNumber === WITHDRAW_OPTION && this.renderWithdrawOptionContent()}
+        {shippingFormNumber === SHIPPING_OPTION && this.renderShippingOptions()}
+        {this.selectShippingOptionContent()}
         <ActionGroup>
           <Button type="button" onClick={this.props.onPrevStep}>Ver paso anterior</Button>
           <Button
@@ -252,17 +284,22 @@ class ShippingSelection extends PureComponent {
 }
 
 ShippingSelection.propTypes = {
+  correoBranchOffices: PropTypes.array.isRequired,
   provinces: PropTypes.array.isRequired,
   locations: PropTypes.array.isRequired,
   data: PropTypes.object.isRequired,
+  isLoadingProvinces: PropTypes.bool.isRequired,
+  isLoadingLocations: PropTypes.bool.isRequired,
   shippingForms: PropTypes.array.isRequired,
   shippingMethods: PropTypes.array.isRequired,
+  shippingOptions: PropTypes.array.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onPrevStep: PropTypes.func.isRequired,
   onNextStep: PropTypes.func.isRequired,
-  onGetProvinces: PropTypes.func.isRequired,
-  onGetLocations: PropTypes.func.isRequired,
-  onGetShippingMethods: PropTypes.func.isRequired
+  getAllProvinces: PropTypes.func.isRequired,
+  getLocationsForProvince: PropTypes.func.isRequired,
+  getProvincesForMoto: PropTypes.func.isRequired,
+  getCorreoBranchOffices: PropTypes.func.isRequired
 };
 
 export default ShippingSelection;

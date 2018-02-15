@@ -11,13 +11,15 @@ const Icon = styled.i.attrs({
 `;
 
 const Quantity = styled.span`
-  font-size: 1rem;
+  display: inline-flex;
+  justify-content: center;
+  width: 25px;
+  padding: 2px 5px;
   margin: 0 0.5rem 0 0;
+  border-radius: 2px;
   color: #8a8a8a;
   background-color: #e2e2e2;
-  padding: 2px 5px;
-  font-size: 1rem;
-  border-radius: 2px;
+  font-size: 0.9rem;
 `;
 
 const ButtonRemove = styled(Button)`
@@ -34,7 +36,7 @@ const ButtonRemove = styled(Button)`
 const ButtonCart = ({ style, className, type, quantity, isNotInCart, addToCart, removeFromCart }) => (
   <div style={{ position: 'relative' }}>
     <Button
-      style={style}
+      style={{ ...style, paddingLeft: isNotInCart ? '0.8rem' : '0.5rem' }}
       className={className}
       type={type}
       primary={isNotInCart}

@@ -24,7 +24,9 @@ const initialState = {
     departamento: '',
     zipCode: '',
     shippingForm: 0,
-    shippingMethod: 0
+    shippingMethod: 0,
+    shippingOption: 0,
+    correoBranchOffice: 0
   },
   paymentType: 0,
   preference: {
